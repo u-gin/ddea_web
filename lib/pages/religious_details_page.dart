@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
+import '../utils/colors.dart';
 import '../utils/my_controller.dart';
 import '../widgets/button_template.dart';
 import '../widgets/text_field_template.dart';
@@ -20,6 +21,15 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
   late TextEditingController occupationController;
 
   int groupValue = 0;
+
+  List positionHeldList = [
+    "Please select",
+    'Member (M)',
+    'Presiding Elder (P.E)',
+    'Deacon (Dcn)',
+    'Deaconess (Dcns)'
+  ];
+  String dropdownValue = "Please select";
 
   @override
   void initState() {
@@ -91,7 +101,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                                 ),
                               ),
                               TextFieldTemplate(
-                                hintText: "Awoshie",
+                                hintText: "Ps. Andrews Okyere",
                                 controller: placeOfResidenceController,
                                 obscureText: false,
                                 width: 400,
@@ -106,7 +116,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                "Profession",
+                                "Position held",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16.0,
@@ -114,16 +124,57 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              TextFieldTemplate(
-                                hintText: "Police",
-                                controller: occupationController,
-                                obscureText: false,
-                                width: 400,
+                              SizedBox(
                                 height: 50,
-                                textInputType: TextInputType.name,
-                                textInputAction: TextInputAction.next,
-                                enabled: true,
-                              )
+                                width: 400,
+                                child: DropdownButtonHideUnderline(
+                                  child: GFDropdown(
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: const BorderSide(
+                                      color: Colors.black12,
+                                      width: 1,
+                                    ),
+                                    hint: Text(
+                                      'Please select',
+                                      style: TextStyle(
+                                        color: AppColors.hintTextColor,
+                                        fontSize: 14.0,
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    dropdownButtonColor: Colors.white,
+                                    isExpanded: true,
+                                    isDense: true,
+                                    focusColor: Colors.transparent,
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 10,
+                                      horizontal: 14.0,
+                                    ),
+                                    value: dropdownValue,
+                                    onChanged: (newValue) {
+                                      setState(() {
+                                        dropdownValue = newValue.toString();
+                                      });
+                                    },
+                                    items: positionHeldList
+                                        .map((value) => DropdownMenuItem(
+                                              value: value,
+                                              alignment: AlignmentDirectional
+                                                  .centerStart,
+                                              child: Text(
+                                                value,
+                                                style: const TextStyle(
+                                                  fontFamily: "Poppins",
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                            ))
+                                        .toList(),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ],
