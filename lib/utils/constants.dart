@@ -1,0 +1,2 @@
+double? canvasWidth;
+double? canvasHeight;

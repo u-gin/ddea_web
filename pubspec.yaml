@@ -1,0 +1,44 @@
+name: ddea_web
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.5 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  getwidget: ^3.1.1
+  
+
+  get:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    
+  fonts:
+    - family: HindSiliguri
+      fonts: 
+        - asset: fonts/HindSiliguri-Bold.ttf
+        - asset: fonts/HindSiliguri-Light.ttf
+        - asset: fonts/HindSiliguri-Medium.ttf
+        - asset: fonts/HindSiliguri-Regular.ttf
+        - asset: fonts/HindSiliguri-SemiBold.ttf
+    - family: Poppins
+      fonts: 
+        - asset: fonts/PoppinsMedium.ttf
+          weight: 500
+        - asset: fonts/PoppinsRegular.ttf
+          weight: 400
+        - asset: fonts/PoppinsSemiBold.ttf
+          weight: 600
