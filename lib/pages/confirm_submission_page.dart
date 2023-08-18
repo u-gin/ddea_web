@@ -155,4 +155,6 @@ class ConfirmSubmissionPage extends StatelessWidget {
       ],
     );
   }
+
+  sendDataToDatabase() {}
 }

@@ -20,6 +20,8 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
   late TextEditingController placeOfBirthController;
   late TextEditingController dateOfBirthController;
 
+  late String name, placeOfBirth, telephone, hometown, gender, dateOfBirth;
+
   int groupValue = 0;
 
   @override
@@ -343,4 +345,6 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
       ),
     );
   }
+
+  collectData() {}
 }
