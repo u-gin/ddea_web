@@ -1,3 +1,4 @@
+import 'package:ddea_web/pages/confirm_submission_page.dart';
 import 'package:ddea_web/pages/personal_details_page.dart';
 import 'package:ddea_web/pages/professional_details_page.dart';
 import 'package:ddea_web/pages/religious_details_page.dart';
@@ -62,7 +63,9 @@ class _HomeState extends State<Home> {
                       ? const PersonalDetailsPage()
                       : controller.myVariable.value == 2
                           ? const ProfessionalDetailsPage()
-                          : const ReligiousDetailsPage();
+                          : controller.myVariable.value == 3
+                              ? const ReligiousDetailsPage()
+                              : ConfirmSubmissionPage();
                 },
               ),
             ),
