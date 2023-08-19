@@ -1,5 +1,8 @@
+import 'dart:typed_data';
+
 import 'package:ddea_web/utils/constants.dart';
 import 'package:ddea_web/widgets/button_template.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -25,6 +28,8 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
 
   int groupValue = 0;
   String selectedGeder = "";
+
+  Uint8List? imageBytes;
 
   @override
   void initState() {
@@ -83,6 +88,76 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                             ),
                           ],
                         ),
+                      ),
+                      Row(
+                        children: [
+                          const Text(
+                            "Upload image",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16.0,
+                              fontFamily: "Poppins",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: imageBytes != null
+                                ? ClipOval(
+                                    child: Container(
+                                      width: 150,
+                                      height: 150,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.grey[300],
+                                        border: Border.all(
+                                          width: 2,
+                                          color: Colors.white,
+                                        ),
+                                        image: DecorationImage(
+                                          image: MemoryImage(
+                                            imageBytes!,
+                                          ),
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    width: 150,
+                                    height: 150,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.grey[300],
+                                      border: Border.all(
+                                        width: 2,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    child: const Icon(
+                                      Icons.person,
+                                      color: Colors.grey,
+                                      size: 90,
+                                    ),
+                                  ),
+                          ),
+                          ButtonTemplate(
+                            buttonName: "Pick image",
+                            buttonColor: Colors.deepPurple,
+                            buttonHeight: 40,
+                            buttonWidth: 100,
+                            buttonAction: () {
+                              pickImage();
+                            },
+                            fontColor: Colors.white,
+                            textSize: 10,
+                            buttonBorderRadius: 8,
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -340,7 +415,8 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                     placeOfBirthController.text == "" ||
                     dateOfBirthController.text == "" ||
                     hometownController.text == "" ||
-                    groupValue == 0) {
+                    groupValue == 0 ||
+                    imageBytes == null) {
                   Get.snackbar(
                     "Warrning",
                     "All fields are required!!",
@@ -384,5 +460,18 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
     storage.write("hometown", hometown);
     storage.write("placeOfBirth", placeOfBirth);
     storage.write("telephone", telephone);
+    storage.write("imageBtes", imageBytes!);
+  }
+
+  Future<void> pickImage() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+    );
+
+    if (result != null) {
+      setState(() {
+        imageBytes = result.files.single.bytes;
+      });
+    }
   }
 }
