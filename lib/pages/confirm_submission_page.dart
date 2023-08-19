@@ -1,7 +1,6 @@
 import 'package:ddea_web/utils/colors.dart';
 import 'package:ddea_web/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 
 import '../widgets/button_template.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -13,7 +12,6 @@ class ConfirmSubmissionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(storage.read("fullname"));
     return SizedBox(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40.0),
@@ -57,20 +55,21 @@ class ConfirmSubmissionPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      /* rowItem("Fullname", storage.read("fullName")),
+                      rowItem("Fullname", storage.read("fullName")),
                       rowItem("Mobile number", storage.read("telephone")),
-                      rowItem("Place of birth", storage.read("placeOfBirth")),
+                      rowItem("Place of birth", storage.read("dateOfBirth")),
                       rowItem("Hometown", storage.read("hometown")),
                       rowItem("Gender", storage.read("gender")),
                       rowItem("Date of birth", storage.read("placeOfBirth")),
-                      rowItem("Place of residence", storage.read("residence")),
+                      rowItem("Place of residence",
+                          storage.read("placeOfResidence")),
                       rowItem("Residential address",
                           storage.read("residentialAddress")),
                       rowItem("Profession", storage.read("preofession")),
                       rowItem("Place of work", storage.read("placeOfWork")),
                       rowItem("Baptized by", storage.read("baptizedBy")),
                       rowItem("Position held", storage.read("positionHeld")),
-                      rowItem("Communicant", storage.read("communicant")), */
+                      rowItem("Communicant", storage.read("communicant")),
                     ],
                   ),
                 ),

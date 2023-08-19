@@ -18,9 +18,9 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
   late TextEditingController placeOfResidenceController;
   late TextEditingController residentialAddressController;
   late TextEditingController placeOfWorkController;
-  late TextEditingController occupationController;
+  late TextEditingController professionController;
 
-  late String placeOfResidence, residentialAddress, placeOfWork, occupation;
+  late String placeOfResidence, residentialAddress, placeOfWork, profession;
 
   int groupValue = 0;
 
@@ -29,7 +29,7 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
     placeOfResidenceController = TextEditingController();
     residentialAddressController = TextEditingController();
     placeOfWorkController = TextEditingController();
-    occupationController = TextEditingController();
+    professionController = TextEditingController();
     super.initState();
   }
 
@@ -151,7 +151,7 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
                               ),
                               TextFieldTemplate(
                                 hintText: "Police",
-                                controller: occupationController,
+                                controller: professionController,
                                 obscureText: false,
                                 width: 400,
                                 height: 50,
@@ -224,6 +224,14 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
                   buttonColor: Colors.deepPurple,
                   buttonHeight: 60,
                   buttonAction: () {
+                    placeOfResidence =
+                        placeOfResidenceController.text.toString().trim();
+                    residentialAddress =
+                        residentialAddressController.text.toString().trim();
+                    profession = professionController.text.toString().trim();
+                    placeOfWork = placeOfWorkController.text.toString().trim();
+                    saveDataToLocalStorage(placeOfResidence, residentialAddress,
+                        profession, placeOfWork);
                     setState(() {
                       Get.find<MyController>().increment();
                     });
