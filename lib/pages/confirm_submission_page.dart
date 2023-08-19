@@ -65,7 +65,7 @@ class ConfirmSubmissionPage extends StatelessWidget {
                           storage.read("placeOfResidence")),
                       rowItem("Residential address",
                           storage.read("residentialAddress")),
-                      rowItem("Profession", storage.read("preofession")),
+                      rowItem("Profession", storage.read("profession")),
                       rowItem("Place of work", storage.read("placeOfWork")),
                       rowItem("Baptized by", storage.read("baptizedBy")),
                       rowItem("Position held", storage.read("positionHeld")),

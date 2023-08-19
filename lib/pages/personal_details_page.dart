@@ -341,7 +341,16 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                     dateOfBirthController.text == "" ||
                     hometownController.text == "" ||
                     groupValue == 0) {
-                  debugPrint("empty field");
+                  Get.snackbar(
+                    "Warrning",
+                    "All fields are required!!",
+                    colorText: Colors.white,
+                    backgroundColor: Colors.red,
+                    borderRadius: 8.0,
+                    margin:
+                        const EdgeInsets.only(top: 60, left: 380, right: 380),
+                    duration: const Duration(seconds: 5),
+                  );
                 } else {
                   fullname = nameController.text.toString().trim();
                   telephone = mobileController.text.toString().trim();

@@ -21,6 +21,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
   late String baptizedBy, positionHeld, communicant;
 
   int groupValue = 0;
+  String communicantValue = "";
 
   List positionHeldList = [
     "Please select",
@@ -214,6 +215,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                                         onChanged: (value) {
                                           setState(() {
                                             groupValue = value;
+                                            communicantValue = "Yes";
                                           });
                                         },
                                       ),
@@ -252,6 +254,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                                         onChanged: (value) {
                                           setState(() {
                                             groupValue = value;
+                                            communicantValue = "No";
                                           });
                                         },
                                       ),
@@ -312,14 +315,29 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                   buttonColor: Colors.deepPurple,
                   buttonHeight: 60,
                   buttonAction: () {
-                    baptizedBy = baptizedByController.text.toString().trim();
-                    positionHeld = dropdownValue.toString().trim();
-                    communicant = groupValue.toString();
-                    saveDataToLocalStorage(
-                        baptizedBy, positionHeld, communicant);
-                    setState(() {
-                      Get.find<MyController>().increment();
-                    });
+                    if (baptizedByController.text == "" ||
+                        dropdownValue == "Please select" ||
+                        communicantValue == "") {
+                      Get.snackbar(
+                        "Warrning",
+                        "All fields are required!!",
+                        colorText: Colors.white,
+                        backgroundColor: Colors.red,
+                        borderRadius: 8.0,
+                        margin: const EdgeInsets.only(
+                            top: 60, left: 380, right: 380),
+                        duration: const Duration(seconds: 5),
+                      );
+                    } else {
+                      baptizedBy = baptizedByController.text.toString().trim();
+                      positionHeld = dropdownValue.toString().trim();
+                      communicant = communicantValue.toString();
+                      saveDataToLocalStorage(
+                          baptizedBy, positionHeld, communicant);
+                      setState(() {
+                        Get.find<MyController>().increment();
+                      });
+                    }
                   },
                   fontColor: Colors.white,
                   textSize: 15,

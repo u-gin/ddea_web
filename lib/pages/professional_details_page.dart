@@ -224,17 +224,34 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
                   buttonColor: Colors.deepPurple,
                   buttonHeight: 60,
                   buttonAction: () {
-                    placeOfResidence =
-                        placeOfResidenceController.text.toString().trim();
-                    residentialAddress =
-                        residentialAddressController.text.toString().trim();
-                    profession = professionController.text.toString().trim();
-                    placeOfWork = placeOfWorkController.text.toString().trim();
-                    saveDataToLocalStorage(placeOfResidence, residentialAddress,
-                        profession, placeOfWork);
-                    setState(() {
-                      Get.find<MyController>().increment();
-                    });
+                    if (placeOfResidenceController.text == "" ||
+                        residentialAddressController.text == "" ||
+                        professionController.text == "" ||
+                        placeOfWorkController.text == "") {
+                      Get.snackbar(
+                        "Warrning",
+                        "All fields are required!!",
+                        colorText: Colors.white,
+                        backgroundColor: Colors.red,
+                        borderRadius: 8.0,
+                        margin: const EdgeInsets.only(
+                            top: 60, left: 380, right: 380),
+                        duration: const Duration(seconds: 5),
+                      );
+                    } else {
+                      placeOfResidence =
+                          placeOfResidenceController.text.toString().trim();
+                      residentialAddress =
+                          residentialAddressController.text.toString().trim();
+                      profession = professionController.text.toString().trim();
+                      placeOfWork =
+                          placeOfWorkController.text.toString().trim();
+                      saveDataToLocalStorage(placeOfResidence,
+                          residentialAddress, profession, placeOfWork);
+                      setState(() {
+                        Get.find<MyController>().increment();
+                      });
+                    }
                   },
                   fontColor: Colors.white,
                   textSize: 15,
