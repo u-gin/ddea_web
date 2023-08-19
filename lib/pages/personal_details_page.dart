@@ -24,6 +24,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
   late String fullname, placeOfBirth, telephone, hometown, gender, dateOfBirth;
 
   int groupValue = 0;
+  String selectedGeder = "";
 
   @override
   void initState() {
@@ -230,6 +231,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                                         onChanged: (value) {
                                           setState(() {
                                             groupValue = value;
+                                            selectedGeder = "Male";
                                           });
                                         },
                                       ),
@@ -268,6 +270,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                                         onChanged: (value) {
                                           setState(() {
                                             groupValue = value;
+                                            selectedGeder = "Female";
                                           });
                                         },
                                       ),
@@ -332,17 +335,26 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
               buttonColor: Colors.deepPurple,
               buttonHeight: 60,
               buttonAction: () {
-                fullname = nameController.text.toString().trim();
-                telephone = mobileController.text.toString().trim();
-                placeOfBirth = placeOfBirthController.text.toString().trim();
-                dateOfBirth = dateOfBirthController.text.toString().trim();
-                hometown = hometownController.text.toString().trim();
-                gender = groupValue.toString();
-                saveDataToLocalStorage(fullname, dateOfBirth, gender, hometown,
-                    placeOfBirth, telephone);
-                setState(() {
-                  Get.find<MyController>().increment();
-                });
+                if (nameController.text == "" ||
+                    mobileController.text == "" ||
+                    placeOfBirthController.text == "" ||
+                    dateOfBirthController.text == "" ||
+                    hometownController.text == "" ||
+                    groupValue == 0) {
+                  debugPrint("empty field");
+                } else {
+                  fullname = nameController.text.toString().trim();
+                  telephone = mobileController.text.toString().trim();
+                  placeOfBirth = placeOfBirthController.text.toString().trim();
+                  dateOfBirth = dateOfBirthController.text.toString().trim();
+                  hometown = hometownController.text.toString().trim();
+                  gender = selectedGeder.toString();
+                  saveDataToLocalStorage(fullname, dateOfBirth, gender,
+                      hometown, placeOfBirth, telephone);
+                  setState(() {
+                    Get.find<MyController>().increment();
+                  });
+                }
               },
               fontColor: Colors.white,
               textSize: 15,
