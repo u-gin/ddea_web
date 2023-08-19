@@ -2,6 +2,7 @@ import 'package:ddea_web/widgets/button_template.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../utils/constants.dart';
 import '../utils/my_controller.dart';
 import '../widgets/text_field_template.dart';
 
@@ -18,6 +19,8 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
   late TextEditingController residentialAddressController;
   late TextEditingController placeOfWorkController;
   late TextEditingController occupationController;
+
+  late String placeOfResidence, residentialAddress, placeOfWork, occupation;
 
   int groupValue = 0;
 
@@ -236,5 +239,13 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
         ),
       ),
     );
+  }
+
+  saveDataToLocalStorage(String placeOfResidence, String residentialAddress,
+      String profession, String placeOfWork) {
+    storage.write("placeOfResidence", placeOfResidence);
+    storage.write("residentialAddress", residentialAddress);
+    storage.write("profession", profession);
+    storage.write("placeOfWork", placeOfWork);
   }
 }

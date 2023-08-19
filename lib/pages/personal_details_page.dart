@@ -1,3 +1,4 @@
+import 'package:ddea_web/utils/constants.dart';
 import 'package:ddea_web/widgets/button_template.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
   late TextEditingController placeOfBirthController;
   late TextEditingController dateOfBirthController;
 
-  late String name, placeOfBirth, telephone, hometown, gender, dateOfBirth;
+  late String fullname, placeOfBirth, telephone, hometown, gender, dateOfBirth;
 
   int groupValue = 0;
 
@@ -331,6 +332,14 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
               buttonColor: Colors.deepPurple,
               buttonHeight: 60,
               buttonAction: () {
+                fullname = nameController.text.toString().trim();
+                telephone = mobileController.text.toString().trim();
+                placeOfBirth = placeOfBirthController.text.toString().trim();
+                dateOfBirth = dateOfBirthController.text.toString().trim();
+                hometown = hometownController.text.toString().trim();
+                gender = groupValue.toString();
+                saveDataToLocalStorage(fullname, dateOfBirth, gender, hometown,
+                    placeOfBirth, telephone);
                 setState(() {
                   Get.find<MyController>().increment();
                 });
@@ -346,5 +355,13 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
     );
   }
 
-  collectData() {}
+  saveDataToLocalStorage(String fullName, String dateOfBirth, String gender,
+      String hometown, String placeOfBirth, String telephone) {
+    storage.write("fullName", fullName);
+    storage.write("dateOfBirth", dateOfBirth);
+    storage.write("gender", gender);
+    storage.write("hometown", hometown);
+    storage.write("placeOfBirth", placeOfBirth);
+    storage.write("telephone", telephone);
+  }
 }

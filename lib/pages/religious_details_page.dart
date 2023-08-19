@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
 import '../utils/colors.dart';
+import '../utils/constants.dart';
 import '../utils/my_controller.dart';
 import '../widgets/button_template.dart';
 import '../widgets/text_field_template.dart';
@@ -15,10 +16,9 @@ class ReligiousDetailsPage extends StatefulWidget {
 }
 
 class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
-  late TextEditingController placeOfResidenceController;
-  late TextEditingController residentialAddressController;
-  late TextEditingController placeOfWorkController;
-  late TextEditingController occupationController;
+  late TextEditingController baptizedByController;
+
+  late String baptizedBy, positionHeld, communicant;
 
   int groupValue = 0;
 
@@ -33,10 +33,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
 
   @override
   void initState() {
-    placeOfResidenceController = TextEditingController();
-    residentialAddressController = TextEditingController();
-    placeOfWorkController = TextEditingController();
-    occupationController = TextEditingController();
+    baptizedByController = TextEditingController();
     super.initState();
   }
 
@@ -102,7 +99,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                               ),
                               TextFieldTemplate(
                                 hintText: "Ps. Andrews Okyere",
-                                controller: placeOfResidenceController,
+                                controller: baptizedByController,
                                 obscureText: false,
                                 width: 400,
                                 height: 50,
@@ -276,30 +273,6 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                               ),
                             ],
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Place of work",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.0,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              TextFieldTemplate(
-                                hintText: "Ghana Revenue Authority",
-                                controller: placeOfWorkController,
-                                obscureText: false,
-                                width: 400,
-                                height: 50,
-                                textInputType: TextInputType.name,
-                                textInputAction: TextInputAction.next,
-                                enabled: true,
-                              )
-                            ],
-                          ),
                         ],
                       ),
                     ],
@@ -318,7 +291,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ButtonTemplate(
-                  buttonName: "Prevous",
+                  buttonName: "Previous",
                   buttonColor: const Color.fromARGB(255, 174, 78, 191),
                   buttonHeight: 60,
                   buttonAction: () {
@@ -339,6 +312,11 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                   buttonColor: Colors.deepPurple,
                   buttonHeight: 60,
                   buttonAction: () {
+                    baptizedBy = baptizedByController.text.toString().trim();
+                    positionHeld = dropdownValue.toString().trim();
+                    communicant = groupValue.toString();
+                    saveDataToLocalStorage(
+                        baptizedBy, positionHeld, communicant);
                     setState(() {
                       Get.find<MyController>().increment();
                     });
@@ -354,5 +332,12 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
         ),
       ),
     );
+  }
+
+  saveDataToLocalStorage(
+      String baptizedBy, String positionHeld, String communicant) {
+    storage.write("baptizedBy", baptizedBy);
+    storage.write("positionHeld", positionHeld);
+    storage.write("communicant", communicant);
   }
 }

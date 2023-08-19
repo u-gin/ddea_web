@@ -1,5 +1,7 @@
 import 'package:ddea_web/utils/colors.dart';
+import 'package:ddea_web/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../widgets/button_template.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -11,6 +13,7 @@ class ConfirmSubmissionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(storage.read("fullname"));
     return SizedBox(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40.0),
@@ -54,19 +57,20 @@ class ConfirmSubmissionPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      rowItem("Fullname", "Eugene Ofori Asiedu"),
-                      rowItem("Mobile number", "+233506138718"),
-                      rowItem("Place of birth", "Dansoman"),
-                      rowItem("Hometown", "Hohoe"),
-                      rowItem("Gender", "Male"),
-                      rowItem("Date of birth", "1/11/1990"),
-                      rowItem("Place of residence", "Dansoman"),
-                      rowItem("Residential address", "Hughes Street"),
-                      rowItem("Profession", "Police"),
-                      rowItem("Place of work", "Dansoman Police Station"),
-                      rowItem("Baptized by", "Pastor Andrews Okyere"),
-                      rowItem("Position held", "Member"),
-                      rowItem("Communicant", "Yes"),
+                      /* rowItem("Fullname", storage.read("fullName")),
+                      rowItem("Mobile number", storage.read("telephone")),
+                      rowItem("Place of birth", storage.read("placeOfBirth")),
+                      rowItem("Hometown", storage.read("hometown")),
+                      rowItem("Gender", storage.read("gender")),
+                      rowItem("Date of birth", storage.read("placeOfBirth")),
+                      rowItem("Place of residence", storage.read("residence")),
+                      rowItem("Residential address",
+                          storage.read("residentialAddress")),
+                      rowItem("Profession", storage.read("preofession")),
+                      rowItem("Place of work", storage.read("placeOfWork")),
+                      rowItem("Baptized by", storage.read("baptizedBy")),
+                      rowItem("Position held", storage.read("positionHeld")),
+                      rowItem("Communicant", storage.read("communicant")), */
                     ],
                   ),
                 ),
@@ -155,6 +159,4 @@ class ConfirmSubmissionPage extends StatelessWidget {
       ],
     );
   }
-
-  sendDataToDatabase() {}
 }
