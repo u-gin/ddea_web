@@ -107,9 +107,13 @@ class ConfirmSubmissionPage extends StatelessWidget {
                   buttonColor: Colors.deepPurple,
                   buttonHeight: 60,
                   buttonAction: () {
-                    /* setState(() {
-                      Get.find<MyController>().increment();
-                    }); */
+                    sendDataToFirebaseDatabase((success) {
+                      if (success) {
+                        debugPrint("Successful");
+                      } else {
+                        debugPrint("Failed");
+                      }
+                    });
                   },
                   fontColor: Colors.white,
                   textSize: 15,
@@ -157,5 +161,43 @@ class ConfirmSubmissionPage extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  sendDataToFirebaseDatabase(Function(bool success) callback) async {
+    final databaseReference =
+        database.ref("ddea/members/${storage.read('telephone')}");
+
+    await databaseReference.set({
+      "Fullname",
+      storage.read("fullName"),
+      "Mobile number",
+      storage.read("telephone"),
+      "Place of birth",
+      storage.read("dateOfBirth"),
+      "Hometown",
+      storage.read("hometown"),
+      "Gender",
+      storage.read("gender"),
+      "Date of birth",
+      storage.read("placeOfBirth"),
+      "Place of residence",
+      storage.read("placeOfResidence"),
+      "Residential address",
+      storage.read("residentialAddress"),
+      "Profession",
+      storage.read("profession"),
+      "Place of work",
+      storage.read("placeOfWork"),
+      "Baptized by",
+      storage.read("baptizedBy"),
+      "Position held",
+      storage.read("positionHeld"),
+      "Communicant",
+      storage.read("communicant")
+    }).then((value) {
+      callback(true);
+    }).catchError((error) {
+      callback(false);
+    });
   }
 }
