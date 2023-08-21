@@ -164,36 +164,22 @@ class ConfirmSubmissionPage extends StatelessWidget {
   }
 
   sendDataToFirebaseDatabase(Function(bool success) callback) async {
-    final databaseReference =
-        database.ref("ddea/members/${storage.read('telephone')}");
+    final databaseReference = database.ref().child("ddea").child("members");
 
-    await databaseReference.set({
-      "Fullname",
-      storage.read("fullName"),
-      "Mobile number",
-      storage.read("telephone"),
-      "Place of birth",
-      storage.read("dateOfBirth"),
-      "Hometown",
-      storage.read("hometown"),
-      "Gender",
-      storage.read("gender"),
-      "Date of birth",
-      storage.read("placeOfBirth"),
-      "Place of residence",
-      storage.read("placeOfResidence"),
-      "Residential address",
-      storage.read("residentialAddress"),
-      "Profession",
-      storage.read("profession"),
-      "Place of work",
-      storage.read("placeOfWork"),
-      "Baptized by",
-      storage.read("baptizedBy"),
-      "Position held",
-      storage.read("positionHeld"),
-      "Communicant",
-      storage.read("communicant")
+    await databaseReference.push().set({
+      "Fullname": storage.read("fullName"),
+      "Mobile number": storage.read("telephone"),
+      "Place of birth": storage.read("placeOfBirth"),
+      "Hometown": storage.read("hometown"),
+      "Gender": storage.read("gender"),
+      "Date of birth": storage.read("dateOfBirth"),
+      "Place of residence": storage.read("placeOfResidence"),
+      "Residential address": storage.read("residentialAddress"),
+      "Profession": storage.read("profession"),
+      "Place of work": storage.read("placeOfWork"),
+      "Baptized by": storage.read("baptizedBy"),
+      "Position held": storage.read("positionHeld"),
+      "Communicant": storage.read("communicant")
     }).then((value) {
       callback(true);
     }).catchError((error) {

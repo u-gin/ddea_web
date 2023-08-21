@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "680528639207",
+    "firebase_url": "https://ddea-web-default-rtdb.firebaseio.com",
+    "project_id": "ddea-web",
+    "storage_bucket": "ddea-web.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:680528639207:android:dc3dddb6b21b7908f1de42",
+        "android_client_info": {
+          "package_name": "com.example.ddea_web"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "680528639207-fpj3seackjth0uuaqjshn6ri0ssdegti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBXb4Bh7HUekBLTkftttrSt9aC7Y0kCac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "680528639207-fpj3seackjth0uuaqjshn6ri0ssdegti.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
