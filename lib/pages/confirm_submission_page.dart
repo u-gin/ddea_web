@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 
 import '../widgets/button_template.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class ConfirmSubmissionPage extends StatelessWidget {
   ConfirmSubmissionPage({super.key});
 
   final FirebaseDatabase database = FirebaseDatabase.instance;
+  final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +109,7 @@ class ConfirmSubmissionPage extends StatelessWidget {
                   buttonColor: Colors.deepPurple,
                   buttonHeight: 60,
                   buttonAction: () {
-                    sendDataToFirebaseDatabase((success) {
+                    sendDataToFirebase((success) {
                       if (success) {
                         debugPrint("Successful");
                       } else {
@@ -163,8 +165,10 @@ class ConfirmSubmissionPage extends StatelessWidget {
     );
   }
 
-  sendDataToFirebaseDatabase(Function(bool success) callback) async {
-    final databaseReference = database.ref().child("ddea").child("members");
+  sendDataToFirebase(Function(bool success) callback) async {
+    final databaseReference = database.ref("ddea/members");
+    final firebaseStorageReference =
+        firebaseStorage.ref("ddea/${storage.read("fullName")}");
 
     await databaseReference.push().set({
       "Fullname": storage.read("fullName"),
@@ -181,7 +185,11 @@ class ConfirmSubmissionPage extends StatelessWidget {
       "Position held": storage.read("positionHeld"),
       "Communicant": storage.read("communicant")
     }).then((value) {
-      callback(true);
+      firebaseStorageReference.putData(storage.read("imageBtes")).then((value) {
+        callback(true);
+      }).catchError((error) {
+        callback(false);
+      });
     }).catchError((error) {
       callback(false);
     });
