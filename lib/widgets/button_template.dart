@@ -1,5 +1,6 @@
 import 'package:ddea_web/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/utils.dart';
 
 class ButtonTemplate extends StatelessWidget {
   final String buttonName;
@@ -8,7 +9,7 @@ class ButtonTemplate extends StatelessWidget {
   final double buttonHeight;
   final Function() buttonAction;
   final Color fontColor;
-  final double textSize;
+  final double? textSize;
   final double buttonBorderRadius;
   final bool loading;
 
@@ -20,7 +21,7 @@ class ButtonTemplate extends StatelessWidget {
     required this.buttonHeight,
     required this.buttonAction,
     required this.fontColor,
-    required this.textSize,
+    this.textSize = 15,
     required this.buttonBorderRadius,
     this.loading = false,
   });
@@ -51,7 +52,7 @@ class ButtonTemplate extends StatelessWidget {
               buttonName,
               style: TextStyle(
                 color: fontColor,
-                fontSize: 15.0,
+                fontSize: textSize,
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w500,
               ),
