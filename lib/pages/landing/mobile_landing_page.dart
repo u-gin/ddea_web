@@ -9,6 +9,7 @@ class MobileLandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(Get.size.toString());
     return Scaffold(
       body: Container(
         height: Get.height,
@@ -37,31 +38,31 @@ class MobileLandingPage extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "Welcome to DDEA!",
+                    "WELCOME TO DDEA!",
                     style: TextStyle(
                       color: AppColors.white,
                       fontSize: 30.0,
-                      fontFamily: "HindSiliguri",
-                      fontWeight: FontWeight.w600,
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w900,
                     ),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   ButtonTemplate(
-                    buttonName: "Add Info",
+                    buttonName: "ADD INFO",
                     buttonColor: Colors.white,
                     buttonHeight: 40,
                     buttonAction: () {
                       Get.to(() => const Home());
                     },
-                    buttonWidth: 150,
+                    buttonWidth: 200,
                     fontColor: AppColors.charcoalBlack,
-                    textSize: 10,
+                    textSize: 12,
                     buttonBorderRadius: 8,
                   ),
                   const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8.0),
+                    padding: EdgeInsets.symmetric(vertical: 6.0),
                     child: Text(
                       "OR",
                       style: TextStyle(
@@ -72,15 +73,15 @@ class MobileLandingPage extends StatelessWidget {
                     ),
                   ),
                   ButtonTemplate(
-                    buttonName: "Find Info",
+                    buttonName: "FIND INFO",
                     buttonColor: Colors.white,
                     buttonHeight: 40,
                     buttonAction: () {
                       Get.to(() => const Home());
                     },
-                    buttonWidth: 150,
+                    buttonWidth: 200,
                     fontColor: AppColors.charcoalBlack,
-                    textSize: 10,
+                    textSize: 12,
                     buttonBorderRadius: 8,
                   )
                 ],
