@@ -4,8 +4,8 @@ import 'package:ddea_web/widgets/button_template.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LandingPage extends StatelessWidget {
-  const LandingPage({super.key});
+class DesktopLandingPage extends StatelessWidget {
+  const DesktopLandingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class LandingPage extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-              "assets/images/landingpage.jpeg",
+              "assets/images/landingpage_landscape.jpeg",
             ),
             fit: BoxFit.cover,
           ),
