@@ -28,27 +28,13 @@ class DesktopLandingPage extends StatelessWidget {
               child: SizedBox(
                 height: Get.height,
                 child: Padding(
-                  padding: const EdgeInsets.all(150.0),
+                  padding: const EdgeInsets.all(80.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
                         "assets/images/churchlogo.png",
-                        width: 650,
-                        height: 650,
                       ),
-                      /* const Padding(
-                        padding: EdgeInsets.only(left: 160.0),
-                        child: Text(
-                          "DANSOMAN DISTRICT ENGLISH ASSEMBLY",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                            fontFamily: "HindSiliguri",
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ), */
                     ],
                   ),
                 ),
@@ -67,28 +53,19 @@ class DesktopLandingPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            "Welcome to DDEA!",
+                            "WELCOME TO DDEA!",
                             style: TextStyle(
                               color: AppColors.white,
-                              fontSize: 70.0,
-                              fontFamily: "HindSiliguri",
-                              fontWeight: FontWeight.w700,
+                              fontSize: 60.0,
+                              fontFamily: "Poppins",
+                              fontWeight: FontWeight.w900,
                             ),
                           ),
-                          /* const Text(
-                            "JOIN US TODAY!",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25.0,
-                              fontFamily: "Poppins",
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ), */
                           const SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           ButtonTemplate(
-                            buttonName: "Add Info",
+                            buttonName: "ADD IFO",
                             buttonColor: Colors.white,
                             buttonHeight: 40,
                             buttonAction: () {
@@ -96,7 +73,7 @@ class DesktopLandingPage extends StatelessWidget {
                             },
                             buttonWidth: 300,
                             fontColor: AppColors.charcoalBlack,
-                            textSize: 12,
+                            textSize: 15,
                             buttonBorderRadius: 8,
                           ),
                           const Padding(
@@ -111,7 +88,7 @@ class DesktopLandingPage extends StatelessWidget {
                             ),
                           ),
                           ButtonTemplate(
-                            buttonName: "Find Info",
+                            buttonName: "FIND INFO",
                             buttonColor: Colors.white,
                             buttonHeight: 40,
                             buttonAction: () {
@@ -119,7 +96,7 @@ class DesktopLandingPage extends StatelessWidget {
                             },
                             buttonWidth: 300,
                             fontColor: AppColors.charcoalBlack,
-                            textSize: 12,
+                            textSize: 15,
                             buttonBorderRadius: 8,
                           )
                         ],
