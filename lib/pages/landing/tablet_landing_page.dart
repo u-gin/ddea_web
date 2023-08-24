@@ -9,6 +9,7 @@ class TabletLandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(Get.size.toString());
     return Scaffold(
       body: Container(
         height: Get.height,
@@ -16,118 +17,72 @@ class TabletLandingPage extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-              "assets/images/landingpage_landscape.jpeg",
+              "assets/images/landingpage_portrait.jpg",
             ),
             fit: BoxFit.cover,
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: SizedBox(
-                height: Get.height,
-                child: Padding(
-                  padding: const EdgeInsets.all(150.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "assets/images/churchlogo.png",
-                        width: 650,
-                        height: 650,
-                      ),
-                      /* const Padding(
-                        padding: EdgeInsets.only(left: 160.0),
-                        child: Text(
-                          "DANSOMAN DISTRICT ENGLISH ASSEMBLY",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                            fontFamily: "HindSiliguri",
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ), */
-                    ],
-                  ),
-                ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 70.0),
+              child: Image.asset(
+                "assets/images/churchlogo.png",
               ),
             ),
-            Expanded(
-              child: SizedBox(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const SizedBox(),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Welcome to DDEA!",
-                            style: TextStyle(
-                              color: AppColors.white,
-                              fontSize: 70.0,
-                              fontFamily: "HindSiliguri",
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          /* const Text(
-                            "JOIN US TODAY!",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25.0,
-                              fontFamily: "Poppins",
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ), */
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          ButtonTemplate(
-                            buttonName: "Add Info",
-                            buttonColor: Colors.white,
-                            buttonHeight: 40,
-                            buttonAction: () {
-                              Get.to(() => const Home());
-                            },
-                            buttonWidth: 300,
-                            fontColor: AppColors.charcoalBlack,
-                            textSize: 12,
-                            buttonBorderRadius: 8,
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12.0),
-                            child: Text(
-                              "OR",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: "Poppins",
-                                fontSize: 10,
-                              ),
-                            ),
-                          ),
-                          ButtonTemplate(
-                            buttonName: "Find Info",
-                            buttonColor: Colors.white,
-                            buttonHeight: 40,
-                            buttonAction: () {
-                              Get.to(() => const Home());
-                            },
-                            buttonWidth: 300,
-                            fontColor: AppColors.charcoalBlack,
-                            textSize: 12,
-                            buttonBorderRadius: 8,
-                          )
-                        ],
-                      ),
-                      const SizedBox(),
-                    ],
+            const SizedBox(
+              height: 60,
+            ),
+            SizedBox(
+              child: Column(
+                children: [
+                  Text(
+                    "WELCOME TO DDEA!",
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontSize: 50.0,
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
-                ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  ButtonTemplate(
+                    buttonName: "ADD INFO",
+                    buttonColor: Colors.white,
+                    buttonHeight: 40,
+                    buttonAction: () {
+                      Get.to(() => const Home());
+                    },
+                    buttonWidth: 300,
+                    fontColor: AppColors.charcoalBlack,
+                    buttonBorderRadius: 8,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8.0),
+                    child: Text(
+                      "OR",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Poppins",
+                        fontSize: 10,
+                      ),
+                    ),
+                  ),
+                  ButtonTemplate(
+                    buttonName: "FIND INFO",
+                    buttonColor: Colors.white,
+                    buttonHeight: 40,
+                    buttonAction: () {
+                      Get.to(() => const Home());
+                    },
+                    buttonWidth: 300,
+                    fontColor: AppColors.charcoalBlack,
+                    buttonBorderRadius: 8,
+                  )
+                ],
               ),
             )
           ],
