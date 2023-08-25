@@ -4,6 +4,10 @@ import 'package:ddea_web/widgets/button_template.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../responsive_layout.dart';
+import '../home/mobile_home_page.dart';
+import '../home/tablet_home_page.dart';
+
 class TabletLandingPage extends StatelessWidget {
   const TabletLandingPage({super.key});
 
@@ -54,7 +58,13 @@ class TabletLandingPage extends StatelessWidget {
                     buttonColor: Colors.white,
                     buttonHeight: 40,
                     buttonAction: () {
-                      Get.to(() => const DesktopHomePage());
+                      Get.to(
+                        () => const ResponsiveLayout(
+                          mobileLayout: MobileHomePage(),
+                          tabletLayout: TabletHomePage(),
+                          desktopLayout: DesktopHomePage(),
+                        ),
+                      );
                     },
                     buttonWidth: 300,
                     fontColor: AppColors.charcoalBlack,
@@ -76,7 +86,13 @@ class TabletLandingPage extends StatelessWidget {
                     buttonColor: Colors.white,
                     buttonHeight: 40,
                     buttonAction: () {
-                      Get.to(() => const DesktopHomePage());
+                      Get.to(
+                        () => const ResponsiveLayout(
+                          mobileLayout: MobileHomePage(),
+                          tabletLayout: TabletHomePage(),
+                          desktopLayout: DesktopHomePage(),
+                        ),
+                      );
                     },
                     buttonWidth: 300,
                     fontColor: AppColors.charcoalBlack,
