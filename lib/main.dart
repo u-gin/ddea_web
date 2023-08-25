@@ -1,5 +1,5 @@
 import 'package:ddea_web/firebase_options.dart';
-import 'package:ddea_web/pages/home.dart';
+import 'package:ddea_web/pages/home/desktop_home_page.dart';
 import 'package:ddea_web/pages/landing/desktop_landing_page.dart';
 import 'package:ddea_web/pages/landing/mobile_landing_page.dart';
 import 'package:ddea_web/pages/landing/tablet_landing_page.dart';
@@ -39,7 +39,7 @@ class MainApp extends StatelessWidget {
               mobileLayout: MobileLandingPage(),
               tabletLayout: TabletLandingPage(),
             ),
-        '/home': (context) => const Home(),
+        '/home': (context) => const DesktopHomePage(),
         '/personalDetailsPage': (context) => const PersonalDetailsPage(),
       },
     );

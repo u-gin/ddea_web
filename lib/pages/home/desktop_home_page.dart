@@ -6,17 +6,17 @@ import 'package:ddea_web/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../utils/colors.dart';
-import '../utils/my_controller.dart';
+import '../../utils/colors.dart';
+import '../../utils/my_controller.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class DesktopHomePage extends StatefulWidget {
+  const DesktopHomePage({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<DesktopHomePage> createState() => _DesktopHomePageState();
 }
 
-class _HomeState extends State<Home> {
+class _DesktopHomePageState extends State<DesktopHomePage> {
   @override
   Widget build(BuildContext context) {
     Get.put(MyController());

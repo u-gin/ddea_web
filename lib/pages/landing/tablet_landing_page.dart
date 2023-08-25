@@ -1,4 +1,4 @@
-import 'package:ddea_web/pages/home.dart';
+import 'package:ddea_web/pages/home/desktop_home_page.dart';
 import 'package:ddea_web/utils/colors.dart';
 import 'package:ddea_web/widgets/button_template.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +54,7 @@ class TabletLandingPage extends StatelessWidget {
                     buttonColor: Colors.white,
                     buttonHeight: 40,
                     buttonAction: () {
-                      Get.to(() => const Home());
+                      Get.to(() => const DesktopHomePage());
                     },
                     buttonWidth: 300,
                     fontColor: AppColors.charcoalBlack,
@@ -76,7 +76,7 @@ class TabletLandingPage extends StatelessWidget {
                     buttonColor: Colors.white,
                     buttonHeight: 40,
                     buttonAction: () {
-                      Get.to(() => const Home());
+                      Get.to(() => const DesktopHomePage());
                     },
                     buttonWidth: 300,
                     fontColor: AppColors.charcoalBlack,
