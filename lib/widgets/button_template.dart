@@ -1,6 +1,5 @@
 import 'package:ddea_web/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/utils.dart';
 
 class ButtonTemplate extends StatelessWidget {
   final String buttonName;
