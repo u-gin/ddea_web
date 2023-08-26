@@ -51,7 +51,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
               children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 5.0, bottom: 60),
@@ -180,7 +180,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
-                              "Communicant",
+                              "Baptized by",
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16.0,
@@ -188,86 +188,112 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            Row(
-                              children: [
-                                Row(
-                                  children: [
-                                    GFRadio(
-                                      type: GFRadioType.custom,
-                                      activeIcon: const Icon(
-                                        Icons.check,
-                                        color: Colors.white,
-                                      ),
-                                      radioColor: Colors.transparent,
-                                      size: GFSize.LARGE,
-                                      activeBgColor: Colors.deepPurple,
-                                      inactiveBorderColor: Colors.transparent,
-                                      activeBorderColor: Colors.deepPurple,
-                                      value: 1,
-                                      groupValue: groupValue,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          groupValue = value;
-                                          communicantValue = "Yes";
-                                        });
-                                      },
-                                    ),
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                    const Text(
-                                      "Yes",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16.0,
-                                        fontFamily: "Poppins",
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  width: 100,
-                                ),
-                                Row(
-                                  children: [
-                                    GFRadio(
-                                      type: GFRadioType.custom,
-                                      activeIcon: const Icon(
-                                        Icons.check,
-                                        color: Colors.white,
-                                      ),
-                                      radioColor: Colors.transparent,
-                                      size: GFSize.LARGE,
-                                      activeBgColor: Colors.deepPurple,
-                                      inactiveBorderColor: Colors.transparent,
-                                      activeBorderColor: Colors.deepPurple,
-                                      value: 2,
-                                      groupValue: groupValue,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          groupValue = value;
-                                          communicantValue = "No";
-                                        });
-                                      },
-                                    ),
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                    const Text(
-                                      "No",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16.0,
-                                        fontFamily: "Poppins",
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                            TextFieldTemplate(
+                              hintText: "Ps. Andrews Okyere",
+                              controller: baptizedByController,
+                              obscureText: false,
+                              height: 50,
+                              textInputType: TextInputType.name,
+                              textInputAction: TextInputAction.next,
+                              enabled: true,
+                            )
                           ],
+                        ),
+                        SizedBox(
+                          width: 300,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "Communicant",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.0,
+                                  fontFamily: "Poppins",
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Row(
+                                    children: [
+                                      GFRadio(
+                                        type: GFRadioType.custom,
+                                        activeIcon: const Icon(
+                                          Icons.check,
+                                          color: Colors.white,
+                                        ),
+                                        radioColor: Colors.transparent,
+                                        size: GFSize.LARGE,
+                                        activeBgColor: Colors.deepPurple,
+                                        inactiveBorderColor: Colors.transparent,
+                                        activeBorderColor: Colors.deepPurple,
+                                        value: 1,
+                                        groupValue: groupValue,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            groupValue = value;
+                                            communicantValue = "Yes";
+                                          });
+                                        },
+                                      ),
+                                      const SizedBox(
+                                        width: 20,
+                                      ),
+                                      const Text(
+                                        "Yes",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16.0,
+                                          fontFamily: "Poppins",
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    width: 100,
+                                  ),
+                                  Row(
+                                    children: [
+                                      GFRadio(
+                                        type: GFRadioType.custom,
+                                        activeIcon: const Icon(
+                                          Icons.check,
+                                          color: Colors.white,
+                                        ),
+                                        radioColor: Colors.transparent,
+                                        size: GFSize.LARGE,
+                                        activeBgColor: Colors.deepPurple,
+                                        inactiveBorderColor: Colors.transparent,
+                                        activeBorderColor: Colors.deepPurple,
+                                        value: 2,
+                                        groupValue: groupValue,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            groupValue = value;
+                                            communicantValue = "No";
+                                          });
+                                        },
+                                      ),
+                                      const SizedBox(
+                                        width: 20,
+                                      ),
+                                      const Text(
+                                        "No",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16.0,
+                                          fontFamily: "Poppins",
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
