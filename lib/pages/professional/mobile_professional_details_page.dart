@@ -180,7 +180,7 @@ class _MobileProfessionalDetailsPageState
                   buttonColor: Colors.deepPurple,
                   buttonHeight: 60,
                   buttonAction: () {
-                    if (placeOfResidenceController.text == "" ||
+                    /* if (placeOfResidenceController.text == "" ||
                         residentialAddressController.text == "" ||
                         professionController.text == "" ||
                         placeOfWorkController.text == "") {
@@ -207,7 +207,8 @@ class _MobileProfessionalDetailsPageState
                       setState(() {
                         Get.find<MyController>().increment();
                       });
-                    }
+                    } */
+                    Get.find<MyController>().increment();
                   },
                   fontColor: Colors.white,
                   textSize: 15,
