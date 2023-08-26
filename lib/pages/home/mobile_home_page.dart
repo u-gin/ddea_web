@@ -1,4 +1,5 @@
 import 'package:ddea_web/pages/personal/mobile_personal_details_page.dart';
+import 'package:ddea_web/pages/professional/mobile_professional_details_page.dart';
 import 'package:ddea_web/responsive_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,8 +9,8 @@ import '../../utils/constants.dart';
 import '../../utils/my_controller.dart';
 import '../confirm_submission_page.dart';
 import '../personal/desktop_personal_details_page.dart';
-import '../professional_details_page.dart';
-import '../religious_details_page.dart';
+import '../professional/professional_details_page.dart';
+import '../../religious/religious_details_page.dart';
 
 class MobileHomePage extends StatefulWidget {
   const MobileHomePage({super.key});
@@ -40,7 +41,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
                       tabletLayout: MobilePersonalDetailsPage(),
                       desktopLayout: DesktopPersonalDetailsPage())
                   : controller.myVariable.value == 2
-                      ? const ProfessionalDetailsPage()
+                      ? const MobileProfessionalDetailsPage()
                       : controller.myVariable.value == 3
                           ? const ReligiousDetailsPage()
                           : ConfirmSubmissionPage(),

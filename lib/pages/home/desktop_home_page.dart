@@ -1,13 +1,16 @@
 import 'package:ddea_web/pages/confirm_submission_page.dart';
 import 'package:ddea_web/pages/personal/desktop_personal_details_page.dart';
-import 'package:ddea_web/pages/professional_details_page.dart';
-import 'package:ddea_web/pages/religious_details_page.dart';
+import 'package:ddea_web/pages/professional/professional_details_page.dart';
+import 'package:ddea_web/religious/religious_details_page.dart';
 import 'package:ddea_web/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../responsive_layout.dart';
 import '../../utils/colors.dart';
 import '../../utils/my_controller.dart';
+import '../personal/mobile_personal_details_page.dart';
+import '../personal/tablet_personal_details_page.dart';
 
 class DesktopHomePage extends StatefulWidget {
   const DesktopHomePage({super.key});

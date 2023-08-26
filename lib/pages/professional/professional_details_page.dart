@@ -2,9 +2,9 @@ import 'package:ddea_web/widgets/button_template.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../utils/constants.dart';
-import '../utils/my_controller.dart';
-import '../widgets/text_field_template.dart';
+import '../../utils/constants.dart';
+import '../../utils/my_controller.dart';
+import '../../widgets/text_field_template.dart';
 
 class ProfessionalDetailsPage extends StatefulWidget {
   const ProfessionalDetailsPage({super.key});
@@ -79,7 +79,7 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
                         ),
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,7 +97,6 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
                                 hintText: "Awoshie",
                                 controller: placeOfResidenceController,
                                 obscureText: false,
-                                width: 400,
                                 height: 50,
                                 textInputType: TextInputType.name,
                                 textInputAction: TextInputAction.next,
@@ -121,9 +120,8 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
                                 hintText: "Hughes Street, Ablekuma",
                                 controller: residentialAddressController,
                                 obscureText: false,
-                                width: 400,
                                 height: 50,
-                                textInputType: TextInputType.name,
+                                textInputType: TextInputType.text,
                                 textInputAction: TextInputAction.next,
                                 enabled: true,
                               )
@@ -135,7 +133,7 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
                         height: 20,
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -153,7 +151,6 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
                                 hintText: "Police",
                                 controller: professionController,
                                 obscureText: false,
-                                width: 400,
                                 height: 50,
                                 textInputType: TextInputType.name,
                                 textInputAction: TextInputAction.next,
@@ -177,7 +174,6 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
                                 hintText: "Ghana Revenue Authority",
                                 controller: placeOfWorkController,
                                 obscureText: false,
-                                width: 400,
                                 height: 50,
                                 textInputType: TextInputType.name,
                                 textInputAction: TextInputAction.next,

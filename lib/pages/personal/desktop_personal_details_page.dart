@@ -223,7 +223,7 @@ class _DesktopPersonalDetailsPageState
                           controller: placeOfBirthController,
                           obscureText: false,
                           height: 50,
-                          textInputType: TextInputType.name,
+                          textInputType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           enabled: true,
                         )
@@ -391,7 +391,7 @@ class _DesktopPersonalDetailsPageState
               buttonColor: Colors.deepPurple,
               buttonHeight: 60,
               buttonAction: () {
-                if (nameController.text == "" ||
+                /* if (nameController.text == "" ||
                     mobileController.text == "" ||
                     placeOfBirthController.text == "" ||
                     dateOfBirthController.text == "" ||
@@ -420,7 +420,8 @@ class _DesktopPersonalDetailsPageState
                   setState(() {
                     Get.find<MyController>().increment();
                   });
-                }
+                } */
+                Get.find<MyController>().increment();
               },
               fontColor: Colors.white,
               textSize: 15,

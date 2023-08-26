@@ -63,6 +63,9 @@ class TextFieldTemplate extends StatelessWidget {
             autocorrect: false,
             readOnly: readOnly ?? false,
             maxLength: maxLength,
+            inputFormatters: textInputType == TextInputType.number
+                ? [FilteringTextInputFormatter.digitsOnly]
+                : [FilteringTextInputFormatter.singleLineFormatter],
             decoration: InputDecoration(
               //counterText: null,
               //counter: ,

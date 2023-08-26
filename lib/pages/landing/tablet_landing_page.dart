@@ -88,7 +88,7 @@ class TabletLandingPage extends StatelessWidget {
                     buttonAction: () {
                       Get.to(
                         () => const ResponsiveLayout(
-                          mobileLayout: MobileHomePage(),
+                          mobileLayout: TabletLandingPage(),
                           tabletLayout: TabletHomePage(),
                           desktopLayout: DesktopHomePage(),
                         ),

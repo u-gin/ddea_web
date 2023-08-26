@@ -10,15 +10,15 @@ import 'package:getwidget/getwidget.dart';
 import '../../utils/my_controller.dart';
 import '../../widgets/text_field_template.dart';
 
-class MobilePersonalDetailsPage extends StatefulWidget {
-  const MobilePersonalDetailsPage({super.key});
+class TabletPersonalDetailsPage extends StatefulWidget {
+  const TabletPersonalDetailsPage({super.key});
 
   @override
-  State<MobilePersonalDetailsPage> createState() =>
-      _MobilePersonalDetailsPageState();
+  State<TabletPersonalDetailsPage> createState() =>
+      _TabletPersonalDetailsPageState();
 }
 
-class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
+class _TabletPersonalDetailsPageState extends State<TabletPersonalDetailsPage> {
   late TextEditingController nameController;
   late TextEditingController mobileController;
   late TextEditingController hometownController;
@@ -359,35 +359,37 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
             buttonColor: Colors.deepPurple,
             buttonHeight: 60,
             buttonAction: () {
-              if (nameController.text == "" ||
-                  mobileController.text == "" ||
-                  placeOfBirthController.text == "" ||
-                  dateOfBirthController.text == "" ||
-                  hometownController.text == "" ||
-                  groupValue == 0 ||
-                  imageBytes == null) {
-                Get.snackbar(
-                  "Warrning",
-                  "All fields are required!!",
-                  colorText: Colors.white,
-                  backgroundColor: Colors.red,
-                  borderRadius: 8.0,
-                  margin: const EdgeInsets.only(top: 60, left: 380, right: 380),
-                  duration: const Duration(seconds: 5),
-                );
-              } else {
-                fullname = nameController.text.toString().trim();
-                telephone = mobileController.text.toString().trim();
-                placeOfBirth = placeOfBirthController.text.toString().trim();
-                dateOfBirth = dateOfBirthController.text.toString().trim();
-                hometown = hometownController.text.toString().trim();
-                gender = selectedGeder.toString();
-                saveDataToLocalStorage(fullname, dateOfBirth, gender, hometown,
-                    placeOfBirth, telephone);
-                setState(() {
-                  Get.find<MyController>().increment();
-                });
-              }
+              /* if (nameController.text == "" ||
+                    mobileController.text == "" ||
+                    placeOfBirthController.text == "" ||
+                    dateOfBirthController.text == "" ||
+                    hometownController.text == "" ||
+                    groupValue == 0 ||
+                    imageBytes == null) {
+                  Get.snackbar(
+                    "Warrning",
+                    "All fields are required!!",
+                    colorText: Colors.white,
+                    backgroundColor: Colors.red,
+                    borderRadius: 8.0,
+                    margin:
+                        const EdgeInsets.only(top: 60, left: 380, right: 380),
+                    duration: const Duration(seconds: 5),
+                  );
+                } else {
+                  fullname = nameController.text.toString().trim();
+                  telephone = mobileController.text.toString().trim();
+                  placeOfBirth = placeOfBirthController.text.toString().trim();
+                  dateOfBirth = dateOfBirthController.text.toString().trim();
+                  hometown = hometownController.text.toString().trim();
+                  gender = selectedGeder.toString();
+                  saveDataToLocalStorage(fullname, dateOfBirth, gender,
+                      hometown, placeOfBirth, telephone);
+                  setState(() {
+                    Get.find<MyController>().increment();
+                  });
+                } */
+              Get.find<MyController>().increment();
             },
             fontColor: Colors.white,
             textSize: 15,

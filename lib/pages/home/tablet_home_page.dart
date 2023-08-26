@@ -6,8 +6,8 @@ import '../../utils/constants.dart';
 import '../../utils/my_controller.dart';
 import '../confirm_submission_page.dart';
 import '../personal/desktop_personal_details_page.dart';
-import '../professional_details_page.dart';
-import '../religious_details_page.dart';
+import '../professional/professional_details_page.dart';
+import '../../religious/religious_details_page.dart';
 
 class TabletHomePage extends StatefulWidget {
   const TabletHomePage({super.key});

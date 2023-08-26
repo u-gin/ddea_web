@@ -45,7 +45,7 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 60),
       child: Column(
         children: [
           Column(
@@ -188,7 +188,7 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
                 obscureText: false,
                 height: 40,
                 width: Get.width,
-                textInputType: TextInputType.name,
+                textInputType: TextInputType.number,
                 textInputAction: TextInputAction.next,
                 enabled: true,
               ),
@@ -210,7 +210,7 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
                 obscureText: false,
                 height: 40,
                 width: Get.width,
-                textInputType: TextInputType.name,
+                textInputType: TextInputType.text,
                 textInputAction: TextInputAction.next,
                 enabled: true,
               ),
@@ -359,35 +359,37 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
             buttonColor: Colors.deepPurple,
             buttonHeight: 60,
             buttonAction: () {
-              if (nameController.text == "" ||
-                  mobileController.text == "" ||
-                  placeOfBirthController.text == "" ||
-                  dateOfBirthController.text == "" ||
-                  hometownController.text == "" ||
-                  groupValue == 0 ||
-                  imageBytes == null) {
-                Get.snackbar(
-                  "Warrning",
-                  "All fields are required!!",
-                  colorText: Colors.white,
-                  backgroundColor: Colors.red,
-                  borderRadius: 8.0,
-                  margin: const EdgeInsets.only(top: 60, left: 30, right: 30),
-                  duration: const Duration(seconds: 5),
-                );
-              } else {
-                fullname = nameController.text.toString().trim();
-                telephone = mobileController.text.toString().trim();
-                placeOfBirth = placeOfBirthController.text.toString().trim();
-                dateOfBirth = dateOfBirthController.text.toString().trim();
-                hometown = hometownController.text.toString().trim();
-                gender = selectedGeder.toString();
-                saveDataToLocalStorage(fullname, dateOfBirth, gender, hometown,
-                    placeOfBirth, telephone);
-                setState(() {
-                  Get.find<MyController>().increment();
-                });
-              }
+              /* if (nameController.text == "" ||
+                    mobileController.text == "" ||
+                    placeOfBirthController.text == "" ||
+                    dateOfBirthController.text == "" ||
+                    hometownController.text == "" ||
+                    groupValue == 0 ||
+                    imageBytes == null) {
+                  Get.snackbar(
+                    "Warrning",
+                    "All fields are required!!",
+                    colorText: Colors.white,
+                    backgroundColor: Colors.red,
+                    borderRadius: 8.0,
+                    margin:
+                        const EdgeInsets.only(top: 60, left: 380, right: 380),
+                    duration: const Duration(seconds: 5),
+                  );
+                } else {
+                  fullname = nameController.text.toString().trim();
+                  telephone = mobileController.text.toString().trim();
+                  placeOfBirth = placeOfBirthController.text.toString().trim();
+                  dateOfBirth = dateOfBirthController.text.toString().trim();
+                  hometown = hometownController.text.toString().trim();
+                  gender = selectedGeder.toString();
+                  saveDataToLocalStorage(fullname, dateOfBirth, gender,
+                      hometown, placeOfBirth, telephone);
+                  setState(() {
+                    Get.find<MyController>().increment();
+                  });
+                } */
+              Get.find<MyController>().increment();
             },
             fontColor: Colors.white,
             textSize: 15,
