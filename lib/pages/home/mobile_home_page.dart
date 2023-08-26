@@ -4,6 +4,7 @@ import 'package:ddea_web/responsive_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../religious/mobile_religious_details_page.dart';
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../utils/my_controller.dart';
@@ -42,7 +43,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
                   : controller.myVariable.value == 2
                       ? const MobileProfessionalDetailsPage()
                       : controller.myVariable.value == 3
-                          ? const ReligiousDetailsPage()
+                          ? const MobileReligiousDetailsPage()
                           : ConfirmSubmissionPage(),
             );
           },
