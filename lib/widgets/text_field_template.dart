@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:ddea_web/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TextFieldTemplate extends StatelessWidget {
   final String hintText;
@@ -19,13 +20,13 @@ class TextFieldTemplate extends StatelessWidget {
   final int numberOfLines;
   final int? maxLength;
 
-  const TextFieldTemplate({
+  TextFieldTemplate({
     Key? key,
     required this.hintText,
     required this.controller,
     required this.obscureText,
     this.readOnly,
-    required this.width,
+    this.width = 300,
     required this.height,
     required this.textInputType,
     required this.textInputAction,
@@ -40,68 +41,71 @@ class TextFieldTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        color: Colors.white,
-      ),
-      child: Center(
-        child: TextField(
-          key: key,
-          controller: controller,
-          obscureText: obscureText,
-          autofocus: false,
-          enabled: enabled,
-          maxLines: numberOfLines,
-          keyboardType: textInputType,
-          textInputAction: textInputAction,
-          autocorrect: false,
-          readOnly: readOnly ?? false,
-          maxLength: maxLength,
-          decoration: InputDecoration(
-            //counterText: null,
-            //counter: ,
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                color: AppColors.white,
+    return Padding(
+      padding: const EdgeInsets.only(right: 10.0),
+      child: Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          color: Colors.white,
+        ),
+        child: Center(
+          child: TextField(
+            key: key,
+            controller: controller,
+            obscureText: obscureText,
+            autofocus: false,
+            enabled: enabled,
+            maxLines: numberOfLines,
+            keyboardType: textInputType,
+            textInputAction: textInputAction,
+            autocorrect: false,
+            readOnly: readOnly ?? false,
+            maxLength: maxLength,
+            decoration: InputDecoration(
+              //counterText: null,
+              //counter: ,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(
+                  color: AppColors.white,
+                ),
               ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(
-                color: Colors.deepPurple,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(
+                  color: Colors.deepPurple,
+                ),
               ),
-            ),
-            counterStyle: TextStyle(
-              fontSize: 12,
-              fontFamily: "Poppins",
-              color: AppColors.primary,
-              fontWeight: FontWeight.w500,
-            ),
-            suffixIcon: suffixIcon,
-            contentPadding: EdgeInsets.only(
-              left: leftContentPadding,
-              right: 14.0,
-              top: 10,
-              bottom: 10,
-            ),
+              counterStyle: TextStyle(
+                fontSize: 12,
+                fontFamily: "Poppins",
+                color: AppColors.primary,
+                fontWeight: FontWeight.w500,
+              ),
+              suffixIcon: suffixIcon,
+              contentPadding: EdgeInsets.only(
+                left: leftContentPadding,
+                right: 14.0,
+                top: 10,
+                bottom: 10,
+              ),
 
-            hintStyle: TextStyle(
-              color: AppColors.hintTextColor,
-              fontSize: 14.0,
+              hintStyle: TextStyle(
+                color: AppColors.hintTextColor,
+                fontSize: 14.0,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w500,
+              ),
+              hintText: hintText,
+            ),
+            style: TextStyle(
+              color: AppColors.black,
+              fontSize: 17.0,
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w500,
             ),
-            hintText: hintText,
-          ),
-          style: TextStyle(
-            color: AppColors.black,
-            fontSize: 17.0,
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.w500,
           ),
         ),
       ),

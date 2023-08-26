@@ -3,7 +3,7 @@ import 'package:ddea_web/pages/home/desktop_home_page.dart';
 import 'package:ddea_web/pages/landing/desktop_landing_page.dart';
 import 'package:ddea_web/pages/landing/mobile_landing_page.dart';
 import 'package:ddea_web/pages/landing/tablet_landing_page.dart';
-import 'package:ddea_web/pages/personal_details_page.dart';
+import 'package:ddea_web/pages/personal/desktop_personal_details_page.dart';
 import 'package:ddea_web/responsive_layout.dart';
 import 'package:ddea_web/utils/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -40,7 +40,7 @@ class MainApp extends StatelessWidget {
               tabletLayout: TabletLandingPage(),
             ),
         '/home': (context) => const DesktopHomePage(),
-        '/personalDetailsPage': (context) => const PersonalDetailsPage(),
+        '/personalDetailsPage': (context) => const DesktopPersonalDetailsPage(),
       },
     );
   }

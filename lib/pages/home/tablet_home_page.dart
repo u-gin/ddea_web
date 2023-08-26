@@ -5,7 +5,7 @@ import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../utils/my_controller.dart';
 import '../confirm_submission_page.dart';
-import '../personal_details_page.dart';
+import '../personal/desktop_personal_details_page.dart';
 import '../professional_details_page.dart';
 import '../religious_details_page.dart';
 
@@ -30,7 +30,7 @@ class _TabletHomePageState extends State<TabletHomePage> {
         child: GetBuilder<MyController>(
           builder: (controller) {
             return controller.myVariable.value == 1
-                ? const PersonalDetailsPage()
+                ? const DesktopPersonalDetailsPage()
                 : controller.myVariable.value == 2
                     ? const ProfessionalDetailsPage()
                     : controller.myVariable.value == 3

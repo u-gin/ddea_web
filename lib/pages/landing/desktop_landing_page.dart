@@ -13,6 +13,8 @@ class DesktopLandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(Get.width.toString());
+    debugPrint(Get.height.toString());
     return Scaffold(
       body: Container(
         height: Get.height,
