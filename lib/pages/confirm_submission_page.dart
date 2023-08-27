@@ -1,6 +1,8 @@
+import 'package:ddea_web/pages/success_page.dart';
 import 'package:ddea_web/utils/colors.dart';
 import 'package:ddea_web/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../widgets/button_template.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -112,6 +114,7 @@ class ConfirmSubmissionPage extends StatelessWidget {
                     sendDataToFirebase((success) {
                       if (success) {
                         debugPrint("Successful");
+                        Get.to(() => const SuccessPage());
                       } else {
                         debugPrint("Failed");
                       }
