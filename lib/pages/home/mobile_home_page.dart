@@ -1,3 +1,4 @@
+import 'package:ddea_web/pages/confirm/mobile_confirm_submission_page.dart';
 import 'package:ddea_web/pages/personal/mobile_personal_details_page.dart';
 import 'package:ddea_web/pages/professional/mobile_professional_details_page.dart';
 import 'package:ddea_web/responsive_layout.dart';
@@ -8,7 +9,7 @@ import '../../religious/mobile_religious_details_page.dart';
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../utils/my_controller.dart';
-import '../confirm_submission_page.dart';
+import '../confirm/confirm_submission_page.dart';
 import '../personal/desktop_personal_details_page.dart';
 import '../../religious/religious_details_page.dart';
 
@@ -36,15 +37,12 @@ class _MobileHomePageState extends State<MobileHomePage> {
               physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics()),
               child: controller.myVariable.value == 1
-                  ? const ResponsiveLayout(
-                      mobileLayout: MobilePersonalDetailsPage(),
-                      tabletLayout: MobilePersonalDetailsPage(),
-                      desktopLayout: DesktopPersonalDetailsPage())
+                  ? const MobilePersonalDetailsPage()
                   : controller.myVariable.value == 2
                       ? const MobileProfessionalDetailsPage()
                       : controller.myVariable.value == 3
                           ? const MobileReligiousDetailsPage()
-                          : ConfirmSubmissionPage(),
+                          : MobileConfirmSubmissionPage(),
             );
           },
         ),

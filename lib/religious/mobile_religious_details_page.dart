@@ -280,7 +280,7 @@ class _MobileReligiousDetailsPageState
                   buttonColor: Colors.deepPurple,
                   buttonHeight: 60,
                   buttonAction: () {
-                    if (baptizedByController.text == "" ||
+                    /* if (baptizedByController.text == "" ||
                         dropdownValue == "Please select" ||
                         communicantValue == "") {
                       Get.snackbar(
@@ -302,7 +302,8 @@ class _MobileReligiousDetailsPageState
                       setState(() {
                         Get.find<MyController>().increment();
                       });
-                    }
+                    } */
+                    Get.find<MyController>().increment();
                   },
                   fontColor: Colors.white,
                   textSize: 15,

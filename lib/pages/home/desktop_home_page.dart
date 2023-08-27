@@ -1,4 +1,4 @@
-import 'package:ddea_web/pages/confirm_submission_page.dart';
+import 'package:ddea_web/pages/confirm/confirm_submission_page.dart';
 import 'package:ddea_web/pages/personal/desktop_personal_details_page.dart';
 import 'package:ddea_web/pages/professional/professional_details_page.dart';
 import 'package:ddea_web/religious/religious_details_page.dart';

@@ -4,7 +4,7 @@ import 'package:ddea_web/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../widgets/button_template.dart';
+import '../../widgets/button_template.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -59,7 +59,7 @@ class ConfirmSubmissionPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      rowItem("Fullname", storage.read("fullName")),
+                      /* rowItem("Fullname", storage.read("fullName")),
                       rowItem("Mobile number", storage.read("telephone")),
                       rowItem("Place of birth", storage.read("dateOfBirth")),
                       rowItem("Hometown", storage.read("hometown")),
@@ -73,7 +73,7 @@ class ConfirmSubmissionPage extends StatelessWidget {
                       rowItem("Place of work", storage.read("placeOfWork")),
                       rowItem("Baptized by", storage.read("baptizedBy")),
                       rowItem("Position held", storage.read("positionHeld")),
-                      rowItem("Communicant", storage.read("communicant")),
+                      rowItem("Communicant", storage.read("communicant")), */
                     ],
                   ),
                 ),

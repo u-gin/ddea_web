@@ -329,7 +329,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                   buttonColor: Colors.deepPurple,
                   buttonHeight: 60,
                   buttonAction: () {
-                    if (baptizedByController.text == "" ||
+                    /* if (baptizedByController.text == "" ||
                         dropdownValue == "Please select" ||
                         communicantValue == "") {
                       Get.snackbar(
@@ -351,7 +351,8 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                       setState(() {
                         Get.find<MyController>().increment();
                       });
-                    }
+                    } */
+                    Get.find<MyController>().increment();
                   },
                   fontColor: Colors.white,
                   textSize: 15,
