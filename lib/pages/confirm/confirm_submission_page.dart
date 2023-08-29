@@ -1,7 +1,4 @@
 import 'package:ddea_web/pages/success/desktop_success_page.dart';
-import 'package:ddea_web/pages/success/mobile_success_page.dart';
-import 'package:ddea_web/pages/success/tablet_success_page.dart';
-import 'package:ddea_web/responsive_layout.dart';
 import 'package:ddea_web/utils/colors.dart';
 import 'package:ddea_web/utils/constants.dart';
 import 'package:flutter/material.dart';
