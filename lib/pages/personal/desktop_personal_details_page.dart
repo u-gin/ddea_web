@@ -1,12 +1,15 @@
 import 'dart:typed_data';
 
-import 'package:ddea_web/utils/constants.dart';
-import 'package:ddea_web/widgets/button_template.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:table_calendar/table_calendar.dart';
 
+import 'package:ddea_web/utils/constants.dart';
+import 'package:ddea_web/widgets/button_template.dart';
+import 'package:intl/intl.dart';
+import '../../utils/colors.dart';
 import '../../utils/my_controller.dart';
 import '../../widgets/text_field_template.dart';
 
@@ -24,7 +27,15 @@ class _DesktopPersonalDetailsPageState
   late TextEditingController mobileController;
   late TextEditingController hometownController;
   late TextEditingController placeOfBirthController;
-  late TextEditingController dateOfBirthController;
+  //late TextEditingController dateOfBirthController;
+  late Offset buttonPosition;
+  late Size buttonSize;
+  OverlayEntry? _overlayEntry;
+  bool isMenuOpen = false;
+
+  DateTime selectedDay = DateTime.now();
+  final DateTime _currentDay = DateTime.now();
+  late GlobalKey keyDate;
 
   late String fullname, placeOfBirth, telephone, hometown, gender, dateOfBirth;
 
@@ -39,7 +50,8 @@ class _DesktopPersonalDetailsPageState
     mobileController = TextEditingController();
     hometownController = TextEditingController();
     placeOfBirthController = TextEditingController();
-    dateOfBirthController = TextEditingController();
+    //dateOfBirthController = TextEditingController();
+    keyDate = LabeledGlobalKey("button_icon");
     super.initState();
   }
 
@@ -260,28 +272,68 @@ class _DesktopPersonalDetailsPageState
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Date of birth",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.0,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w400,
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Date of birth",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16.0,
+                              fontFamily: "Poppins",
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
-                        ),
-                        TextFieldTemplate(
-                          hintText: "01/11/2001",
-                          controller: dateOfBirthController,
-                          obscureText: false,
-                          height: 50,
-                          textInputType: TextInputType.name,
-                          textInputAction: TextInputAction.next,
-                          enabled: true,
-                        )
-                      ],
+                          GestureDetector(
+                            onTap: () async {
+                              final DateTime? dateTime = await showDatePicker(
+                                context: context,
+                                initialDate: selectedDay,
+                                firstDate: DateTime.utc(1900, 1, 11),
+                                lastDate: DateTime.now(),
+                              );
+                              if (dateTime != null) {
+                                setState(() {
+                                  selectedDay = dateTime;
+                                });
+                              }
+                            },
+                            child: Container(
+                              height: 50,
+                              width: 300,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Colors.white,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 10),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      convertDate(selectedDay),
+                                      style: TextStyle(
+                                        color: AppColors.black,
+                                        fontSize: 17.0,
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Icon(
+                                      Icons.keyboard_arrow_down,
+                                      color: AppColors.colorFromHex("#C6CDD3"),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       width: 300,
@@ -394,7 +446,6 @@ class _DesktopPersonalDetailsPageState
                 /* if (nameController.text == "" ||
                     mobileController.text == "" ||
                     placeOfBirthController.text == "" ||
-                    dateOfBirthController.text == "" ||
                     hometownController.text == "" ||
                     groupValue == 0 ||
                     imageBytes == null) {
@@ -412,11 +463,10 @@ class _DesktopPersonalDetailsPageState
                   fullname = nameController.text.toString().trim();
                   telephone = mobileController.text.toString().trim();
                   placeOfBirth = placeOfBirthController.text.toString().trim();
-                  dateOfBirth = dateOfBirthController.text.toString().trim();
                   hometown = hometownController.text.toString().trim();
                   gender = selectedGeder.toString();
-                  saveDataToLocalStorage(fullname, dateOfBirth, gender,
-                      hometown, placeOfBirth, telephone);
+                  saveDataToLocalStorage(fullname, convertDate(selectedDay),
+                      gender, hometown, placeOfBirth, telephone);
                   setState(() {
                     Get.find<MyController>().increment();
                   });
@@ -454,6 +504,195 @@ class _DesktopPersonalDetailsPageState
       setState(() {
         imageBytes = result.files.single.bytes;
       });
+    }
+  }
+
+  /* OverlayEntry _overlayEntryBuilder(
+      Widget overlayToOpen, double? left, double width, double? right) {
+    return OverlayEntry(
+      builder: (context) {
+        return Positioned(
+          top: buttonPosition.dy + buttonSize.height,
+          left: left,
+          right: right,
+          width: width,
+          child: Material(
+            color: Colors.transparent,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: overlayToOpen,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  } */
+
+  /* closeMenu() {
+    if (_overlayEntry != null && _overlayEntry!.mounted) {
+      _overlayEntry!.remove();
+      _overlayEntry = null;
+    }
+    isMenuOpen = !isMenuOpen;
+  }
+
+  findButton(GlobalKey key) {
+    RenderBox? renderBox = key.currentContext!.findRenderObject() as RenderBox?;
+    buttonSize = renderBox!.size;
+    buttonPosition = renderBox.localToGlobal(Offset.zero);
+  }
+
+  void openDateMenu(StateSetter setState, GlobalKey key) {
+    findButton(key);
+    _overlayEntry = _overlayEntryBuilder(
+        tableCalendar(setState), buttonPosition.dx, buttonSize.width, null);
+    Overlay.of(context).insert(_overlayEntry!);
+    isMenuOpen = !isMenuOpen;
+  }
+
+  tableCalendar(StateSetter setState) async {
+    return await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.utc(1900, 1, 11),
+      lastDate: DateTime.now(),
+    );
+  } */
+
+  /* tableCalendar(StateSetter setState) {
+    return TableCalendar(
+      firstDay: DateTime.utc(1900, 1, 11),
+      lastDay: DateTime.now(),
+      focusedDay: _currentDay,
+      currentDay: _currentDay,
+      rowHeight: 32,
+      calendarFormat: _calendarFormat,
+      availableGestures: AvailableGestures.all,
+      headerStyle: HeaderStyle(
+        formatButtonVisible: false,
+        leftChevronPadding: EdgeInsets.zero,
+        leftChevronMargin: EdgeInsets.zero,
+        rightChevronPadding: EdgeInsets.zero,
+        rightChevronMargin: EdgeInsets.zero,
+        titleTextStyle: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: Colors.grey[900],
+            fontFamily: "Metropolis"),
+      ),
+      daysOfWeekHeight: 24,
+      startingDayOfWeek: StartingDayOfWeek.monday,
+      daysOfWeekStyle: DaysOfWeekStyle(
+        weekdayStyle: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          fontFamily: "Metropolis",
+          color: AppColors.colorFromHex("#0E1339"),
+        ),
+        weekendStyle: TextStyle(
+          fontSize: 12,
+          fontFamily: "Metropolis",
+          fontWeight: FontWeight.w500,
+          color: AppColors.colorFromHex("#0E1339"),
+        ),
+      ),
+      calendarStyle: CalendarStyle(
+        todayTextStyle: TextStyle(
+          fontSize: 12,
+          fontFamily: "Metropolis",
+          fontWeight: FontWeight.w600,
+          color: AppColors.primary,
+        ),
+        withinRangeDecoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.colorFromHex("#F4F5FB"),
+        ),
+        defaultTextStyle: TextStyle(
+          fontSize: 12,
+          fontFamily: "Metropolis",
+          fontWeight: FontWeight.w600,
+          color: AppColors.colorFromHex("#34405E"),
+        ),
+        outsideTextStyle: TextStyle(
+          fontSize: 12,
+          fontFamily: "Metropolis",
+          fontWeight: FontWeight.w600,
+          color: AppColors.colorFromHex("#AEB2BF"),
+        ),
+        weekendTextStyle: TextStyle(
+          fontSize: 12,
+          fontFamily: "Metropolis",
+          fontWeight: FontWeight.w600,
+          color: AppColors.colorFromHex("#34405E"),
+        ),
+        defaultDecoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.colorFromHex("#F4F5FB"),
+        ),
+        weekendDecoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.colorFromHex("#F4F5FB"),
+        ),
+        todayDecoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.primaryLight,
+        ),
+        selectedDecoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.primary,
+        ),
+        selectedTextStyle: const TextStyle(
+          fontSize: 12,
+          fontFamily: "Metropolis",
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ), //
+      ),
+      selectedDayPredicate: (day) {
+        return isSameDay(_selectedDay, day);
+      },
+      onDaySelected: (selectedDay, currentDay) {
+        if (selectedDay.isAfter(DateTime.now()) ||
+            selectedDay == DateTime.now()) {
+          Get.snackbar(
+            "Error",
+            "Please select a valid data of birth",
+            colorText: Colors.white,
+            backgroundColor: Colors.red,
+            borderRadius: 8.0,
+            margin: const EdgeInsets.only(top: 60, left: 380, right: 380),
+            duration: const Duration(seconds: 5),
+          );
+        } else if (!isSameDay(_selectedDay, selectedDay)) {
+          setState((() {
+            _selectedDay = selectedDay;
+            closeMenu();
+          }));
+        }
+      },
+      onFormatChanged: (format) {
+        if (_calendarFormat != format) {
+          setState(() {
+            _calendarFormat = format;
+          });
+        }
+      },
+      onPageChanged: (focusedDay) {},
+    );
+  } */
+
+  String convertDate(DateTime? dateToConvert) {
+    final dateFormat = DateFormat('dd.MM.yyyy');
+    if (dateToConvert == null) {
+      return '00.00.00';
+    } else {
+      return dateFormat.format(dateToConvert);
     }
   }
 }

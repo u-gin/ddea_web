@@ -6,7 +6,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
-
+import 'package:intl/intl.dart';
+import '../../utils/colors.dart';
 import '../../utils/my_controller.dart';
 import '../../widgets/text_field_template.dart';
 
@@ -31,6 +32,7 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
   String selectedGeder = "";
 
   Uint8List? imageBytes;
+  DateTime selectedDay = DateTime.now();
 
   @override
   void initState() {
@@ -339,15 +341,50 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              TextFieldTemplate(
-                hintText: "01/11/2001",
-                controller: dateOfBirthController,
-                obscureText: false,
-                height: 40,
-                width: Get.width,
-                textInputType: TextInputType.name,
-                textInputAction: TextInputAction.next,
-                enabled: true,
+              GestureDetector(
+                onTap: () async {
+                  final DateTime? dateTime = await showDatePicker(
+                    context: context,
+                    initialDate: selectedDay,
+                    firstDate: DateTime.utc(1900, 1, 11),
+                    lastDate: DateTime.now(),
+                  );
+                  if (dateTime != null) {
+                    setState(() {
+                      selectedDay = dateTime;
+                    });
+                  }
+                },
+                child: Container(
+                  height: 40,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.white,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          convertDate(selectedDay),
+                          style: TextStyle(
+                            color: AppColors.black,
+                            fontSize: 17.0,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Icon(
+                          Icons.keyboard_arrow_down,
+                          color: AppColors.colorFromHex("#C6CDD3"),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
@@ -380,11 +417,10 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
                   fullname = nameController.text.toString().trim();
                   telephone = mobileController.text.toString().trim();
                   placeOfBirth = placeOfBirthController.text.toString().trim();
-                  dateOfBirth = dateOfBirthController.text.toString().trim();
                   hometown = hometownController.text.toString().trim();
                   gender = selectedGeder.toString();
-                  saveDataToLocalStorage(fullname, dateOfBirth, gender,
-                      hometown, placeOfBirth, telephone);
+                  saveDataToLocalStorage(fullname, convertDate(selectedDay),
+                      gender, hometown, placeOfBirth, telephone);
                   setState(() {
                     Get.find<MyController>().increment();
                   });
@@ -421,6 +457,15 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
       setState(() {
         imageBytes = result.files.single.bytes;
       });
+    }
+  }
+
+  String convertDate(DateTime? dateToConvert) {
+    final dateFormat = DateFormat('dd.MM.yyyy');
+    if (dateToConvert == null) {
+      return '00.00.00';
+    } else {
+      return dateFormat.format(dateToConvert);
     }
   }
 }
