@@ -20,6 +20,7 @@ dependencies:
   file_picker: ^5.3.3
   firebase_storage: ^11.2.6
   confetti: ^0.7.0
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_test:
