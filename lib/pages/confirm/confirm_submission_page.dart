@@ -62,7 +62,7 @@ class ConfirmSubmissionPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      /* rowItem("Fullname", storage.read("fullName")),
+                      rowItem("Fullname", storage.read("fullName")),
                       rowItem("Mobile number", storage.read("telephone")),
                       rowItem("Place of birth", storage.read("dateOfBirth")),
                       rowItem("Hometown", storage.read("hometown")),
@@ -76,7 +76,7 @@ class ConfirmSubmissionPage extends StatelessWidget {
                       rowItem("Place of work", storage.read("placeOfWork")),
                       rowItem("Baptized by", storage.read("baptizedBy")),
                       rowItem("Position held", storage.read("positionHeld")),
-                      rowItem("Communicant", storage.read("communicant")), */
+                      rowItem("Communicant", storage.read("communicant")),
                     ],
                   ),
                 ),
