@@ -435,7 +435,7 @@ class _DesktopPersonalDetailsPageState
               buttonColor: Colors.deepPurple,
               buttonHeight: 60,
               buttonAction: () {
-                /* if (nameController.text == "" ||
+                if (nameController.text == "" ||
                     mobileController.text == "" ||
                     placeOfBirthController.text == "" ||
                     hometownController.text == "" ||
@@ -462,8 +462,8 @@ class _DesktopPersonalDetailsPageState
                   setState(() {
                     Get.find<MyController>().increment();
                   });
-                } */
-                Get.find<MyController>().increment();
+                }
+                //Get.find<MyController>().increment();
               },
               fontColor: Colors.white,
               textSize: 15,

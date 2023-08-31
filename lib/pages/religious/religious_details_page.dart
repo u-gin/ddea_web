@@ -144,12 +144,20 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                                       children: [
                                         Text(
                                           positionHeld,
-                                          style: TextStyle(
-                                            color: AppColors.black,
-                                            fontSize: 17.0,
-                                            fontFamily: 'Poppins',
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                          style: positionHeld == "Please select"
+                                              ? TextStyle(
+                                                  color:
+                                                      AppColors.hintTextColor,
+                                                  fontSize: 14.0,
+                                                  fontFamily: 'Poppins',
+                                                  fontWeight: FontWeight.w500,
+                                                )
+                                              : TextStyle(
+                                                  color: AppColors.black,
+                                                  fontSize: 17.0,
+                                                  fontFamily: 'Poppins',
+                                                  fontWeight: FontWeight.w500,
+                                                ),
                                         ),
                                         Icon(
                                           Icons.keyboard_arrow_down,
@@ -213,13 +221,22 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                                           width: 250,
                                           child: Text(
                                             shepherd,
-                                            style: TextStyle(
-                                              color: AppColors.black,
-                                              fontSize: 17.0,
-                                              fontFamily: 'Poppins',
-                                              fontWeight: FontWeight.w500,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
+                                            style: shepherd == "Please select"
+                                                ? TextStyle(
+                                                    color:
+                                                        AppColors.hintTextColor,
+                                                    fontSize: 14.0,
+                                                    fontFamily: 'Poppins',
+                                                    fontWeight: FontWeight.w500,
+                                                  )
+                                                : TextStyle(
+                                                    color: AppColors.black,
+                                                    fontSize: 17.0,
+                                                    fontFamily: 'Poppins',
+                                                    fontWeight: FontWeight.w500,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
                                           ),
                                         ),
                                         Icon(
@@ -365,7 +382,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                   buttonColor: Colors.deepPurple,
                   buttonHeight: 60,
                   buttonAction: () {
-                    /* if (baptizedByController.text == "" ||
+                    if (baptizedByController.text == "" ||
                         positionHeld == "Please select" ||
                         shepherd == "Please select" ||
                         communicantValue == "") {
@@ -392,8 +409,8 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                       setState(() {
                         Get.find<MyController>().increment();
                       });
-                    } */
-                    Get.find<MyController>().increment();
+                    }
+                    //Get.find<MyController>().increment();
                   },
                   fontColor: Colors.white,
                   textSize: 15,

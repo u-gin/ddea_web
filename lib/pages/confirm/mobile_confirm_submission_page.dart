@@ -2,10 +2,13 @@ import 'package:ddea_web/utils/colors.dart';
 import 'package:ddea_web/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../responsive_layout.dart';
 import '../../widgets/button_template.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import '../success/desktop_success_page.dart';
 import '../success/mobile_success_page.dart';
+import '../success/tablet_success_page.dart';
 
 class MobileConfirmSubmissionPage extends StatelessWidget {
   MobileConfirmSubmissionPage({super.key});
@@ -109,14 +112,18 @@ class MobileConfirmSubmissionPage extends StatelessWidget {
                 buttonColor: Colors.deepPurple,
                 buttonHeight: 60,
                 buttonAction: () {
-                  /* sendDataToFirebase((success) {
+                  sendDataToFirebase((success) {
                     if (success) {
                       debugPrint("Successful");
-                      Get.to(() => const SuccessPage());
+                      Get.to(() => const ResponsiveLayout(
+                            desktopLayout: DesktopSuccessPage(),
+                            tabletLayout: TabletSuccessPage(),
+                            mobileLayout: MobileSuccessPage(),
+                          ));
                     } else {
                       debugPrint("Failed");
                     }
-                  }); */
+                  });
                   Get.to(() => const MobileSuccessPage());
                 },
                 fontColor: Colors.white,

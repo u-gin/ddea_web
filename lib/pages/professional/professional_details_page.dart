@@ -220,7 +220,7 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
                   buttonColor: Colors.deepPurple,
                   buttonHeight: 60,
                   buttonAction: () {
-                    /* if (placeOfResidenceController.text == "" ||
+                    if (placeOfResidenceController.text == "" ||
                         residentialAddressController.text == "" ||
                         professionController.text == "" ||
                         placeOfWorkController.text == "") {
@@ -247,8 +247,8 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
                       setState(() {
                         Get.find<MyController>().increment();
                       });
-                    } */
-                    Get.find<MyController>().increment();
+                    }
+                    //Get.find<MyController>().increment();
                   },
                   fontColor: Colors.white,
                   textSize: 15,

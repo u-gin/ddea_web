@@ -136,12 +136,19 @@ class _MobileReligiousDetailsPageState
                         children: [
                           Text(
                             positionHeld,
-                            style: TextStyle(
-                              color: AppColors.black,
-                              fontSize: 17.0,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style: positionHeld == "Please select"
+                                ? TextStyle(
+                                    color: AppColors.hintTextColor,
+                                    fontSize: 14.0,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w500,
+                                  )
+                                : TextStyle(
+                                    color: AppColors.black,
+                                    fontSize: 17.0,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w500,
+                                  ),
                           ),
                           Icon(
                             Icons.keyboard_arrow_down,
@@ -197,13 +204,20 @@ class _MobileReligiousDetailsPageState
                             width: 250,
                             child: Text(
                               shepherd,
-                              style: TextStyle(
-                                color: AppColors.black,
-                                fontSize: 17.0,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w500,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                              style: shepherd == "Please select"
+                                  ? TextStyle(
+                                      color: AppColors.hintTextColor,
+                                      fontSize: 14.0,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w500,
+                                    )
+                                  : TextStyle(
+                                      color: AppColors.black,
+                                      fontSize: 17.0,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w500,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                             ),
                           ),
                           Icon(
@@ -218,70 +232,6 @@ class _MobileReligiousDetailsPageState
               ],
             ),
           ),
-          /* Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Position held",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 13.0,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              SizedBox(
-                height: 40,
-                width: 300,
-                child: DropdownButtonHideUnderline(
-                  child: GFDropdown(
-                    borderRadius: BorderRadius.circular(10),
-                    border: const BorderSide(
-                      color: Colors.black12,
-                      width: 1,
-                    ),
-                    hint: Text(
-                      'Please select',
-                      style: TextStyle(
-                        color: AppColors.hintTextColor,
-                        fontSize: 14.0,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    dropdownButtonColor: Colors.white,
-                    isExpanded: true,
-                    isDense: true,
-                    focusColor: Colors.transparent,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 14.0,
-                    ),
-                    value: dropdownValue,
-                    onChanged: (newValue) {
-                      setState(() {
-                        dropdownValue = newValue.toString();
-                      });
-                    },
-                    items: positionHeldList
-                        .map((value) => DropdownMenuItem(
-                              value: value,
-                              alignment: AlignmentDirectional.centerStart,
-                              child: Text(
-                                value,
-                                style: const TextStyle(
-                                  fontFamily: "Poppins",
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ))
-                        .toList(),
-                  ),
-                ),
-              ),
-            ],
-          ), */
           const SizedBox(
             height: 15,
           ),
