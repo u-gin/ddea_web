@@ -9,6 +9,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:ddea_web/utils/constants.dart';
 import 'package:ddea_web/widgets/button_template.dart';
 import 'package:intl/intl.dart';
+import '../../helpers/convert_date.dart';
 import '../../utils/colors.dart';
 import '../../utils/my_controller.dart';
 import '../../widgets/text_field_template.dart';
@@ -685,13 +686,4 @@ class _DesktopPersonalDetailsPageState
       onPageChanged: (focusedDay) {},
     );
   } */
-
-  String convertDate(DateTime? dateToConvert) {
-    final dateFormat = DateFormat('dd.MM.yyyy');
-    if (dateToConvert == null) {
-      return '00.00.00';
-    } else {
-      return dateFormat.format(dateToConvert);
-    }
-  }
 }
