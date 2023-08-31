@@ -50,7 +50,7 @@ class _TabletSuccessPageState extends State<TabletSuccessPage> {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40.0),
                 child: Text(
-                  "SUBMITTED SUCCESSFULLY",
+                  "Great Job!!",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 90.0,

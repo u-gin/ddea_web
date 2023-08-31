@@ -50,7 +50,7 @@ class _MobileSuccessPageState extends State<MobileSuccessPage> {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40.0),
                 child: Text(
-                  "SUBMITTED SUCCESSFULLY",
+                  "Great Job!!",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
