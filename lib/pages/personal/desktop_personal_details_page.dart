@@ -27,7 +27,6 @@ class _DesktopPersonalDetailsPageState
   late TextEditingController mobileController;
   late TextEditingController hometownController;
   late TextEditingController placeOfBirthController;
-  //late TextEditingController dateOfBirthController;
   late Offset buttonPosition;
   late Size buttonSize;
   OverlayEntry? _overlayEntry;
