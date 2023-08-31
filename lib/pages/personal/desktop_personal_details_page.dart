@@ -4,11 +4,9 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 import 'package:ddea_web/utils/constants.dart';
 import 'package:ddea_web/widgets/button_template.dart';
-import 'package:intl/intl.dart';
 import '../../helpers/convert_date.dart';
 import '../../utils/colors.dart';
 import '../../utils/my_controller.dart';
@@ -28,13 +26,8 @@ class _DesktopPersonalDetailsPageState
   late TextEditingController mobileController;
   late TextEditingController hometownController;
   late TextEditingController placeOfBirthController;
-  late Offset buttonPosition;
-  late Size buttonSize;
-  OverlayEntry? _overlayEntry;
-  bool isMenuOpen = false;
 
   DateTime selectedDay = DateTime.now();
-  final DateTime _currentDay = DateTime.now();
   late GlobalKey keyDate;
 
   late String fullname, placeOfBirth, telephone, hometown, gender, dateOfBirth;
@@ -50,8 +43,7 @@ class _DesktopPersonalDetailsPageState
     mobileController = TextEditingController();
     hometownController = TextEditingController();
     placeOfBirthController = TextEditingController();
-    //dateOfBirthController = TextEditingController();
-    keyDate = LabeledGlobalKey("button_icon");
+
     super.initState();
   }
 
