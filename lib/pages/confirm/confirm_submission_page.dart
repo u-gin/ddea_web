@@ -196,7 +196,8 @@ class ConfirmSubmissionPage extends StatelessWidget {
       "Place of work": storage.read("placeOfWork"),
       "Baptized by": storage.read("baptizedBy"),
       "Position held": storage.read("positionHeld"),
-      "Communicant": storage.read("communicant")
+      "Communicant": storage.read("communicant"),
+      "Shepherd": storage.read("shepherd")
     }).then((value) {
       firebaseStorageReference.putData(storage.read("imageBtes")).then((value) {
         callback(true);
