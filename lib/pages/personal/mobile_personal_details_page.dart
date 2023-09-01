@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
+import '../../helpers/global_constants.dart';
 import '../../utils/colors.dart';
 import '../../utils/my_controller.dart';
 import '../../widgets/text_field_template.dart';
@@ -438,13 +439,13 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
 
   saveDataToLocalStorage(String fullName, String dateOfBirth, String gender,
       String hometown, String placeOfBirth, String telephone) {
-    storage.write("fullName", fullName);
-    storage.write("dateOfBirth", dateOfBirth);
-    storage.write("gender", gender);
-    storage.write("hometown", hometown);
-    storage.write("placeOfBirth", placeOfBirth);
-    storage.write("telephone", telephone);
-    storage.write("imageBtes", imageBytes!);
+    userDetails["fullName"] = fullName;
+    userDetails["dateOfBirth"] = dateOfBirth;
+    userDetails["gender"] = gender;
+    userDetails["hometown"] = hometown;
+    userDetails["placeOfBirth"] = placeOfBirth;
+    userDetails["telephone"] = telephone;
+    userDetails["imageBytes"] = imageBytes;
   }
 
   Future<void> pickImage() async {

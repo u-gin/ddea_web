@@ -1,3 +1,4 @@
+import 'package:ddea_web/helpers/global_constants.dart';
 import 'package:ddea_web/widgets/button_template.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -229,5 +230,10 @@ class _MobileProfessionalDetailsPageState
     storage.write("residentialAddress", residentialAddress);
     storage.write("profession", profession);
     storage.write("placeOfWork", placeOfWork);
+
+    userDetails["placeOfResidence"] = placeOfResidence;
+    userDetails["residentialAddress"] = residentialAddress;
+    userDetails["profession"] = profession;
+    userDetails["placeOfWork"] = placeOfWork;
   }
 }

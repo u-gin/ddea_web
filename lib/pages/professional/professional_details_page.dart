@@ -2,6 +2,7 @@ import 'package:ddea_web/widgets/button_template.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../helpers/global_constants.dart';
 import '../../utils/constants.dart';
 import '../../utils/my_controller.dart';
 import '../../widgets/text_field_template.dart';
@@ -265,9 +266,9 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
 
   saveDataToLocalStorage(String placeOfResidence, String residentialAddress,
       String profession, String placeOfWork) {
-    storage.write("placeOfResidence", placeOfResidence);
-    storage.write("residentialAddress", residentialAddress);
-    storage.write("profession", profession);
-    storage.write("placeOfWork", placeOfWork);
+    userDetails["placeOfResidence"] = placeOfResidence;
+    userDetails["residentialAddress"] = residentialAddress;
+    userDetails["profession"] = profession;
+    userDetails["placeOfWork"] = placeOfWork;
   }
 }

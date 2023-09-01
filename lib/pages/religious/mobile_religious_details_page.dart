@@ -1,3 +1,4 @@
+import 'package:ddea_web/helpers/global_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -399,10 +400,10 @@ class _MobileReligiousDetailsPageState
 
   saveDataToLocalStorage(String baptizedBy, String positionHeld,
       String communicant, String shepherd) {
-    storage.write("baptizedBy", baptizedBy);
-    storage.write("positionHeld", positionHeld);
-    storage.write("communicant", communicant);
-    storage.write("shepherd", shepherd);
+    userDetails["baptizedBy"] = baptizedBy;
+    userDetails["positionHeld"] = positionHeld;
+    userDetails["communicant"] = communicant;
+    userDetails["shepherd"] = shepherd;
   }
 
   OverlayEntry _overlayEntryBuilder(
