@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
-import 'package:ddea_web/utils/constants.dart';
 import 'package:ddea_web/widgets/button_template.dart';
 import '../../helpers/global_constants.dart';
 import '../../utils/colors.dart';

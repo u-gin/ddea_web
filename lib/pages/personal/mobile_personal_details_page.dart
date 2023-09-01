@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:ddea_web/utils/constants.dart';
 import 'package:ddea_web/widgets/button_template.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';

@@ -20,7 +20,7 @@ class TextFieldTemplate extends StatelessWidget {
   final int numberOfLines;
   final int? maxLength;
 
-  TextFieldTemplate({
+  const TextFieldTemplate({
     Key? key,
     required this.hintText,
     required this.controller,
