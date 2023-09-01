@@ -3,13 +3,10 @@ import 'package:ddea_web/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../helpers/global_constants.dart';
-import '../../responsive_layout.dart';
 import '../../widgets/button_template.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import '../success/desktop_success_page.dart';
 import '../success/mobile_success_page.dart';
-import '../success/tablet_success_page.dart';
 
 class MobileConfirmSubmissionPage extends StatelessWidget {
   MobileConfirmSubmissionPage({super.key});
@@ -150,7 +147,7 @@ class MobileConfirmSubmissionPage extends StatelessWidget {
             style: TextStyle(
               fontFamily: "Poppins",
               fontWeight: FontWeight.w500,
-              fontSize: 16.0,
+              fontSize: 15.0,
               color: AppColors.black,
             ),
           ),
@@ -165,7 +162,7 @@ class MobileConfirmSubmissionPage extends StatelessWidget {
             style: const TextStyle(
               fontFamily: "Poppins",
               fontWeight: FontWeight.w700,
-              fontSize: 18.0,
+              fontSize: 16.0,
               color: Colors.deepPurpleAccent,
             ),
           ),
