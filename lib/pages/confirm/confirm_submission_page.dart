@@ -79,6 +79,8 @@ class ConfirmSubmissionPage extends StatelessWidget {
                       rowItem("Position held", userDetails["positionHeld"]),
                       rowItem("Communicant", userDetails["communicant"]),
                       rowItem("Shepherd", userDetails["shepherd"]),
+                      rowItem("Date added", convertDate(DateTime.now())),
+                      rowItem("Time added", convertTime(DateTime.now())),
                     ],
                   ),
                 ),
