@@ -20,6 +20,7 @@ List<String> shepherdList = [
   "Deacon Mark Ekow Tawiah",
   "Eld. Jeremiah Dzorkpe-Yevenyo",
   "Dcn. Daniel Annor Boateng"
+      "N/A"
 ];
 
 List positionHeldList = [
