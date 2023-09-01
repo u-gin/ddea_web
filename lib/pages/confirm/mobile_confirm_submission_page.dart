@@ -116,7 +116,7 @@ class MobileConfirmSubmissionPage extends StatelessWidget {
                   sendDataToFirebase((success) {
                     if (success) {
                       debugPrint("Successful");
-                      storage.erase();
+
                       Get.to(() => const MobileSuccessPage());
                     } else {
                       debugPrint("Failed");
@@ -174,7 +174,7 @@ class MobileConfirmSubmissionPage extends StatelessWidget {
   sendDataToFirebase(Function(bool success) callback) async {
     final databaseReference = database.ref("ddea/members");
     final firebaseStorageReference =
-        firebaseStorage.ref("ddea/${storage.read("fullName")}");
+        firebaseStorage.ref("ddea/${userDetails["fullName"]}");
 
     await databaseReference.push().set({
       "Fullname": userDetails["fullName"],
