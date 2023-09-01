@@ -399,7 +399,6 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
               if (nameController.text == "" ||
                   mobileController.text == "" ||
                   placeOfBirthController.text == "" ||
-                  dateOfBirthController.text == "" ||
                   hometownController.text == "" ||
                   groupValue == 0 ||
                   imageBytes == null) {

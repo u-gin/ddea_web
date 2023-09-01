@@ -2,6 +2,7 @@ import 'package:ddea_web/utils/colors.dart';
 import 'package:ddea_web/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../helpers/global_constants.dart';
 import '../../responsive_layout.dart';
 import '../../widgets/button_template.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -60,22 +61,24 @@ class MobileConfirmSubmissionPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    rowItem("Fullname", storage.read("fullName")),
-                    rowItem("Mobile number", storage.read("telephone")),
-                    rowItem("Date of birth", storage.read("dateOfBirth")),
-                    rowItem("Hometown", storage.read("hometown")),
-                    rowItem("Gender", storage.read("gender")),
-                    rowItem("Place of birth", storage.read("placeOfBirth")),
+                    rowItem("Fullname", userDetails["fullName"]),
+                    rowItem("Mobile number", userDetails["telephone"]),
+                    rowItem("Date of birth", userDetails["dateOfBirth"]),
+                    rowItem("Hometown", userDetails["hometown"]),
+                    rowItem("Gender", userDetails["gender"]),
+                    rowItem("Place of birth", userDetails["placeOfBirth"]),
                     rowItem(
-                        "Place of residence", storage.read("placeOfResidence")),
+                        "Place of residence", userDetails["placeOfResidence"]),
                     rowItem("Residential address",
-                        storage.read("residentialAddress")),
-                    rowItem("Profession", storage.read("profession")),
-                    rowItem("Place of work", storage.read("placeOfWork")),
-                    rowItem("Baptized by", storage.read("baptizedBy")),
-                    rowItem("Position held", storage.read("positionHeld")),
-                    rowItem("Communicant", storage.read("communicant")),
-                    rowItem("Shepherd", storage.read("shepherd")),
+                        userDetails["residentialAddress"]),
+                    rowItem("Profession", userDetails["profession"]),
+                    rowItem("Place of work", userDetails["placeOfWork"]),
+                    rowItem("Baptized by", userDetails["baptizedBy"]),
+                    rowItem("Position held", userDetails["positionHeld"]),
+                    rowItem("Communicant", userDetails["communicant"]),
+                    rowItem("Shepherd", userDetails["shepherd"]),
+                    rowItem("Date added", convertDate(DateTime.now())),
+                    rowItem("Time added", convertTime(DateTime.now())),
                   ],
                 ),
               ),
@@ -177,21 +180,24 @@ class MobileConfirmSubmissionPage extends StatelessWidget {
         firebaseStorage.ref("ddea/${storage.read("fullName")}");
 
     await databaseReference.push().set({
-      "Fullname": storage.read("fullName"),
-      "Mobile number": storage.read("telephone"),
-      "Place of birth": storage.read("placeOfBirth"),
-      "Hometown": storage.read("hometown"),
-      "Gender": storage.read("gender"),
-      "Date of birth": storage.read("dateOfBirth"),
-      "Place of residence": storage.read("placeOfResidence"),
-      "Residential address": storage.read("residentialAddress"),
-      "Profession": storage.read("profession"),
-      "Place of work": storage.read("placeOfWork"),
-      "Baptized by": storage.read("baptizedBy"),
-      "Position held": storage.read("positionHeld"),
-      "Communicant": storage.read("communicant")
+      "Fullname": userDetails["fullName"],
+      "Mobile number": userDetails["telephone"],
+      "Place of birth": userDetails["placeOfBirth"],
+      "Hometown": userDetails["hometown"],
+      "Gender": userDetails["gender"],
+      "Date of birth": userDetails["dateOfBirth"],
+      "Place of residence": userDetails["placeOfResidence"],
+      "Residential address": userDetails["residentialAddress"],
+      "Profession": userDetails["profession"],
+      "Place of work": userDetails["placeOfWork"],
+      "Baptized by": userDetails["baptizedBy"],
+      "Position held": userDetails["positionHeld"],
+      "Communicant": userDetails["communicant"],
+      "Shepherd": userDetails["shepherd"],
+      "Date added": convertDate(DateTime.now()),
+      "Time added": convertTime(DateTime.now()),
     }).then((value) {
-      firebaseStorageReference.putData(storage.read("imageBtes")).then((value) {
+      firebaseStorageReference.putData(userDetails["imageBytes"]).then((value) {
         callback(true);
       }).catchError((error) {
         callback(false);
