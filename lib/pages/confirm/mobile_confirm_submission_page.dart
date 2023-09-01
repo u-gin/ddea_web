@@ -1,7 +1,7 @@
 import 'package:ddea_web/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../helpers/global_constants.dart';
+import '../../utils/constants.dart';
 import '../../widgets/button_template.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';

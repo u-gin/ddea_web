@@ -1,9 +1,9 @@
-import 'package:ddea_web/helpers/global_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
 import '../../utils/colors.dart';
+import '../../utils/constants.dart';
 import '../../utils/my_controller.dart';
 import '../../widgets/button_template.dart';
 import '../../widgets/text_field_template.dart';
