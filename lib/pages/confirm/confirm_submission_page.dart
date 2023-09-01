@@ -201,6 +201,8 @@ class ConfirmSubmissionPage extends StatelessWidget {
       "Position held": userDetails["positionHeld"],
       "Communicant": userDetails["communicant"],
       "Shepherd": userDetails["shepherd"],
+      "Date added": convertDate(DateTime.now()),
+      "Time added": convertTime(DateTime.now()),
     }).then((value) {
       firebaseStorageReference.putData(userDetails["imageBytes"]).then((value) {
         callback(true);
