@@ -9,4 +9,13 @@ String convertDate(DateTime? dateToConvert) {
   }
 }
 
+String convertTime(DateTime? timeToConvert) {
+  final timeFormat = DateFormat.Hms();
+  if (timeToConvert == null) {
+    return '00.00.00';
+  } else {
+    return timeFormat.format(timeToConvert);
+  }
+}
+
 Map<String, dynamic> userDetails = {};
