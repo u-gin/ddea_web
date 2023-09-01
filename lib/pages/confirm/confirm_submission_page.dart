@@ -120,13 +120,7 @@ class ConfirmSubmissionPage extends StatelessWidget {
                   buttonAction: () {
                     sendDataToFirebase((success) {
                       if (success) {
-                        debugPrint("Successful");
-                        storage.erase();
-                        Get.to(() => const ResponsiveLayout(
-                              desktopLayout: DesktopSuccessPage(),
-                              tabletLayout: TabletSuccessPage(),
-                              mobileLayout: MobileSuccessPage(),
-                            ));
+                        Get.to(() => const DesktopSuccessPage());
                       } else {
                         debugPrint("Failed");
                       }

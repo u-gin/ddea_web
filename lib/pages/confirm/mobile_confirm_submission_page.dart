@@ -117,11 +117,7 @@ class MobileConfirmSubmissionPage extends StatelessWidget {
                     if (success) {
                       debugPrint("Successful");
                       storage.erase();
-                      Get.to(() => const ResponsiveLayout(
-                            desktopLayout: DesktopSuccessPage(),
-                            tabletLayout: TabletSuccessPage(),
-                            mobileLayout: MobileSuccessPage(),
-                          ));
+                      Get.to(() => const MobileSuccessPage());
                     } else {
                       debugPrint("Failed");
                     }
