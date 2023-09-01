@@ -226,11 +226,6 @@ class _MobileProfessionalDetailsPageState
 
   saveDataToLocalStorage(String placeOfResidence, String residentialAddress,
       String profession, String placeOfWork) {
-    storage.write("placeOfResidence", placeOfResidence);
-    storage.write("residentialAddress", residentialAddress);
-    storage.write("profession", profession);
-    storage.write("placeOfWork", placeOfWork);
-
     userDetails["placeOfResidence"] = placeOfResidence;
     userDetails["residentialAddress"] = residentialAddress;
     userDetails["profession"] = profession;
