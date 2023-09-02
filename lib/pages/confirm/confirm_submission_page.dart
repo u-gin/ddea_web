@@ -184,7 +184,8 @@ class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
   }
 
   sendDataToFirebase(Function(bool success) callback) async {
-    final databaseReference = database.ref("ddea/members");
+    final databaseReference =
+        database.ref("ddea/${userDetails["positionHeld"]}");
     final firebaseStorageReference =
         firebaseStorage.ref("ddea/${userDetails["fullName"]}");
 
