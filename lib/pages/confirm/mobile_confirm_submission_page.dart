@@ -7,11 +7,21 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../success/mobile_success_page.dart';
 
-class MobileConfirmSubmissionPage extends StatelessWidget {
+class MobileConfirmSubmissionPage extends StatefulWidget {
   MobileConfirmSubmissionPage({super.key});
 
+  @override
+  State<MobileConfirmSubmissionPage> createState() =>
+      _MobileConfirmSubmissionPageState();
+}
+
+class _MobileConfirmSubmissionPageState
+    extends State<MobileConfirmSubmissionPage> {
   final FirebaseDatabase database = FirebaseDatabase.instance;
+
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +121,11 @@ class MobileConfirmSubmissionPage extends StatelessWidget {
                 buttonName: "Finish",
                 buttonColor: Colors.deepPurple,
                 buttonHeight: 60,
+                loading: isLoading,
                 buttonAction: () {
+                  setState(() {
+                    isLoading = true;
+                  });
                   sendDataToFirebase((success) {
                     if (success) {
                       debugPrint("Successful");
@@ -194,11 +208,20 @@ class MobileConfirmSubmissionPage extends StatelessWidget {
       "Time added": convertTime(DateTime.now()),
     }).then((value) {
       firebaseStorageReference.putData(userDetails["imageBytes"]).then((value) {
+        setState(() {
+          isLoading = false;
+        });
         callback(true);
       }).catchError((error) {
+        setState(() {
+          isLoading = false;
+        });
         callback(false);
       });
     }).catchError((error) {
+      setState(() {
+        isLoading = false;
+      });
       callback(false);
     });
   }
