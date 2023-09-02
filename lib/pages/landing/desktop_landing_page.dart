@@ -1,3 +1,4 @@
+import 'package:ddea_web/pages/admin/login.dart';
 import 'package:ddea_web/pages/home/desktop_home_page.dart';
 import 'package:ddea_web/utils/colors.dart';
 import 'package:ddea_web/widgets/button_template.dart';
@@ -104,13 +105,7 @@ class DesktopLandingPage extends StatelessWidget {
                             buttonColor: Colors.white,
                             buttonHeight: 40,
                             buttonAction: () {
-                              /* Get.to(
-                                () => const ResponsiveLayout(
-                                  mobileLayout: MobileHomePage(),
-                                  tabletLayout: TabletHomePage(),
-                                  desktopLayout: DesktopHomePage(),
-                                ),
-                              ); */
+                              Get.to(() => const Login());
                             },
                             buttonWidth: 300,
                             fontColor: AppColors.charcoalBlack,
