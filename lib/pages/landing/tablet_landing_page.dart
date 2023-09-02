@@ -86,13 +86,13 @@ class TabletLandingPage extends StatelessWidget {
                     buttonColor: Colors.white,
                     buttonHeight: 40,
                     buttonAction: () {
-                      Get.to(
+                      /* Get.to(
                         () => const ResponsiveLayout(
                           mobileLayout: TabletLandingPage(),
                           tabletLayout: TabletHomePage(),
                           desktopLayout: DesktopHomePage(),
                         ),
-                      );
+                      ); */
                     },
                     buttonWidth: 300,
                     fontColor: AppColors.charcoalBlack,

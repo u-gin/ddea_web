@@ -86,9 +86,9 @@ class MobileLandingPage extends StatelessWidget {
                     buttonColor: Colors.white,
                     buttonHeight: 40,
                     buttonAction: () {
-                      Get.to(
+                      /* Get.to(
                         () => const MobileHomePage(),
-                      );
+                      ); */
                     },
                     buttonWidth: 200,
                     fontColor: AppColors.charcoalBlack,

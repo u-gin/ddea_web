@@ -71,7 +71,7 @@ class DesktopLandingPage extends StatelessWidget {
                             height: 10,
                           ),
                           ButtonTemplate(
-                            buttonName: "ADD IFO",
+                            buttonName: "ADD INFO",
                             buttonColor: Colors.white,
                             buttonHeight: 40,
                             buttonAction: () {
@@ -104,13 +104,13 @@ class DesktopLandingPage extends StatelessWidget {
                             buttonColor: Colors.white,
                             buttonHeight: 40,
                             buttonAction: () {
-                              Get.to(
+                              /* Get.to(
                                 () => const ResponsiveLayout(
                                   mobileLayout: MobileHomePage(),
                                   tabletLayout: TabletHomePage(),
                                   desktopLayout: DesktopHomePage(),
                                 ),
-                              );
+                              ); */
                             },
                             buttonWidth: 300,
                             fontColor: AppColors.charcoalBlack,
