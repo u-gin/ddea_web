@@ -19,13 +19,15 @@ List<String> shepherdList = [
   "Dcns. Abigail Deedei Adu",
   "Deacon Mark Ekow Tawiah",
   "Eld. Jeremiah Dzorkpe-Yevenyo",
-  "Dcn. Daniel Annor Boateng"
-      "N/A"
+  "Dcn. Daniel Annor Boateng",
+  "N/A",
 ];
 
 List positionHeldList = [
-  'Member (M)',
+  'Pastor (Ps)',
   'Presiding Elder (P.E)',
+  'Elder (Eld)',
   'Deacon (Dcn)',
-  'Deaconess (Dcns)'
+  'Deaconess (Dcns)',
+  'Member (M)',
 ];
