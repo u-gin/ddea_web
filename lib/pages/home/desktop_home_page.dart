@@ -64,7 +64,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                           ? const ProfessionalDetailsPage()
                           : controller.myVariable.value == 3
                               ? const ReligiousDetailsPage()
-                              : ConfirmSubmissionPage();
+                              : const ConfirmSubmissionPage();
                 },
               ),
             ),

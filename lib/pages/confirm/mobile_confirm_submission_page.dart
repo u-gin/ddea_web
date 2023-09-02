@@ -8,7 +8,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import '../success/mobile_success_page.dart';
 
 class MobileConfirmSubmissionPage extends StatefulWidget {
-  MobileConfirmSubmissionPage({super.key});
+  const MobileConfirmSubmissionPage({super.key});
 
   @override
   State<MobileConfirmSubmissionPage> createState() =>

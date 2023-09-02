@@ -38,7 +38,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
                       ? const MobileProfessionalDetailsPage()
                       : controller.myVariable.value == 3
                           ? const MobileReligiousDetailsPage()
-                          : MobileConfirmSubmissionPage(),
+                          : const MobileConfirmSubmissionPage(),
             );
           },
         ),
