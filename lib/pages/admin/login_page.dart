@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                   textInputType: TextInputType.visiblePassword,
                   textInputAction: TextInputAction.next,
                   enabled: true,
-                  textFieldColor: AppColors.primary,
+                  textFieldOutlineColor: Colors.deepPurple,
                 )
               ],
             ),
