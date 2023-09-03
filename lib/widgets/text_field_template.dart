@@ -19,6 +19,7 @@ class TextFieldTemplate extends StatelessWidget {
   final Widget? suffixIcon;
   final int numberOfLines;
   final int? maxLength;
+  final Color? textFieldOutlineColor;
 
   const TextFieldTemplate({
     Key? key,
@@ -37,6 +38,7 @@ class TextFieldTemplate extends StatelessWidget {
     this.suffixIcon,
     this.numberOfLines = 1,
     this.maxLength,
+    this.textFieldOutlineColor,
   }) : super(key: key);
 
   @override
@@ -69,10 +71,11 @@ class TextFieldTemplate extends StatelessWidget {
             decoration: InputDecoration(
               //counterText: null,
               //counter: ,
+
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
-                  color: AppColors.white,
+                  color: textFieldOutlineColor ?? AppColors.white,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
