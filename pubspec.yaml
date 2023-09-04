@@ -19,6 +19,7 @@ dependencies:
   confetti: ^0.7.0
   table_calendar: ^3.0.9
   intl: ^0.18.1
+  firebase_auth: ^4.9.0
 
 dev_dependencies:
   flutter_test:
