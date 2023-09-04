@@ -15,6 +15,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   late TextEditingController passcodeController;
   late TextEditingController emailController;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -96,6 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                   buttonName: "Go",
                   buttonColor: Colors.deepPurple,
                   buttonHeight: 60,
+                  loading: isLoading,
                   buttonAction: () {},
                   fontColor: Colors.white,
                   textSize: 15,
@@ -108,6 +110,16 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  signIn() {
+    String email = emailController.text.toString().trim();
+    String password = passcodeController.text.toString();
+
+    if (email == "" || password == "") {
+    } else {
+      signInWithEmailAndPassword(email, password);
+    }
   }
 
   Future<User?> signInWithEmailAndPassword(
