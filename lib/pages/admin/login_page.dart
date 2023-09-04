@@ -1,6 +1,8 @@
+import 'package:ddea_web/pages/admin/dashboard.dart';
 import 'package:ddea_web/utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../widgets/button_template.dart';
 import '../../widgets/text_field_template.dart';
@@ -98,7 +100,12 @@ class _LoginPageState extends State<LoginPage> {
                   buttonColor: Colors.deepPurple,
                   buttonHeight: 60,
                   loading: isLoading,
-                  buttonAction: () {},
+                  buttonAction: () {
+                    setState(() {
+                      isLoading = true;
+                    });
+                    signIn();
+                  },
                   fontColor: Colors.white,
                   textSize: 15,
                   buttonBorderRadius: 8,
@@ -117,6 +124,9 @@ class _LoginPageState extends State<LoginPage> {
     String password = passcodeController.text.toString();
 
     if (email == "" || password == "") {
+      setState(() {
+        isLoading = false;
+      });
     } else {
       signInWithEmailAndPassword(email, password);
     }
@@ -131,9 +141,16 @@ class _LoginPageState extends State<LoginPage> {
         password: password,
       );
       User? user = userCredential.user;
+      setState(() {
+        isLoading = false;
+      });
+      Get.to(() => Dashboard());
       return user;
     } catch (e) {
       debugPrint("Sign-in error: $e");
+      setState(() {
+        isLoading = false;
+      });
       return null;
     }
   }
