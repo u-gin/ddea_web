@@ -2,6 +2,7 @@ import 'package:ddea_web/utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../widgets/button_template.dart';
 import '../../widgets/text_field_template.dart';
 
 class LoginPage extends StatefulWidget {
@@ -66,8 +67,8 @@ class _LoginPageState extends State<LoginPage> {
                   enabled: true,
                   textFieldOutlineColor: Colors.deepPurple,
                 ),
-                SizedBox(
-                  height: 20,
+                const SizedBox(
+                  height: 12,
                 ),
                 const Text(
                   "Password",
@@ -87,6 +88,19 @@ class _LoginPageState extends State<LoginPage> {
                   textInputAction: TextInputAction.go,
                   enabled: true,
                   textFieldOutlineColor: Colors.deepPurple,
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                ButtonTemplate(
+                  buttonName: "Go",
+                  buttonColor: Colors.deepPurple,
+                  buttonHeight: 60,
+                  buttonAction: () {},
+                  fontColor: Colors.white,
+                  textSize: 15,
+                  buttonBorderRadius: 8,
+                  buttonWidth: 300,
                 )
               ],
             ),
