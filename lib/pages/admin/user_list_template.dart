@@ -25,7 +25,7 @@ class UserListTemplate extends StatelessWidget {
       child: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -105,14 +105,6 @@ class UserListTemplate extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-
-  TextStyle textStyle() {
-    return const TextStyle(
-      fontSize: 15.0,
-      fontFamily: "Poppins",
-      fontWeight: FontWeight.w500,
     );
   }
 }
