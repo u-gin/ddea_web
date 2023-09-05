@@ -30,6 +30,7 @@ class Dashboard extends StatelessWidget {
                       telephone: "telephone",
                       dateOfBirth: "10.11.2023",
                       dateJoined: "10.11.2023",
+                      connectGroup: "Elohim",
                     );
                   },
                 ),
