@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 double? canvasWidth;
@@ -22,3 +23,19 @@ String convertTime(DateTime? timeToConvert) {
 }
 
 Map<String, dynamic> userDetails = {};
+
+TextStyle textStyle() {
+  return const TextStyle(
+    fontSize: 15.0,
+    fontFamily: "Poppins",
+    fontWeight: FontWeight.w500,
+  );
+}
+
+TextStyle headerTextStyle() {
+  return const TextStyle(
+    fontSize: 17.0,
+    fontFamily: "Poppins",
+    fontWeight: FontWeight.w600,
+  );
+}
