@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class UserListTemplate extends StatelessWidget {
   final Uint8List? imageBytes;
-  final String fullName, telephone, dateOfBirth, dateJoined;
+  final String fullName, telephone, dateOfBirth, dateJoined, connectGroup;
 
   const UserListTemplate({
     Key? key,
@@ -15,6 +15,7 @@ class UserListTemplate extends StatelessWidget {
     required this.telephone,
     required this.dateOfBirth,
     required this.dateJoined,
+    required this.connectGroup,
   }) : super(key: key);
 
   @override
@@ -85,6 +86,10 @@ class UserListTemplate extends StatelessWidget {
               ),
               Text(
                 dateJoined,
+                style: textStyle(),
+              ),
+              Text(
+                connectGroup,
                 style: textStyle(),
               )
             ],
