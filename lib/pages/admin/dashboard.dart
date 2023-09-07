@@ -13,6 +13,16 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   late TextEditingController nameController;
 
+  List<String> filterNames = [
+    "All",
+    "Members",
+    "Elders",
+    "Deaconesses",
+    "Deacons"
+  ];
+
+  int selectedIndex = 0;
+
   @override
   void initState() {
     nameController = TextEditingController();
@@ -33,6 +43,7 @@ class _DashboardState extends State<Dashboard> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 200.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
@@ -65,6 +76,48 @@ class _DashboardState extends State<Dashboard> {
                         )
                       ],
                     ),
+                    SizedBox(
+                      height: 60,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: filterNames.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  selectedIndex = index;
+                                });
+                              },
+                              child: Container(
+                                height: 50,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: selectedIndex == index
+                                        ? Colors.deepPurple
+                                        : Colors.white),
+                                child: Center(
+                                  child: Text(
+                                    filterNames[index],
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.w400,
+                                      color: selectedIndex == index
+                                          ? Colors.white
+                                          : Colors.deepPurple,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -115,7 +168,7 @@ class _DashboardState extends State<Dashboard> {
                   color: Colors.grey[400],
                 ),
               ), */
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Expanded(
