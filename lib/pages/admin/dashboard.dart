@@ -80,7 +80,7 @@ class _DashboardState extends State<Dashboard> {
                         width: 50,
                       ),
                       const SizedBox(
-                        width: 50,
+                        width: 60,
                       ),
                       Text(
                         "Full name",
@@ -106,7 +106,7 @@ class _DashboardState extends State<Dashboard> {
                   )
                 ],
               ),
-              Padding(
+              /* Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 200),
                 child: Container(
@@ -114,6 +114,9 @@ class _DashboardState extends State<Dashboard> {
                   width: canvasWidth,
                   color: Colors.grey[400],
                 ),
+              ), */
+              SizedBox(
+                height: 20,
               ),
               Expanded(
                 flex: 1,

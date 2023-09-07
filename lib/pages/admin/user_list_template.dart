@@ -23,12 +23,13 @@ class UserListTemplate extends StatelessWidget {
     return SizedBox(
       width: canvasWidth,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                //crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   /* ClipOval(
                 child: Container(
@@ -50,6 +51,7 @@ class UserListTemplate extends StatelessWidget {
                   ),
                 ),
               ), */
+
                   Container(
                     width: 50,
                     height: 50,
