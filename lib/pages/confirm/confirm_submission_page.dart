@@ -17,7 +17,6 @@ class ConfirmSubmissionPage extends StatefulWidget {
 
 class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
   final FirebaseDatabase database = FirebaseDatabase.instance;
-
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
 
   bool isLoading = false;
