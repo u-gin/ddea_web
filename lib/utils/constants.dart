@@ -37,5 +37,6 @@ TextStyle headerTextStyle() {
     fontSize: 17.0,
     fontFamily: "Poppins",
     fontWeight: FontWeight.w600,
+    color: Colors.deepPurple,
   );
 }
