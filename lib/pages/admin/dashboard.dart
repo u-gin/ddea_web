@@ -1,6 +1,8 @@
 import 'package:ddea_web/pages/admin/user_list_template.dart';
 import 'package:ddea_web/utils/constants.dart';
 import 'package:ddea_web/widgets/text_field_template.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -12,6 +14,8 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   late TextEditingController nameController;
+  final FirebaseDatabase database = FirebaseDatabase.instance;
+  final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
 
   List<String> filterNames = [
     "All",
