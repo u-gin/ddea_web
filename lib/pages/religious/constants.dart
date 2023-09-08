@@ -31,3 +31,16 @@ List positionHeldList = [
   'Deaconess (Dcns)',
   'Member (M)',
 ];
+
+List connectGroupList = [
+  "Elohim",
+  "Rapha",
+  "Nissi",
+  "Shalom",
+  "Jireh",
+  "El-Shaddai",
+  "Shammah",
+  "Adonai",
+  "Elyon",
+  "Tsidkenu",
+];
