@@ -54,3 +54,10 @@ List ministryList = [
   "Women(LOV)",
   "None"
 ];
+
+List baptismTypeList = [
+  "Water",
+  "Holy Spirit",
+  "Water and Holy Spirit",
+  "None",
+];
