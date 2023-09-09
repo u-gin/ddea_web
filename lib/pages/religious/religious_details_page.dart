@@ -24,18 +24,22 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
   late Size buttonSize;
   OverlayEntry? _overlayEntry;
   bool isMenuOpen = false;
-  late GlobalKey keyPositionHeld, keyShepherd;
+  late GlobalKey keyPositionHeld, keyShepherd, keyConnectGroup, keyMinistry;
   int groupValue = 0;
   String communicantValue = "";
 
   String positionHeld = "Please select";
   String shepherd = "Please select";
+  String ministry = "Please select";
+  String connectGroup = "Please select";
 
   @override
   void initState() {
     baptizedByController = TextEditingController();
     keyPositionHeld = LabeledGlobalKey("button_icon");
     keyShepherd = LabeledGlobalKey("button_icon");
+    keyConnectGroup = LabeledGlobalKey("button_icon");
+    keyMinistry = LabeledGlobalKey("button_icon");
     super.initState();
   }
 
@@ -357,6 +361,151 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                           ),
                         ],
                       ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 10.0, left: 10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "Ministry",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16.0,
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    if (isMenuOpen) {
+                                      closeMenu();
+                                    } else {
+                                      openMinistryMenu(setState, keyMinistry);
+                                    }
+                                  },
+                                  child: Container(
+                                    key: keyMinistry,
+                                    height: 50,
+                                    width: 300,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      color: Colors.white,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 10),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            ministry,
+                                            style: ministry == "Please select"
+                                                ? TextStyle(
+                                                    color:
+                                                        AppColors.hintTextColor,
+                                                    fontSize: 14.0,
+                                                    fontFamily: 'Poppins',
+                                                    fontWeight: FontWeight.w500,
+                                                  )
+                                                : TextStyle(
+                                                    color: AppColors.black,
+                                                    fontSize: 17.0,
+                                                    fontFamily: 'Poppins',
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                          ),
+                                          Icon(
+                                            Icons.keyboard_arrow_down,
+                                            color: AppColors.colorFromHex(
+                                                "#C6CDD3"),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "Connect group",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16.0,
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    if (isMenuOpen) {
+                                      closeMenu();
+                                    } else {
+                                      openConnectGroupMenu(
+                                          setState, keyConnectGroup);
+                                    }
+                                  },
+                                  child: Container(
+                                    key: keyConnectGroup,
+                                    height: 50,
+                                    width: 300,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      color: Colors.white,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 10),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            connectGroup,
+                                            style: connectGroup ==
+                                                    "Please select"
+                                                ? TextStyle(
+                                                    color:
+                                                        AppColors.hintTextColor,
+                                                    fontSize: 14.0,
+                                                    fontFamily: 'Poppins',
+                                                    fontWeight: FontWeight.w500,
+                                                  )
+                                                : TextStyle(
+                                                    color: AppColors.black,
+                                                    fontSize: 17.0,
+                                                    fontFamily: 'Poppins',
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                          ),
+                                          Icon(
+                                            Icons.keyboard_arrow_down,
+                                            color: AppColors.colorFromHex(
+                                                "#C6CDD3"),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ],
                   ),
                 ],
@@ -440,6 +589,8 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
     userDetails["positionHeld"] = positionHeld;
     userDetails["communicant"] = communicant;
     userDetails["shepherd"] = shepherd;
+    userDetails["ministry"] = ministry;
+    userDetails["connectGroup"] = connectGroup;
   }
 
   OverlayEntry _overlayEntryBuilder(
@@ -500,6 +651,22 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
     isMenuOpen = !isMenuOpen;
   }
 
+  void openMinistryMenu(StateSetter setState, GlobalKey key) {
+    findButton(key);
+    _overlayEntry = _overlayEntryBuilder(ministryDropdown(setState, key),
+        buttonPosition.dx, buttonSize.width, null);
+    Overlay.of(context).insert(_overlayEntry!);
+    isMenuOpen = !isMenuOpen;
+  }
+
+  void openConnectGroupMenu(StateSetter setState, GlobalKey key) {
+    findButton(key);
+    _overlayEntry = _overlayEntryBuilder(connectGroupDropdown(setState, key),
+        buttonPosition.dx, buttonSize.width, null);
+    Overlay.of(context).insert(_overlayEntry!);
+    isMenuOpen = !isMenuOpen;
+  }
+
   positionHeldDropdown(StateSetter setState, GlobalKey key) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -554,6 +721,72 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
               padding: const EdgeInsets.only(bottom: 20),
               child: Text(
                 shepherdList[index],
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+
+  ministryDropdown(StateSetter setState, GlobalKey key) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: ListView.builder(
+        padding: const EdgeInsets.all(10),
+        shrinkWrap: false,
+        itemCount: ministryList.length,
+        itemBuilder: ((context, index) {
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                ministry = ministryList[index];
+                closeMenu();
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Text(
+                ministryList[index],
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+
+  connectGroupDropdown(StateSetter setState, GlobalKey key) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: ListView.builder(
+        padding: const EdgeInsets.all(10),
+        shrinkWrap: false,
+        itemCount: connectGroupList.length,
+        itemBuilder: ((context, index) {
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                connectGroup = connectGroupList[index];
+                closeMenu();
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Text(
+                connectGroupList[index],
                 style: const TextStyle(
                   fontSize: 14,
                   fontFamily: "Poppins",
