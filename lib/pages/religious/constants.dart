@@ -43,4 +43,14 @@ List connectGroupList = [
   "Adonai",
   "Elyon",
   "Tsidkenu",
+  "I don't have"
+];
+
+List ministryList = [
+  "Youth",
+  "Evangelism",
+  "Children (KFC)",
+  "PEMEM",
+  "Women(LOV)",
+  "None"
 ];
