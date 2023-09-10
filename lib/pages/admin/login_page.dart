@@ -144,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         isLoading = false;
       });
-      Get.to(() => Dashboard());
+      Get.to(() => const Dashboard());
       return user;
     } catch (e) {
       debugPrint("Sign-in error: $e");
