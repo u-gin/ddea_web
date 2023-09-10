@@ -1,19 +1,28 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:firebase_database/firebase_database.dart';
+
 class UserModel {
-  String fullName;
-  String telephone;
-  String gender;
-  String dateOfBirth;
-  String hometown;
-  String placeOfResidence;
-  String residentialAddress;
-  String placeOfWork;
-  String occupation;
-  String baptizedBy;
-  String communicant;
-  String positionHeld;
+  String? fullName;
+  String? telephone;
+  String? gender;
+  String? dateOfBirth;
+  String? hometown;
+  String? placeOfResidence;
+  String? residentialAddress;
+  String? placeOfWork;
+  String? occupation;
+  String? baptizedBy;
+  String? communicant;
+  String? positionHeld;
+  String? baptismType;
+  String? connectGroup;
+  String? dateAdded;
+  String? ministry;
+  String? placeOfBirth;
+  String? shepherd;
+  String? timeAdded;
 
   UserModel({
     required this.fullName,
@@ -28,7 +37,39 @@ class UserModel {
     required this.baptizedBy,
     required this.communicant,
     required this.positionHeld,
+    required this.baptismType,
+    required this.connectGroup,
+    required this.dateAdded,
+    required this.ministry,
+    required this.placeOfBirth,
+    required this.shepherd,
+    required this.timeAdded,
   });
+
+  factory UserModel.fromSnapshot(DataSnapshot snapshot) {
+    final data = snapshot.value as Map<String, dynamic>?;
+    return UserModel(
+      fullName: data?['fullName'] as String,
+      telephone: data?['telephone'] as String,
+      gender: data?['gender'] as String,
+      dateOfBirth: data?['dateOfBirth'] as String,
+      hometown: data?['hometown'] as String,
+      placeOfResidence: data?['placeOfResidence'] as String,
+      residentialAddress: data?['residentialAddress'] as String,
+      placeOfWork: data?['placeOfWork'] as String,
+      occupation: data?['occupation'] as String,
+      baptizedBy: data?['baptizedBy'] as String,
+      communicant: data?['communicant'] as String,
+      positionHeld: data?['positionHeld'] as String,
+      baptismType: data?['baptismType'] as String,
+      connectGroup: data?['connectGroup'] as String,
+      dateAdded: data?['dateAdded'] as String,
+      ministry: data?['ministry'] as String,
+      placeOfBirth: data?['placeOfBirth'] as String,
+      shepherd: data?['shepherd'] as String,
+      timeAdded: data?['timeAdded'] as String,
+    );
+  }
 
   UserModel copyWith({
     String? fullName,
@@ -43,6 +84,13 @@ class UserModel {
     String? baptizedBy,
     String? communicant,
     String? positionHeld,
+    String? baptismType,
+    String? connectGroup,
+    String? dateAdded,
+    String? ministry,
+    String? placeOfBirth,
+    String? shepherd,
+    String? timeAdded,
   }) {
     return UserModel(
       fullName: fullName ?? this.fullName,
@@ -57,6 +105,13 @@ class UserModel {
       baptizedBy: baptizedBy ?? this.baptizedBy,
       communicant: communicant ?? this.communicant,
       positionHeld: positionHeld ?? this.positionHeld,
+      baptismType: baptismType ?? this.baptismType,
+      connectGroup: connectGroup ?? this.connectGroup,
+      dateAdded: dateAdded ?? this.dateAdded,
+      ministry: ministry ?? this.ministry,
+      placeOfBirth: placeOfBirth ?? this.placeOfBirth,
+      shepherd: shepherd ?? this.shepherd,
+      timeAdded: timeAdded ?? this.timeAdded,
     );
   }
 
@@ -74,6 +129,13 @@ class UserModel {
       'baptizedBy': baptizedBy,
       'communicant': communicant,
       'positionHeld': positionHeld,
+      'baptismType': baptismType,
+      'connectGroup': connectGroup,
+      'dateAdded': dateAdded,
+      'ministry': ministry,
+      'placeOfBirth': placeOfBirth,
+      'shepherd': shepherd,
+      'timeAdded': timeAdded,
     };
   }
 
@@ -91,6 +153,13 @@ class UserModel {
       baptizedBy: map['baptizedBy'] as String,
       communicant: map['communicant'] as String,
       positionHeld: map['positionHeld'] as String,
+      baptismType: map['baptismType'] as String,
+      connectGroup: map['connectGroup'] as String,
+      dateAdded: map['dateAdded'] as String,
+      ministry: map['ministry'] as String,
+      placeOfBirth: map['placeOfBirth'] as String,
+      shepherd: map['shepherd'] as String,
+      timeAdded: map['timeAdded'] as String,
     );
   }
 
@@ -101,7 +170,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(fullName: $fullName, telephone: $telephone, gender: $gender, dateOfBirth: $dateOfBirth, hometown: $hometown, placeOfResidence: $placeOfResidence, residentialAddress: $residentialAddress, placeOfWork: $placeOfWork, occupation: $occupation, baptizedBy: $baptizedBy, communicant: $communicant, positionHeld: $positionHeld)';
+    return 'UserModel(fullName: $fullName, telephone: $telephone, gender: $gender, dateOfBirth: $dateOfBirth, hometown: $hometown, placeOfResidence: $placeOfResidence, residentialAddress: $residentialAddress, placeOfWork: $placeOfWork, occupation: $occupation, baptizedBy: $baptizedBy, communicant: $communicant, positionHeld: $positionHeld, baptismType: $baptismType, connectGroup: $connectGroup, dateAdded: $dateAdded, ministry: $ministry, placeOfBirth: $placeOfBirth, shepherd: $shepherd, timeAdded: $timeAdded)';
   }
 
   @override
@@ -119,7 +188,14 @@ class UserModel {
         other.occupation == occupation &&
         other.baptizedBy == baptizedBy &&
         other.communicant == communicant &&
-        other.positionHeld == positionHeld;
+        other.positionHeld == positionHeld &&
+        other.baptismType == baptismType &&
+        other.connectGroup == connectGroup &&
+        other.dateAdded == dateAdded &&
+        other.ministry == ministry &&
+        other.placeOfBirth == placeOfBirth &&
+        other.shepherd == shepherd &&
+        other.timeAdded == timeAdded;
   }
 
   @override
@@ -135,6 +211,13 @@ class UserModel {
         occupation.hashCode ^
         baptizedBy.hashCode ^
         communicant.hashCode ^
-        positionHeld.hashCode;
+        positionHeld.hashCode ^
+        baptismType.hashCode ^
+        connectGroup.hashCode ^
+        dateAdded.hashCode ^
+        ministry.hashCode ^
+        placeOfBirth.hashCode ^
+        shepherd.hashCode ^
+        timeAdded.hashCode;
   }
 }
