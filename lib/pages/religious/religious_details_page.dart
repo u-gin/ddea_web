@@ -24,7 +24,11 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
   late Size buttonSize;
   OverlayEntry? _overlayEntry;
   bool isMenuOpen = false;
-  late GlobalKey keyPositionHeld, keyShepherd, keyConnectGroup, keyMinistry;
+  late GlobalKey keyPositionHeld,
+      keyShepherd,
+      keyConnectGroup,
+      keyMinistry,
+      keyBaptismReceived;
   int groupValue = 0;
   String communicantValue = "";
 
@@ -32,6 +36,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
   String shepherd = "Please select";
   String ministry = "Please select";
   String connectGroup = "Please select";
+  String baptismType = "Please select";
 
   @override
   void initState() {
@@ -40,6 +45,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
     keyShepherd = LabeledGlobalKey("button_icon");
     keyConnectGroup = LabeledGlobalKey("button_icon");
     keyMinistry = LabeledGlobalKey("button_icon");
+    keyBaptismReceived = LabeledGlobalKey("button_icon");
     super.initState();
   }
 
@@ -361,7 +367,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Row(
@@ -506,6 +512,87 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                           )
                         ],
                       ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 10.0, left: 10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "Baptism received",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16.0,
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    if (isMenuOpen) {
+                                      closeMenu();
+                                    } else {
+                                      openBaptismTypeMenu(
+                                          setState, keyBaptismReceived);
+                                    }
+                                  },
+                                  child: Container(
+                                    key: keyBaptismReceived,
+                                    height: 50,
+                                    width: 300,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      color: Colors.white,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 10),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            baptismType,
+                                            style: baptismType ==
+                                                    "Please select"
+                                                ? TextStyle(
+                                                    color:
+                                                        AppColors.hintTextColor,
+                                                    fontSize: 14.0,
+                                                    fontFamily: 'Poppins',
+                                                    fontWeight: FontWeight.w500,
+                                                  )
+                                                : TextStyle(
+                                                    color: AppColors.black,
+                                                    fontSize: 17.0,
+                                                    fontFamily: 'Poppins',
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                          ),
+                                          Icon(
+                                            Icons.keyboard_arrow_down,
+                                            color: AppColors.colorFromHex(
+                                                "#C6CDD3"),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 300,
+                          )
+                        ],
+                      )
                     ],
                   ),
                 ],
@@ -541,6 +628,8 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                       if (baptizedByController.text == "" ||
                           positionHeld == "Please select" ||
                           shepherd == "Please select" ||
+                          ministry == "Please select" ||
+                          connectGroup == "Please select" ||
                           communicantValue == "") {
                         Get.snackbar(
                           "Warrning",
@@ -557,11 +646,15 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                             baptizedByController.text.toString().trim();
                         positionHeld = positionHeld.toString().trim();
                         communicant = communicantValue.toString();
+
                         saveDataToLocalStorage(
                           baptizedBy,
                           positionHeld,
                           communicant,
                           shepherd,
+                          ministry,
+                          connectGroup,
+                          baptismType,
                         );
                         setState(() {
                           Get.find<MyController>().increment();
@@ -583,14 +676,22 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
     );
   }
 
-  saveDataToLocalStorage(String baptizedBy, String positionHeld,
-      String communicant, String shepherd) {
+  saveDataToLocalStorage(
+    String baptizedBy,
+    String positionHeld,
+    String communicant,
+    String shepherd,
+    String ministry,
+    String connectGroup,
+    String baptismType,
+  ) {
     userDetails["baptizedBy"] = baptizedBy;
     userDetails["positionHeld"] = positionHeld;
     userDetails["communicant"] = communicant;
     userDetails["shepherd"] = shepherd;
     userDetails["ministry"] = ministry;
     userDetails["connectGroup"] = connectGroup;
+    userDetails["baptismType"] = baptismType;
   }
 
   OverlayEntry _overlayEntryBuilder(
@@ -662,6 +763,14 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
   void openConnectGroupMenu(StateSetter setState, GlobalKey key) {
     findButton(key);
     _overlayEntry = _overlayEntryBuilder(connectGroupDropdown(setState, key),
+        buttonPosition.dx, buttonSize.width, null);
+    Overlay.of(context).insert(_overlayEntry!);
+    isMenuOpen = !isMenuOpen;
+  }
+
+  void openBaptismTypeMenu(StateSetter setState, GlobalKey key) {
+    findButton(key);
+    _overlayEntry = _overlayEntryBuilder(baptismTypeDropdown(setState, key),
         buttonPosition.dx, buttonSize.width, null);
     Overlay.of(context).insert(_overlayEntry!);
     isMenuOpen = !isMenuOpen;
@@ -787,6 +896,39 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
               padding: const EdgeInsets.only(bottom: 20),
               child: Text(
                 connectGroupList[index],
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+
+  baptismTypeDropdown(StateSetter setState, GlobalKey key) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: ListView.builder(
+        padding: const EdgeInsets.all(10),
+        shrinkWrap: false,
+        itemCount: baptismTypeList.length,
+        itemBuilder: ((context, index) {
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                baptismType = baptismTypeList[index];
+                closeMenu();
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Text(
+                baptismTypeList[index],
                 style: const TextStyle(
                   fontSize: 14,
                   fontFamily: "Poppins",
