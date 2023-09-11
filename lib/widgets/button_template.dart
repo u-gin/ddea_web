@@ -28,7 +28,11 @@ class ButtonTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: buttonAction,
+      onPressed: loading
+          ? () {
+              debugPrint("Please wait");
+            }
+          : buttonAction,
       color: buttonColor,
       splashColor: buttonColor,
       elevation: 2,
