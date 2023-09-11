@@ -9,7 +9,9 @@ import '../../widgets/button_template.dart';
 import '../../widgets/text_field_template.dart';
 
 class ReligiousDetailsPage extends StatefulWidget {
-  const ReligiousDetailsPage({super.key});
+  const ReligiousDetailsPage({
+    super.key,
+  });
 
   @override
   State<ReligiousDetailsPage> createState() => _ReligiousDetailsPageState();
