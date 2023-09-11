@@ -16,6 +16,9 @@ class DesktopHomePage extends StatefulWidget {
 }
 
 class _DesktopHomePageState extends State<DesktopHomePage> {
+  OverlayEntry? _overlayEntry;
+  bool isMenuOpen = false;
+
   @override
   Widget build(BuildContext context) {
     Get.put(MyController());
@@ -72,5 +75,13 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
         ),
       ),
     );
+  }
+
+  closeMenu() {
+    if (_overlayEntry != null && _overlayEntry!.mounted) {
+      _overlayEntry!.remove();
+      _overlayEntry = null;
+    }
+    isMenuOpen = !isMenuOpen;
   }
 }
