@@ -1,3 +1,4 @@
+import 'package:ddea_web/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -23,6 +24,11 @@ String convertTime(DateTime? timeToConvert) {
 }
 
 Map<String, dynamic> userDetails = {};
+List<UserModel> allUsers = [];
+List<UserModel> justMembers = [];
+List<UserModel> justElders = [];
+List<UserModel> justDeacons = [];
+List<UserModel> justDeaconesses = [];
 
 TextStyle textStyle() {
   return const TextStyle(
