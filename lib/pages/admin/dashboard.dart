@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:ddea_web/models/user_model.dart';
 import 'package:ddea_web/pages/admin/user_list_template.dart';
 import 'package:ddea_web/utils/constants.dart';
@@ -17,6 +19,14 @@ class _DashboardState extends State<Dashboard> {
   late TextEditingController nameController;
   final FirebaseDatabase databaseInstance = FirebaseDatabase.instance;
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+
+  late List<List<UserModel>> whichList = [
+    allUsers,
+    justMembers,
+    justElders,
+    justDeaconesses,
+    justDeacons,
+  ];
 
   List<String> filterNames = [
     "All",
@@ -150,58 +160,78 @@ class _DashboardState extends State<Dashboard> {
                           children: [
                             const SizedBox(
                               width: 50,
+                              height: 50,
                             ),
                             const SizedBox(
-                              width: 60,
+                              width: 30,
                             ),
-                            Text(
-                              "Full name",
-                              style: headerTextStyle(),
+                            SizedBox(
+                              width: 200,
+                              child: Center(
+                                child: Text(
+                                  "Full name",
+                                  style: headerTextStyle(),
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                        Text(
-                          "Telephone",
-                          style: headerTextStyle(),
+                        SizedBox(
+                          width: 150,
+                          child: Center(
+                            child: Text(
+                              "Telephone",
+                              style: headerTextStyle(),
+                            ),
+                          ),
                         ),
-                        Text(
-                          "Date of birth",
-                          style: headerTextStyle(),
+                        SizedBox(
+                          width: 150,
+                          child: Center(
+                            child: Text(
+                              "Date of birth",
+                              style: headerTextStyle(),
+                            ),
+                          ),
                         ),
-                        Text(
-                          "Date joined",
-                          style: headerTextStyle(),
+                        SizedBox(
+                          width: 150,
+                          child: Center(
+                            child: Text(
+                              "Date joined",
+                              style: headerTextStyle(),
+                            ),
+                          ),
                         ),
-                        Text(
-                          "Connect group",
-                          style: headerTextStyle(),
+                        SizedBox(
+                          width: 150,
+                          child: Center(
+                            child: Text(
+                              "Connect group",
+                              style: headerTextStyle(),
+                            ),
+                          ),
                         )
                       ],
                     ),
-                    /* Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 200),
-                child: Container(
-                  height: 1,
-                  width: canvasWidth,
-                  color: Colors.grey[400],
-                ),
-              ), */
                     const SizedBox(
                       height: 20,
                     ),
                     Expanded(
-                      flex: 1,
                       child: ListView.builder(
-                        itemCount: 90,
+                        itemCount: whichList[selectedIndex].length,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          return const UserListTemplate(
-                            fullName: "fullName",
-                            telephone: "telephone",
-                            dateOfBirth: "10.11.2023",
-                            dateJoined: "10.11.2023",
-                            connectGroup: "Elohim",
+                          return UserListTemplate(
+                            fullName: whichList[selectedIndex][index].fullName!,
+                            telephone:
+                                whichList[selectedIndex][index].telephone!,
+                            dateOfBirth:
+                                whichList[selectedIndex][index].dateOfBirth!,
+                            dateJoined:
+                                whichList[selectedIndex][index].dateAdded!,
+                            connectGroup:
+                                whichList[selectedIndex][index].connectGroup!,
                           );
                         },
                       ),
@@ -224,6 +254,7 @@ class _DashboardState extends State<Dashboard> {
       if (dataSnapshot != null && dataSnapshot is Map<dynamic, dynamic>) {
         dataSnapshot.forEach((key, user) {
           userList.add(UserModel.fromSnapshot(event.snapshot.child(key)));
+          allUsers.addAll(userList);
         });
         setState(() {
           isLoading = false;
@@ -243,25 +274,9 @@ class _DashboardState extends State<Dashboard> {
   }
 
   getAllUserData() {
-    getEldersData();
-    getDeaconsData();
-    getDeaconessesData();
-    getMembersData();
-  }
-
-  getEldersData() {
     retrieveUserData("Elder (Eld)", justElders);
-  }
-
-  getDeaconsData() {
     retrieveUserData("Deacon (Dcn)", justDeacons);
-  }
-
-  getDeaconessesData() {
     retrieveUserData("Deaconess (Dcns)", justDeaconesses);
-  }
-
-  getMembersData() {
     retrieveUserData("Member (M)", justMembers);
   }
 }
