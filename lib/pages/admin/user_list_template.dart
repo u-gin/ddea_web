@@ -72,27 +72,52 @@ class UserListTemplate extends StatelessWidget {
                   const SizedBox(
                     width: 30,
                   ),
-                  Text(
-                    fullName,
-                    style: textStyle(),
+                  SizedBox(
+                    width: 200,
+                    child: Center(
+                      child: Text(
+                        fullName,
+                        style: textStyle(),
+                      ),
+                    ),
                   ),
                 ],
               ),
-              Text(
-                telephone,
-                style: textStyle(),
+              SizedBox(
+                width: 150,
+                child: Center(
+                  child: Text(
+                    telephone,
+                    style: textStyle(),
+                  ),
+                ),
               ),
-              Text(
-                dateOfBirth,
-                style: textStyle(),
+              SizedBox(
+                width: 150,
+                child: Center(
+                  child: Text(
+                    dateOfBirth,
+                    style: textStyle(),
+                  ),
+                ),
               ),
-              Text(
-                dateJoined,
-                style: textStyle(),
+              SizedBox(
+                width: 150,
+                child: Center(
+                  child: Text(
+                    dateJoined,
+                    style: textStyle(),
+                  ),
+                ),
               ),
-              Text(
-                connectGroup,
-                style: textStyle(),
+              SizedBox(
+                width: 150,
+                child: Center(
+                  child: Text(
+                    connectGroup,
+                    style: textStyle(),
+                  ),
+                ),
               )
             ],
           ),
