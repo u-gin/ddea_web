@@ -216,23 +216,36 @@ class _DashboardState extends State<Dashboard> {
                       height: 20,
                     ),
                     Expanded(
-                      child: ListView.builder(
-                        itemCount: whichList[selectedIndex].length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return UserListTemplate(
-                            fullName: whichList[selectedIndex][index].fullName!,
-                            telephone:
-                                whichList[selectedIndex][index].telephone!,
-                            dateOfBirth:
-                                whichList[selectedIndex][index].dateOfBirth!,
-                            dateJoined:
-                                whichList[selectedIndex][index].dateAdded!,
-                            connectGroup:
-                                whichList[selectedIndex][index].connectGroup!,
-                          );
-                        },
-                      ),
+                      child: whichList[selectedIndex].isEmpty
+                          ? SizedBox(
+                              width: canvasWidth,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 40.0),
+                                child: Text(
+                                  'No data available for this category',
+                                  textAlign: TextAlign.center,
+                                  style: textStyle(),
+                                ),
+                              ),
+                            )
+                          : ListView.builder(
+                              itemCount: whichList[selectedIndex].length,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return UserListTemplate(
+                                  fullName:
+                                      whichList[selectedIndex][index].fullName!,
+                                  telephone: whichList[selectedIndex][index]
+                                      .telephone!,
+                                  dateOfBirth: whichList[selectedIndex][index]
+                                      .dateOfBirth!,
+                                  dateJoined: whichList[selectedIndex][index]
+                                      .dateAdded!,
+                                  connectGroup: whichList[selectedIndex][index]
+                                      .connectGroup!,
+                                );
+                              },
+                            ),
                     ),
                   ],
                 ),
