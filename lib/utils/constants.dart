@@ -29,6 +29,7 @@ List<UserModel> justMembers = [];
 List<UserModel> justElders = [];
 List<UserModel> justDeacons = [];
 List<UserModel> justDeaconesses = [];
+List<String> userImages = [];
 
 TextStyle textStyle() {
   return const TextStyle(
