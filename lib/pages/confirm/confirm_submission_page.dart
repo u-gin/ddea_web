@@ -189,7 +189,7 @@ class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
     final databaseReference =
         database.ref("ddea/${userDetails["positionHeld"]}");
     final firebaseStorageReference =
-        firebaseStorage.ref("ddea/${userDetails["fullName"]}");
+        firebaseStorage.ref("ddea/${userDetails["telephone"]}");
 
     await databaseReference.push().set({
       "Fullname": userDetails["fullName"],
