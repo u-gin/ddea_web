@@ -189,7 +189,7 @@ class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
     final databaseReference =
         database.ref("ddea/${userDetails["positionHeld"]}");
     final firebaseStorageReference =
-        firebaseStorage.ref("ddea/${userDetails["telephone"]}");
+        firebaseStorage.ref("ddea/${userDetails["telephone"]}.jpg");
 
     await databaseReference.push().set({
       "Fullname": userDetails["fullName"],
@@ -212,7 +212,10 @@ class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
       "Date added": convertDate(DateTime.now()),
       "Time added": convertTime(DateTime.now()),
     }).then((value) {
-      firebaseStorageReference.putData(userDetails["imageBytes"]).then((value) {
+      firebaseStorageReference
+          .putData(userDetails["imageBytes"],
+              SettableMetadata(contentType: 'image/jpeg'))
+          .then((value) {
         setState(() {
           isLoading = false;
         });
