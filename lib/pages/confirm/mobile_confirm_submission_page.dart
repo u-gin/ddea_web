@@ -188,9 +188,10 @@ class _MobileConfirmSubmissionPageState
   }
 
   sendDataToFirebase(Function(bool success) callback) async {
-    final databaseReference = database.ref("ddea/members");
+    final databaseReference =
+        database.ref("ddea/${userDetails["positionHeld"]}");
     final firebaseStorageReference =
-        firebaseStorage.ref("ddea/${userDetails["fullName"]}");
+        firebaseStorage.ref("ddea/${userDetails["telephone"]}.jpg");
 
     await databaseReference.push().set({
       "Fullname": userDetails["fullName"],
@@ -213,7 +214,10 @@ class _MobileConfirmSubmissionPageState
       "Date added": convertDate(DateTime.now()),
       "Time added": convertTime(DateTime.now()),
     }).then((value) {
-      firebaseStorageReference.putData(userDetails["imageBytes"]).then((value) {
+      firebaseStorageReference
+          .putData(userDetails["imageBytes"],
+              SettableMetadata(contentType: 'image/jpeg'))
+          .then((value) {
         setState(() {
           isLoading = false;
         });
