@@ -29,6 +29,8 @@ List<UserModel> justMembers = [];
 List<UserModel> justElders = [];
 List<UserModel> justDeacons = [];
 List<UserModel> justDeaconesses = [];
+List<UserModel> justPastor = [];
+List<UserModel> justPresidingElder = [];
 List<String> userImages = [];
 
 TextStyle textStyle() {
