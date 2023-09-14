@@ -293,6 +293,8 @@ class _DashboardState extends State<Dashboard> {
     retrieveUserData("Deacon (Dcn)", justDeacons);
     retrieveUserData("Deaconess (Dcns)", justDeaconesses);
     retrieveUserData("Member (M)", justMembers);
+    retrieveUserData("Presiding Elder (PE)", justPresidingElder);
+    retrieveUserData("Pastor (Ps)", justPastor);
   }
 
   Future<Uint8List?> getUserImageUrl(String userId) async {
