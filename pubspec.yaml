@@ -20,6 +20,7 @@ dependencies:
   table_calendar: ^3.0.9
   intl: ^0.18.1
   firebase_auth: ^4.9.0
+  image_picker: ^1.0.4
 
 dev_dependencies:
   flutter_test:
