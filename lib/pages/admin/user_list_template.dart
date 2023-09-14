@@ -5,12 +5,12 @@ import 'package:ddea_web/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class UserListTemplate extends StatelessWidget {
-  final Uint8List? imageBytes;
+  final Future<Uint8List?> imageUrl;
   final String fullName, telephone, dateOfBirth, dateJoined, connectGroup;
 
   const UserListTemplate({
     Key? key,
-    this.imageBytes,
+    required this.imageUrl,
     required this.fullName,
     required this.telephone,
     required this.dateOfBirth,
@@ -31,27 +31,6 @@ class UserListTemplate extends StatelessWidget {
               Row(
                 //crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  /* ClipOval(
-                child: Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.grey[300],
-                    border: Border.all(
-                      width: 2,
-                      color: Colors.white,
-                    ),
-                    image: DecorationImage(
-                      image: MemoryImage(
-                        imageBytes,
-                      ),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-              ), */
-
                   Container(
                     width: 50,
                     height: 50,
@@ -63,10 +42,56 @@ class UserListTemplate extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    child: const Icon(
-                      Icons.person,
-                      color: Colors.grey,
-                      size: 30,
+                    child: FutureBuilder<Uint8List?>(
+                      future: imageUrl,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          // The Future is complete, and we have a result.
+                          final Uint8List? url = snapshot.data;
+                          if (url != null) {
+                            // Return a widget that displays the image using imageUrl.
+                            /* return Image.memory(
+                                url,
+                                fit: BoxFit.fill,
+                              ); */
+                            return ClipOval(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: MemoryImage(
+                                      url,
+                                    ),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                            );
+                          } else {
+                            // Handle the case where imageUrl is null (e.g., no image available).
+                            return const Icon(
+                              Icons.person,
+                              color: Colors.grey,
+                              size: 30,
+                            );
+                          }
+                        } else if (snapshot.hasError) {
+                          // Handle the case where an error occurred while fetching the image.
+                          return const Icon(
+                            Icons.error,
+                            color: Colors.red,
+                            size: 20,
+                          );
+                        } else {
+                          // The Future is still loading.
+                          return const Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: Colors.deepPurple,
+                            ),
+                          ); // You can use any loading indicator.
+                        }
+                      },
                     ),
                   ),
                   const SizedBox(
