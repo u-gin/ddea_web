@@ -25,7 +25,7 @@ List<String> shepherdList = [
 
 List positionHeldList = [
   'Pastor (Ps)',
-  'Presiding Elder (P.E)',
+  'Presiding Elder (PE)',
   'Elder (Eld)',
   'Deacon (Dcn)',
   'Deaconess (Dcns)',
