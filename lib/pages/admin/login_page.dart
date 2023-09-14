@@ -147,10 +147,19 @@ class _LoginPageState extends State<LoginPage> {
       Get.to(() => const Dashboard());
       return user;
     } catch (e) {
-      debugPrint("Sign-in error: $e");
+      Get.snackbar(
+        "Warrning",
+        "Login failed",
+        colorText: Colors.white,
+        backgroundColor: Colors.red,
+        borderRadius: 8.0,
+        margin: const EdgeInsets.only(top: 60, left: 380, right: 380),
+        duration: const Duration(seconds: 5),
+      );
       setState(() {
         isLoading = false;
       });
+
       return null;
     }
   }
