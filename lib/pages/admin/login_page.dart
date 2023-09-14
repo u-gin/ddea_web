@@ -148,8 +148,8 @@ class _LoginPageState extends State<LoginPage> {
       return user;
     } catch (e) {
       Get.snackbar(
-        "Warrning",
         "Login failed",
+        "Please check credetials and try again",
         colorText: Colors.white,
         backgroundColor: Colors.red,
         borderRadius: 8.0,
