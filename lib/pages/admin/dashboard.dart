@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:ddea_web/models/user_model.dart';
 import 'package:ddea_web/pages/admin/user_list_template.dart';
 import 'package:ddea_web/utils/constants.dart';
@@ -34,6 +36,8 @@ class _DashboardState extends State<Dashboard> {
     "Deacons"
   ];
   bool isLoading = false;
+  bool isImageLoading = false;
+  String? userImageUrl;
 
   int selectedIndex = 0;
 
@@ -41,6 +45,7 @@ class _DashboardState extends State<Dashboard> {
   void initState() {
     nameController = TextEditingController();
     getAllUserData();
+
     super.initState();
   }
 
@@ -66,87 +71,83 @@ class _DashboardState extends State<Dashboard> {
                 padding: const EdgeInsets.symmetric(vertical: 50),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 200.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              TextFieldTemplate(
-                                hintText: "Search name",
-                                controller: nameController,
-                                obscureText: false,
-                                height: 50,
-                                width: 300,
-                                textFieldOutlineColor: Colors.deepPurple,
-                                textInputType: TextInputType.name,
-                                textInputAction: TextInputAction.search,
-                                enabled: true,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          children: [
+                            TextFieldTemplate(
+                              hintText: "Search name",
+                              controller: nameController,
+                              obscureText: false,
+                              height: 50,
+                              width: 300,
+                              textFieldOutlineColor: Colors.deepPurple,
+                              textInputType: TextInputType.name,
+                              textInputAction: TextInputAction.search,
+                              enabled: true,
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.deepPurple,
                               ),
-                              const SizedBox(
-                                width: 5,
+                              child: const Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Icon(
+                                  Icons.search,
+                                  color: Colors.white,
+                                ),
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: Colors.deepPurple,
-                                ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Icon(
-                                    Icons.search,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 60,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: filterNames.length,
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        selectedIndex = index;
-                                      });
-                                    },
-                                    child: Container(
-                                      height: 50,
-                                      width: 150,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 60,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: filterNames.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedIndex = index;
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 50,
+                                    width: 150,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: selectedIndex == index
+                                            ? Colors.deepPurple
+                                            : Colors.white),
+                                    child: Center(
+                                      child: Text(
+                                        filterNames[index],
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontFamily: "Poppins",
+                                          fontWeight: FontWeight.w400,
                                           color: selectedIndex == index
-                                              ? Colors.deepPurple
-                                              : Colors.white),
-                                      child: Center(
-                                        child: Text(
-                                          filterNames[index],
-                                          style: TextStyle(
-                                            fontSize: 14.0,
-                                            fontFamily: "Poppins",
-                                            fontWeight: FontWeight.w400,
-                                            color: selectedIndex == index
-                                                ? Colors.white
-                                                : Colors.deepPurple,
-                                          ),
+                                              ? Colors.white
+                                              : Colors.deepPurple,
                                         ),
                                       ),
                                     ),
                                   ),
-                                );
-                              },
-                            ),
-                          )
-                        ],
-                      ),
+                                ),
+                              );
+                            },
+                          ),
+                        )
+                      ],
                     ),
                     const SizedBox(
                       height: 50,
@@ -233,6 +234,9 @@ class _DashboardState extends State<Dashboard> {
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
                                 return UserListTemplate(
+                                  imageUrl: getUserImageUrl(
+                                      whichList[selectedIndex][index]
+                                          .telephone!),
                                   fullName:
                                       whichList[selectedIndex][index].fullName!,
                                   telephone: whichList[selectedIndex][index]
@@ -289,5 +293,17 @@ class _DashboardState extends State<Dashboard> {
     retrieveUserData("Deacon (Dcn)", justDeacons);
     retrieveUserData("Deaconess (Dcns)", justDeaconesses);
     retrieveUserData("Member (M)", justMembers);
+  }
+
+  Future<Uint8List?> getUserImageUrl(String userId) async {
+    try {
+      final Reference reference =
+          FirebaseStorage.instance.ref('ddea/$userId.jpg');
+      final Uint8List? imageBytes = await reference.getData();
+      return imageBytes;
+    } catch (e) {
+      debugPrint('Error retrieving user image: $e');
+      return null; // Return null if the image doesn't exist or an error occurs.
+    }
   }
 }
