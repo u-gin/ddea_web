@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:ddea_web/models/user_model.dart';
 import 'package:ddea_web/utils/colors.dart';
 import 'package:ddea_web/utils/constants.dart';
 import 'package:flutter/material.dart';
