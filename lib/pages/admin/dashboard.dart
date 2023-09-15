@@ -1,12 +1,14 @@
 import 'dart:typed_data';
 
 import 'package:ddea_web/models/user_model.dart';
+import 'package:ddea_web/pages/admin/member_details_page.dart';
 import 'package:ddea_web/pages/admin/user_list_template.dart';
 import 'package:ddea_web/utils/constants.dart';
 import 'package:ddea_web/widgets/text_field_template.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -233,20 +235,28 @@ class _DashboardState extends State<Dashboard> {
                               itemCount: whichList[selectedIndex].length,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
-                                return UserListTemplate(
-                                  imageUrl: getUserImageUrl(
-                                      whichList[selectedIndex][index]
-                                          .telephone!),
-                                  fullName:
-                                      whichList[selectedIndex][index].fullName!,
-                                  telephone: whichList[selectedIndex][index]
-                                      .telephone!,
-                                  dateOfBirth: whichList[selectedIndex][index]
-                                      .dateOfBirth!,
-                                  dateJoined: whichList[selectedIndex][index]
-                                      .dateAdded!,
-                                  connectGroup: whichList[selectedIndex][index]
-                                      .connectGroup!,
+                                return GestureDetector(
+                                  onTap: () {
+                                    Get.to(() => const MemberDetailsPage(),
+                                        arguments: whichList[selectedIndex]
+                                            [index]);
+                                  },
+                                  child: UserListTemplate(
+                                    imageUrl: getUserImageUrl(
+                                        whichList[selectedIndex][index]
+                                            .telephone!),
+                                    fullName: whichList[selectedIndex][index]
+                                        .fullName!,
+                                    telephone: whichList[selectedIndex][index]
+                                        .telephone!,
+                                    dateOfBirth: whichList[selectedIndex][index]
+                                        .dateOfBirth!,
+                                    dateJoined: whichList[selectedIndex][index]
+                                        .dateAdded!,
+                                    connectGroup: whichList[selectedIndex]
+                                            [index]
+                                        .connectGroup!,
+                                  ),
                                 );
                               },
                             ),
