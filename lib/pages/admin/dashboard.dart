@@ -4,7 +4,6 @@ import 'package:ddea_web/models/user_model.dart';
 import 'package:ddea_web/pages/admin/member_details_page.dart';
 import 'package:ddea_web/pages/admin/user_list_template.dart';
 import 'package:ddea_web/utils/constants.dart';
-import 'package:ddea_web/widgets/text_field_template.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
