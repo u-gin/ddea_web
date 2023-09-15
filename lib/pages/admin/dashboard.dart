@@ -18,7 +18,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  late TextEditingController nameController;
+  late TextEditingController searchController;
   final FirebaseDatabase databaseInstance = FirebaseDatabase.instance;
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
 
@@ -45,7 +45,7 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   void initState() {
-    nameController = TextEditingController();
+    searchController = TextEditingController();
     getAllUserData();
 
     super.initState();
@@ -80,7 +80,7 @@ class _DashboardState extends State<Dashboard> {
                           children: [
                             TextFieldTemplate(
                               hintText: "Search name",
-                              controller: nameController,
+                              controller: searchController,
                               obscureText: false,
                               height: 50,
                               width: 300,
