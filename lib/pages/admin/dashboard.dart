@@ -237,9 +237,15 @@ class _DashboardState extends State<Dashboard> {
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {
-                                    Get.to(() => const MemberDetailsPage(),
-                                        arguments: whichList[selectedIndex]
-                                            [index]);
+                                    Get.to(
+                                      () => MemberDetailsPage(),
+                                      arguments: [
+                                        whichList[selectedIndex][index],
+                                        getUserImageUrl(whichList[selectedIndex]
+                                                [index]
+                                            .telephone!)
+                                      ],
+                                    );
                                   },
                                   child: UserListTemplate(
                                     imageUrl: getUserImageUrl(
