@@ -10,6 +10,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../utils/colors.dart';
+
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
@@ -30,6 +32,8 @@ class _DashboardState extends State<Dashboard> {
     justDeacons,
   ];
 
+  List filteredList = [];
+
   List<String> filterNames = [
     "All",
     "Members",
@@ -46,9 +50,25 @@ class _DashboardState extends State<Dashboard> {
   @override
   void initState() {
     searchController = TextEditingController();
+    filteredList = whichList[selectedIndex];
     getAllUserData();
 
     super.initState();
+  }
+
+  void runSearch(String value) {
+    List results = [];
+    if (value.isEmpty) {
+      results = whichList[selectedIndex];
+    } else {
+      results = whichList[selectedIndex]
+          .where((element) =>
+              element.fullName!.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    }
+    setState(() {
+      filteredList = results;
+    });
   }
 
   @override
@@ -76,39 +96,66 @@ class _DashboardState extends State<Dashboard> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Row(
-                          children: [
-                            TextFieldTemplate(
-                              hintText: "Search name",
-                              controller: searchController,
-                              obscureText: false,
-                              height: 50,
-                              width: 300,
-                              textFieldOutlineColor: Colors.deepPurple,
-                              textInputType: TextInputType.name,
-                              textInputAction: TextInputAction.search,
-                              enabled: true,
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10.0),
+                          child: Container(
+                            height: 50,
+                            width: 300,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Colors.white,
                             ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: Colors.deepPurple,
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Icon(
-                                  Icons.search,
-                                  color: Colors.white,
+                            child: Center(
+                              child: TextField(
+                                onChanged: (value) {
+                                  runSearch(value);
+                                },
+                                obscureText: false,
+                                autofocus: false,
+                                enabled: true,
+                                maxLines: 1,
+                                keyboardType: TextInputType.name,
+                                textInputAction: TextInputAction.search,
+                                autocorrect: false,
+                                decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(
+                                      color: Colors.deepPurple,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(
+                                      color: Colors.deepPurple,
+                                    ),
+                                  ),
+                                  contentPadding: const EdgeInsets.only(
+                                    left: 14.0,
+                                    right: 14.0,
+                                    top: 10,
+                                    bottom: 10,
+                                  ),
+                                  hintStyle: TextStyle(
+                                    color: AppColors.hintTextColor,
+                                    fontSize: 14.0,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  hintText: "Search name",
+                                ),
+                                style: TextStyle(
+                                  color: AppColors.black,
+                                  fontSize: 17.0,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
-                            )
-                          ],
+                            ),
+                          ),
                         ),
                         SizedBox(
-                          height: 60,
+                          height: 0,
                           child: ListView.builder(
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
@@ -219,7 +266,7 @@ class _DashboardState extends State<Dashboard> {
                       height: 20,
                     ),
                     Expanded(
-                      child: whichList[selectedIndex].isEmpty
+                      child: filteredList.isEmpty
                           ? SizedBox(
                               width: canvasWidth,
                               child: Padding(
@@ -232,7 +279,7 @@ class _DashboardState extends State<Dashboard> {
                               ),
                             )
                           : ListView.builder(
-                              itemCount: whichList[selectedIndex].length,
+                              itemCount: filteredList.length,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
                                 return GestureDetector(
@@ -240,28 +287,24 @@ class _DashboardState extends State<Dashboard> {
                                     Get.to(
                                       () => MemberDetailsPage(),
                                       arguments: [
-                                        whichList[selectedIndex][index],
-                                        getUserImageUrl(whichList[selectedIndex]
-                                                [index]
-                                            .telephone!)
+                                        filteredList[index],
+                                        getUserImageUrl(
+                                            filteredList[index].telephone!)
                                       ],
                                     );
                                   },
                                   child: UserListTemplate(
+                                    key:
+                                        ValueKey(filteredList[index].fullName!),
                                     imageUrl: getUserImageUrl(
-                                        whichList[selectedIndex][index]
-                                            .telephone!),
-                                    fullName: whichList[selectedIndex][index]
-                                        .fullName!,
-                                    telephone: whichList[selectedIndex][index]
-                                        .telephone!,
-                                    dateOfBirth: whichList[selectedIndex][index]
-                                        .dateOfBirth!,
-                                    dateJoined: whichList[selectedIndex][index]
-                                        .dateAdded!,
-                                    connectGroup: whichList[selectedIndex]
-                                            [index]
-                                        .connectGroup!,
+                                        filteredList[index].telephone!),
+                                    fullName: filteredList[index].fullName!,
+                                    telephone: filteredList[index].telephone!,
+                                    dateOfBirth:
+                                        filteredList[index].dateOfBirth!,
+                                    dateJoined: filteredList[index].dateAdded!,
+                                    connectGroup:
+                                        filteredList[index].connectGroup!,
                                   ),
                                 );
                               },
