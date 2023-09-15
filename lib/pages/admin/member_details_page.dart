@@ -6,7 +6,24 @@ class MemberDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(),
+      body: SizedBox(
+        child: Row(
+          children: [
+            Expanded(
+              flex: 3,
+              child: Container(
+                color: Colors.purple,
+              ),
+            ),
+            Expanded(
+              flex: 7,
+              child: Container(
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
