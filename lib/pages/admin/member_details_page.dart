@@ -13,6 +13,7 @@ class MemberDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SizedBox(
         child: Row(
           children: [
@@ -91,6 +92,193 @@ class MemberDetailsPage extends StatelessWidget {
               flex: 6,
               child: Container(
                 color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Date of birth",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].dateOfBirth.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Place of birth",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].placeOfBirth.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Hometown",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].hometown.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Place of work",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].placeOfWork.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Occupation",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].occupation.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Communicant",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].communicant.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Connect group",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].connectGroup.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Shepherd",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].shepherd.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Gender",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].gender.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Place of residence",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].placeOfResidence.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Resendtial address",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].residentialAddress.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Baptized by",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].baptizedBy.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Baptism type",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].baptismType.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Position held",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].positionHeld.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Ministry",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].ministry.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Date added",
+                          style: memberDetailsQTextStyle(),
+                        ),
+                        Text(
+                          member[0].dateAdded.toString().toUpperCase(),
+                          style: memberDetailsATextStyle(),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ],
@@ -99,25 +287,3 @@ class MemberDetailsPage extends StatelessWidget {
     );
   }
 }
-
-/* 
- String? fullName;
-  String? telephone;
-  String? gender;
-  String? dateOfBirth;
-  String? hometown;
-  String? placeOfResidence;
-  String? residentialAddress;
-  String? placeOfWork;
-  String? occupation;
-  String? baptizedBy;
-  String? communicant;
-  String? positionHeld;
-  String? baptismType;
-  String? connectGroup;
-  String? dateAdded;
-  String? ministry;
-  String? placeOfBirth;
-  String? shepherd;
-  String? timeAdded;
- */
