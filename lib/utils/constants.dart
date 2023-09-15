@@ -57,6 +57,24 @@ TextStyle memberDetailsTextStyle() {
       color: Colors.black);
 }
 
+TextStyle memberDetailsQTextStyle() {
+  return const TextStyle(
+    fontSize: 16.0,
+    fontFamily: "Poppins",
+    fontWeight: FontWeight.w400,
+    color: Colors.black,
+  );
+}
+
+TextStyle memberDetailsATextStyle() {
+  return const TextStyle(
+    fontSize: 20.0,
+    fontFamily: "Poppins",
+    fontWeight: FontWeight.w600,
+    color: Colors.deepPurple,
+  );
+}
+
 TextStyle headerTextStyle() {
   return const TextStyle(
     fontSize: 17.0,
