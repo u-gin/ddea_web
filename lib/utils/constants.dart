@@ -41,6 +41,22 @@ TextStyle textStyle() {
   );
 }
 
+TextStyle memberDetailsHeaderTextStyle() {
+  return const TextStyle(
+      fontSize: 22.0,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w600,
+      color: Colors.black);
+}
+
+TextStyle memberDetailsTextStyle() {
+  return const TextStyle(
+      fontSize: 18.0,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w500,
+      color: Colors.black);
+}
+
 TextStyle headerTextStyle() {
   return const TextStyle(
     fontSize: 17.0,
