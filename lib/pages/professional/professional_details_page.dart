@@ -198,7 +198,7 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ButtonTemplate(
-                  buttonName: "Prevous",
+                  buttonName: "Previous",
                   buttonColor: const Color.fromARGB(255, 174, 78, 191),
                   buttonHeight: 60,
                   buttonAction: () {
