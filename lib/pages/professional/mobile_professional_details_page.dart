@@ -156,7 +156,7 @@ class _MobileProfessionalDetailsPageState
               Expanded(
                 flex: 1,
                 child: ButtonTemplate(
-                  buttonName: "Prevous",
+                  buttonName: "Previous",
                   buttonColor: const Color.fromARGB(255, 174, 78, 191),
                   buttonHeight: 60,
                   buttonAction: () {
