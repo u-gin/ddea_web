@@ -158,14 +158,9 @@ class _DesktopPersonalDetailsPageState
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           "Full name",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.0,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w400,
-                          ),
+                          style: memberDetailsQTextStyle(),
                         ),
                         TextFieldTemplate(
                           hintText: "Kofi Manu",
@@ -181,14 +176,9 @@ class _DesktopPersonalDetailsPageState
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           "Mobile number",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.0,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w400,
-                          ),
+                          style: memberDetailsQTextStyle(),
                         ),
                         TextFieldTemplate(
                           hintText: "+2331234567",
@@ -212,14 +202,9 @@ class _DesktopPersonalDetailsPageState
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           "Place of birth",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.0,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w400,
-                          ),
+                          style: memberDetailsQTextStyle(),
                         ),
                         TextFieldTemplate(
                           hintText: "Accra",
@@ -235,14 +220,9 @@ class _DesktopPersonalDetailsPageState
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           "Hometown",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.0,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w400,
-                          ),
+                          style: memberDetailsQTextStyle(),
                         ),
                         TextFieldTemplate(
                           hintText: "Hohoe",
@@ -268,14 +248,9 @@ class _DesktopPersonalDetailsPageState
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             "Date of birth",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontFamily: "Poppins",
-                              fontWeight: FontWeight.w400,
-                            ),
+                            style: memberDetailsQTextStyle(),
                           ),
                           GestureDetector(
                             onTap: () async {
@@ -331,14 +306,9 @@ class _DesktopPersonalDetailsPageState
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             "Gender",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontFamily: "Poppins",
-                              fontWeight: FontWeight.w400,
-                            ),
+                            style: memberDetailsQTextStyle(),
                           ),
                           Row(
                             children: [
@@ -367,14 +337,9 @@ class _DesktopPersonalDetailsPageState
                                   const SizedBox(
                                     width: 20,
                                   ),
-                                  const Text(
+                                  Text(
                                     "Male",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16.0,
-                                      fontFamily: "Poppins",
-                                      fontWeight: FontWeight.w400,
-                                    ),
+                                    style: memberDetailsQTextStyle(),
                                   ),
                                 ],
                               ),
@@ -406,14 +371,9 @@ class _DesktopPersonalDetailsPageState
                                   const SizedBox(
                                     width: 20,
                                   ),
-                                  const Text(
+                                  Text(
                                     "Female",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16.0,
-                                      fontFamily: "Poppins",
-                                      fontWeight: FontWeight.w400,
-                                    ),
+                                    style: memberDetailsQTextStyle(),
                                   ),
                                 ],
                               ),
