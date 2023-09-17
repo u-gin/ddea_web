@@ -174,14 +174,9 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
               const SizedBox(
                 height: 15,
               ),
-              const Text(
+              Text(
                 "Mobile number",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 13.0,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w400,
-                ),
+                style: header13(),
               ),
               TextFieldTemplate(
                 hintText: "+2331234567",
@@ -196,14 +191,9 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
               const SizedBox(
                 height: 15,
               ),
-              const Text(
+              Text(
                 "Place of birth",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 13.0,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w400,
-                ),
+                style: header13(),
               ),
               TextFieldTemplate(
                 hintText: "Accra",
