@@ -151,14 +151,9 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
               const SizedBox(
                 height: 15,
               ),
-              const Text(
+              Text(
                 "Full name",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 13.0,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w400,
-                ),
+                style: header13(),
               ),
               TextFieldTemplate(
                 hintText: "Kofi Manu",
@@ -208,14 +203,9 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
               const SizedBox(
                 height: 15,
               ),
-              const Text(
+              Text(
                 "Hometown",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 13.0,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w400,
-                ),
+                style: header13(),
               ),
               TextFieldTemplate(
                 hintText: "Hohoe",
@@ -230,14 +220,9 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
               const SizedBox(
                 height: 15,
               ),
-              const Text(
+              Text(
                 "Gender",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 13.0,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w400,
-                ),
+                style: header13(),
               ),
               Row(
                 children: [
@@ -266,14 +251,9 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
                       const SizedBox(
                         width: 5,
                       ),
-                      const Text(
+                      Text(
                         "Male",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 13.0,
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.w400,
-                        ),
+                        style: header13(),
                       ),
                     ],
                   ),
@@ -305,14 +285,9 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
                       const SizedBox(
                         width: 5,
                       ),
-                      const Text(
+                      Text(
                         "Female",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 13.0,
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.w400,
-                        ),
+                        style: header13(),
                       ),
                     ],
                   ),
@@ -321,14 +296,9 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
               const SizedBox(
                 height: 15,
               ),
-              const Text(
+              Text(
                 "Date of birth",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 13.0,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w400,
-                ),
+                style: header13(),
               ),
               GestureDetector(
                 onTap: () async {
