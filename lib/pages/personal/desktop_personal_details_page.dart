@@ -160,7 +160,7 @@ class _DesktopPersonalDetailsPageState
                       children: [
                         Text(
                           "Full name",
-                          style: memberDetailsQTextStyle(),
+                          style: header16(),
                         ),
                         TextFieldTemplate(
                           hintText: "Kofi Manu",
@@ -178,7 +178,7 @@ class _DesktopPersonalDetailsPageState
                       children: [
                         Text(
                           "Mobile number",
-                          style: memberDetailsQTextStyle(),
+                          style: header16(),
                         ),
                         TextFieldTemplate(
                           hintText: "+2331234567",
@@ -204,7 +204,7 @@ class _DesktopPersonalDetailsPageState
                       children: [
                         Text(
                           "Place of birth",
-                          style: memberDetailsQTextStyle(),
+                          style: header16(),
                         ),
                         TextFieldTemplate(
                           hintText: "Accra",
@@ -222,7 +222,7 @@ class _DesktopPersonalDetailsPageState
                       children: [
                         Text(
                           "Hometown",
-                          style: memberDetailsQTextStyle(),
+                          style: header16(),
                         ),
                         TextFieldTemplate(
                           hintText: "Hohoe",
@@ -250,7 +250,7 @@ class _DesktopPersonalDetailsPageState
                         children: [
                           Text(
                             "Date of birth",
-                            style: memberDetailsQTextStyle(),
+                            style: header16(),
                           ),
                           GestureDetector(
                             onTap: () async {
@@ -308,7 +308,7 @@ class _DesktopPersonalDetailsPageState
                         children: [
                           Text(
                             "Gender",
-                            style: memberDetailsQTextStyle(),
+                            style: header16(),
                           ),
                           Row(
                             children: [
@@ -339,7 +339,7 @@ class _DesktopPersonalDetailsPageState
                                   ),
                                   Text(
                                     "Male",
-                                    style: memberDetailsQTextStyle(),
+                                    style: header16(),
                                   ),
                                 ],
                               ),
@@ -373,7 +373,7 @@ class _DesktopPersonalDetailsPageState
                                   ),
                                   Text(
                                     "Female",
-                                    style: memberDetailsQTextStyle(),
+                                    style: header16(),
                                   ),
                                 ],
                               ),
