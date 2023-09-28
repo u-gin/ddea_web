@@ -743,7 +743,8 @@ class _MobileReligiousDetailsPageState
         shrinkWrap: true,
         itemCount: shepherdList.length,
         physics: const AlwaysScrollableScrollPhysics(
-            parent: BouncingScrollPhysics()),
+          parent: BouncingScrollPhysics(),
+        ),
         itemBuilder: ((context, index) {
           return GestureDetector(
             onTap: () {
