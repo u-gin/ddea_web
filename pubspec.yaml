@@ -1,7 +1,7 @@
 name: ddea_web
 description: The Church of Pentecost, Dansoman District English Assembly \nMember registration site.
 publish_to: 'none'
-version: 0.1.0
+version: 2.1.0
 
 environment:
   sdk: '>=3.0.5 <4.0.0'
