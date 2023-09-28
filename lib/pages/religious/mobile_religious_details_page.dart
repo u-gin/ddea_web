@@ -174,7 +174,7 @@ class _MobileReligiousDetailsPageState
                 ],
               ),
             ),
-            const SizedBox(
+            /* const SizedBox(
               height: 15,
             ),
             Padding(
@@ -243,7 +243,7 @@ class _MobileReligiousDetailsPageState
                   ),
                 ],
               ),
-            ),
+            ), */
             const SizedBox(
               height: 15,
             ),
@@ -404,7 +404,7 @@ class _MobileReligiousDetailsPageState
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                /* const Text(
                   "Connect group",
                   style: TextStyle(
                     color: Colors.black,
@@ -461,7 +461,7 @@ class _MobileReligiousDetailsPageState
                 ),
                 const SizedBox(
                   height: 15,
-                ),
+                ), */
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
