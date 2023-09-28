@@ -558,9 +558,7 @@ class _MobileReligiousDetailsPageState
                     buttonAction: () {
                       if (baptizedByController.text == "" ||
                           positionHeld == "Please select" ||
-                          shepherd == "Please select" ||
                           ministry == "Please select" ||
-                          connectGroup == "Please select" ||
                           communicantValue == "") {
                         Get.snackbar(
                           "Warrning",
@@ -582,9 +580,7 @@ class _MobileReligiousDetailsPageState
                           baptizedBy,
                           positionHeld,
                           communicant,
-                          shepherd,
                           ministry,
-                          connectGroup,
                           baptismType,
                         );
                         setState(() {
@@ -610,17 +606,17 @@ class _MobileReligiousDetailsPageState
     String baptizedBy,
     String positionHeld,
     String communicant,
-    String shepherd,
+    //String shepherd,
     String ministry,
-    String connectGroup,
+    //String connectGroup,
     String baptismType,
   ) {
     userDetails["baptizedBy"] = baptizedBy;
     userDetails["positionHeld"] = positionHeld;
     userDetails["communicant"] = communicant;
-    userDetails["shepherd"] = shepherd;
+    //userDetails["shepherd"] = shepherd;
     userDetails["ministry"] = ministry;
-    userDetails["connectGroup"] = connectGroup;
+    //userDetails["connectGroup"] = connectGroup;
     userDetails["baptismType"] = baptismType;
   }
 
