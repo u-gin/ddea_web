@@ -12,4 +12,9 @@ class MyController extends GetxController {
     myVariable.value--;
     update();
   }
+
+  void startAllOver() {
+    myVariable.value = 1;
+    update();
+  }
 }
