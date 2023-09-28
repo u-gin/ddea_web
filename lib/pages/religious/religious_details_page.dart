@@ -195,7 +195,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Padding(
+                          /* Padding(
                             padding: const EdgeInsets.only(right: 10.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -255,6 +255,76 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                                                           TextOverflow.ellipsis,
                                                     ),
                                             ),
+                                          ),
+                                          Icon(
+                                            Icons.keyboard_arrow_down,
+                                            color: AppColors.colorFromHex(
+                                                "#C6CDD3"),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ), */
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 10.0, left: 10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "Baptism received",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16.0,
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    if (isMenuOpen) {
+                                      closeMenu();
+                                    } else {
+                                      openBaptismTypeMenu(
+                                          setState, keyBaptismReceived);
+                                    }
+                                  },
+                                  child: Container(
+                                    key: keyBaptismReceived,
+                                    height: 50,
+                                    width: 300,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      color: Colors.white,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 10),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            baptismType,
+                                            style: baptismType ==
+                                                    "Please select"
+                                                ? TextStyle(
+                                                    color:
+                                                        AppColors.hintTextColor,
+                                                    fontSize: 14.0,
+                                                    fontFamily: 'Poppins',
+                                                    fontWeight: FontWeight.w500,
+                                                  )
+                                                : TextStyle(
+                                                    color: AppColors.black,
+                                                    fontSize: 17.0,
+                                                    fontFamily: 'Poppins',
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                           ),
                                           Icon(
                                             Icons.keyboard_arrow_down,
@@ -443,7 +513,10 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                               ],
                             ),
                           ),
-                          Padding(
+                          const SizedBox(
+                            width: 300,
+                          )
+                          /* Padding(
                             padding: const EdgeInsets.only(right: 10.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -511,7 +584,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                                 ),
                               ],
                             ),
-                          )
+                          ) */
                         ],
                       ),
                       const SizedBox(
@@ -520,7 +593,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Padding(
+                          /* Padding(
                             padding:
                                 const EdgeInsets.only(right: 10.0, left: 10.0),
                             child: Column(
@@ -589,7 +662,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                                 ),
                               ],
                             ),
-                          ),
+                          ), */
                           const SizedBox(
                             width: 300,
                           )
