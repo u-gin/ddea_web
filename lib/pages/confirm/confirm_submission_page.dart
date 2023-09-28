@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../utils/constants.dart';
+import '../../utils/my_controller.dart';
 import '../../widgets/button_template.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -107,9 +108,9 @@ class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
                   buttonColor: const Color.fromARGB(255, 174, 78, 191),
                   buttonHeight: 60,
                   buttonAction: () {
-                    /* setState(() {
-                      Get.find<MyController>().decrement();
-                    }); */
+                    setState(() {
+                      Get.find<MyController>().startAllOver();
+                    });
                   },
                   fontColor: Colors.white,
                   textSize: 15,
