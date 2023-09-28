@@ -136,7 +136,6 @@ class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
                         debugPrint("Failed");
                       }
                     });
-                    //Get.to(() => const DesktopSuccessPage());
                   },
                   fontColor: Colors.white,
                   textSize: 15,
