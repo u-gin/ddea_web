@@ -590,7 +590,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                       const SizedBox(
                         height: 20,
                       ),
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           /* Padding(
@@ -663,7 +663,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                               ],
                             ),
                           ), */
-                          const SizedBox(
+                          SizedBox(
                             width: 300,
                           )
                         ],
@@ -702,9 +702,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                     buttonAction: () {
                       if (baptizedByController.text == "" ||
                           positionHeld == "Please select" ||
-                          shepherd == "Please select" ||
                           ministry == "Please select" ||
-                          connectGroup == "Please select" ||
                           communicantValue == "") {
                         Get.snackbar(
                           "Warrning",
@@ -726,9 +724,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                           baptizedBy,
                           positionHeld,
                           communicant,
-                          shepherd,
                           ministry,
-                          connectGroup,
                           baptismType,
                         );
                         setState(() {
@@ -755,17 +751,15 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
     String baptizedBy,
     String positionHeld,
     String communicant,
-    String shepherd,
     String ministry,
-    String connectGroup,
     String baptismType,
   ) {
     userDetails["baptizedBy"] = baptizedBy;
     userDetails["positionHeld"] = positionHeld;
     userDetails["communicant"] = communicant;
-    userDetails["shepherd"] = shepherd;
+    //userDetails["shepherd"] = shepherd;
     userDetails["ministry"] = ministry;
-    userDetails["connectGroup"] = connectGroup;
+    //userDetails["connectGroup"] = connectGroup;
     userDetails["baptismType"] = baptismType;
   }
 
