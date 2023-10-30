@@ -21,6 +21,8 @@ class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
 
   bool isLoading = false;
+  String shepherdValue = "";
+  String connectGroupValue = "";
 
   @override
   Widget build(BuildContext context) {
@@ -82,9 +84,9 @@ class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
                       rowItem("Baptized by", userDetails["baptizedBy"]),
                       rowItem("Position held", userDetails["positionHeld"]),
                       rowItem("Communicant", userDetails["communicant"]),
-                      //rowItem("Shepherd", userDetails["shepherd"]),
                       rowItem("Ministry", userDetails["ministry"]),
-                      //rowItem("Connect group", userDetails["connectGroup"]),
+                      rowItem("Shepherd", shepherdValue),
+                      rowItem("Connect group", connectGroupValue),
                       rowItem("Baptism received", userDetails["baptismType"]),
                       rowItem("Date added", convertDate(DateTime.now())),
                       rowItem("Time added", convertTime(DateTime.now())),
@@ -205,9 +207,9 @@ class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
       "Baptized by": userDetails["baptizedBy"],
       "Position held": userDetails["positionHeld"],
       "Communicant": userDetails["communicant"],
-      //"Shepherd": userDetails["shepherd"],
+      "Shepherd": shepherdValue,
       "Baptism received": userDetails["baptismType"],
-      //"Connect group": userDetails["connectGroup"],
+      "Connect group": connectGroupValue,
       "Ministry": userDetails["ministry"],
       "Date added": convertDate(DateTime.now()),
       "Time added": convertTime(DateTime.now()),
