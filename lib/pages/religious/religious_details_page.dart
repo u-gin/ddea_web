@@ -195,83 +195,8 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          /* Padding(
-                            padding: const EdgeInsets.only(right: 10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Shepherd",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.0,
-                                    fontFamily: "Poppins",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    if (isMenuOpen) {
-                                      closeMenu();
-                                    } else {
-                                      openShepherdMenu(setState, keyShepherd);
-                                    }
-                                  },
-                                  child: Container(
-                                    key: keyShepherd,
-                                    height: 50,
-                                    width: 300,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      color: Colors.white,
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          SizedBox(
-                                            width: 250,
-                                            child: Text(
-                                              shepherd,
-                                              style: shepherd == "Please select"
-                                                  ? TextStyle(
-                                                      color: AppColors
-                                                          .hintTextColor,
-                                                      fontSize: 14.0,
-                                                      fontFamily: 'Poppins',
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    )
-                                                  : TextStyle(
-                                                      color: AppColors.black,
-                                                      fontSize: 17.0,
-                                                      fontFamily: 'Poppins',
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                    ),
-                                            ),
-                                          ),
-                                          Icon(
-                                            Icons.keyboard_arrow_down,
-                                            color: AppColors.colorFromHex(
-                                                "#C6CDD3"),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ), */
                           Padding(
-                            padding:
-                                const EdgeInsets.only(right: 10.0, left: 10.0),
+                            padding: const EdgeInsets.only(right: 10.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -513,10 +438,46 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                               ],
                             ),
                           ),
-                          const SizedBox(
-                            width: 300,
-                          )
-                          /* Padding(
+
+                          //Multi Select checkbox list
+                          /* Container(
+                            child: GFMultiSelect(
+                              items: ministryList,
+                              onSelect: (value) {
+                                print('selected $value ');
+                              },
+                              dropdownTitleTileText:
+                                  'Messi, Griezmann, Coutinho ',
+                              dropdownTitleTileColor: Colors.grey[200],
+                              dropdownTitleTileMargin: EdgeInsets.only(
+                                  top: 22, left: 18, right: 18, bottom: 5),
+                              dropdownTitleTilePadding: EdgeInsets.all(10),
+                              dropdownUnderlineBorder: const BorderSide(
+                                  color: Colors.transparent, width: 2),
+                              dropdownTitleTileBorder: Border.all(
+                                  color: Colors.grey[300]!, width: 1),
+                              dropdownTitleTileBorderRadius:
+                                  BorderRadius.circular(5),
+                              expandedIcon: const Icon(
+                                Icons.keyboard_arrow_down,
+                                color: Colors.black54,
+                              ),
+                              collapsedIcon: const Icon(
+                                Icons.keyboard_arrow_up,
+                                color: Colors.black54,
+                              ),
+                              submitButton: Text('OK'),
+                              dropdownTitleTileTextStyle: const TextStyle(
+                                  fontSize: 14, color: Colors.black54),
+                              padding: const EdgeInsets.all(6),
+                              margin: const EdgeInsets.all(6),
+                              type: GFCheckboxType.basic,
+                              activeBgColor: Colors.green.withOpacity(0.5),
+                              inactiveBorderColor: Colors.grey[200]!,
+                            ),
+                          ), */
+
+                          Padding(
                             padding: const EdgeInsets.only(right: 10.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -584,90 +545,12 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                                 ),
                               ],
                             ),
-                          ) */
+                          )
                         ],
                       ),
                       const SizedBox(
                         height: 20,
                       ),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          /* Padding(
-                            padding:
-                                const EdgeInsets.only(right: 10.0, left: 10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Baptism received",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.0,
-                                    fontFamily: "Poppins",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    if (isMenuOpen) {
-                                      closeMenu();
-                                    } else {
-                                      openBaptismTypeMenu(
-                                          setState, keyBaptismReceived);
-                                    }
-                                  },
-                                  child: Container(
-                                    key: keyBaptismReceived,
-                                    height: 50,
-                                    width: 300,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      color: Colors.white,
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            baptismType,
-                                            style: baptismType ==
-                                                    "Please select"
-                                                ? TextStyle(
-                                                    color:
-                                                        AppColors.hintTextColor,
-                                                    fontSize: 14.0,
-                                                    fontFamily: 'Poppins',
-                                                    fontWeight: FontWeight.w500,
-                                                  )
-                                                : TextStyle(
-                                                    color: AppColors.black,
-                                                    fontSize: 17.0,
-                                                    fontFamily: 'Poppins',
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                          ),
-                                          Icon(
-                                            Icons.keyboard_arrow_down,
-                                            color: AppColors.colorFromHex(
-                                                "#C6CDD3"),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ), */
-                          SizedBox(
-                            width: 300,
-                          )
-                        ],
-                      )
                     ],
                   ),
                 ],
