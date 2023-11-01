@@ -51,8 +51,7 @@ List ministryList = [
   "Evangelism",
   "Children (KFC)",
   "PEMEM",
-  "Women(LOV)",
-  "None"
+  "Women(LOV)"
 ];
 
 List baptismTypeList = [
