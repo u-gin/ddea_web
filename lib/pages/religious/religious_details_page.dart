@@ -36,9 +36,10 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
 
   String positionHeld = "Please select";
   String shepherd = "Please select";
-  String ministry = "Please select";
+  String ministry = "Please select as many as apply";
   String connectGroup = "Please select";
   String baptismType = "Please select";
+  List selectedMinistryList = [];
 
   @override
   void initState() {
@@ -54,541 +55,563 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => closeMenu(),
-      child: SizedBox(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5.0, bottom: 60),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.info,
-                              color: Colors.deepPurple,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "Religious Details".toUpperCase(),
-                              style: const TextStyle(
+        onTap: () => closeMenu(),
+        child: SizedBox(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5.0, bottom: 60),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.info,
                                 color: Colors.deepPurple,
-                                fontSize: 18.0,
-                                fontFamily: "Poppins",
-                                fontWeight: FontWeight.w500,
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                "Religious Details".toUpperCase(),
+                                style: const TextStyle(
+                                  color: Colors.deepPurple,
+                                  fontSize: 18.0,
+                                  fontFamily: "Poppins",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "Baptized by",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16.0,
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                TextFieldTemplate(
+                                  hintText: "Ps. Andrews Okyere",
+                                  controller: baptizedByController,
+                                  obscureText: false,
+                                  height: 50,
+                                  textInputType: TextInputType.name,
+                                  textInputAction: TextInputAction.next,
+                                  enabled: true,
+                                )
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "Position held",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16.0,
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      if (isMenuOpen) {
+                                        closeMenu();
+                                      } else {
+                                        openPositionHeldMenu(
+                                            setState, keyPositionHeld);
+                                      }
+                                    },
+                                    child: Container(
+                                      key: keyPositionHeld,
+                                      height: 50,
+                                      width: 300,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        color: Colors.white,
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 10),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              positionHeld,
+                                              style: positionHeld ==
+                                                      "Please select"
+                                                  ? TextStyle(
+                                                      color: AppColors
+                                                          .hintTextColor,
+                                                      fontSize: 14.0,
+                                                      fontFamily: 'Poppins',
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    )
+                                                  : TextStyle(
+                                                      color: AppColors.black,
+                                                      fontSize: 17.0,
+                                                      fontFamily: 'Poppins',
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                            ),
+                                            Icon(
+                                              Icons.keyboard_arrow_down,
+                                              color: AppColors.colorFromHex(
+                                                  "#C6CDD3"),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "Baptism received",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16.0,
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      if (isMenuOpen) {
+                                        closeMenu();
+                                      } else {
+                                        openBaptismTypeMenu(
+                                            setState, keyBaptismReceived);
+                                      }
+                                    },
+                                    child: Container(
+                                      key: keyBaptismReceived,
+                                      height: 50,
+                                      width: 300,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        color: Colors.white,
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 10),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              baptismType,
+                                              style: baptismType ==
+                                                      "Please select"
+                                                  ? TextStyle(
+                                                      color: AppColors
+                                                          .hintTextColor,
+                                                      fontSize: 14.0,
+                                                      fontFamily: 'Poppins',
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    )
+                                                  : TextStyle(
+                                                      color: AppColors.black,
+                                                      fontSize: 17.0,
+                                                      fontFamily: 'Poppins',
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                            ),
+                                            Icon(
+                                              Icons.keyboard_arrow_down,
+                                              color: AppColors.colorFromHex(
+                                                  "#C6CDD3"),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 300,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "Communicant",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16.0,
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          GFRadio(
+                                            type: GFRadioType.custom,
+                                            activeIcon: const Icon(
+                                              Icons.check,
+                                              color: Colors.white,
+                                            ),
+                                            radioColor: Colors.transparent,
+                                            size: GFSize.LARGE,
+                                            activeBgColor: Colors.deepPurple,
+                                            inactiveBorderColor:
+                                                Colors.transparent,
+                                            activeBorderColor:
+                                                Colors.deepPurple,
+                                            value: 1,
+                                            groupValue: groupValue,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                groupValue = value;
+                                                communicantValue = "Yes";
+                                              });
+                                            },
+                                          ),
+                                          const SizedBox(
+                                            width: 20,
+                                          ),
+                                          const Text(
+                                            "Yes",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 16.0,
+                                              fontFamily: "Poppins",
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        width: 100,
+                                      ),
+                                      Row(
+                                        children: [
+                                          GFRadio(
+                                            type: GFRadioType.custom,
+                                            activeIcon: const Icon(
+                                              Icons.check,
+                                              color: Colors.white,
+                                            ),
+                                            radioColor: Colors.transparent,
+                                            size: GFSize.LARGE,
+                                            activeBgColor: Colors.deepPurple,
+                                            inactiveBorderColor:
+                                                Colors.transparent,
+                                            activeBorderColor:
+                                                Colors.deepPurple,
+                                            value: 2,
+                                            groupValue: groupValue,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                groupValue = value;
+                                                communicantValue = "No";
+                                              });
+                                            },
+                                          ),
+                                          const SizedBox(
+                                            width: 20,
+                                          ),
+                                          const Text(
+                                            "No",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 16.0,
+                                              fontFamily: "Poppins",
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Baptized by",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.0,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w400,
-                                ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  right: 10.0, left: 10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "Ministry",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16.0,
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      if (isMenuOpen) {
+                                        closeMenu();
+                                      } else {
+                                        openMinistryMenu(setState, keyMinistry);
+                                      }
+                                    },
+                                    child: Container(
+                                      key: keyMinistry,
+                                      height: 50,
+                                      width: 300,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        color: Colors.white,
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 10),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            SizedBox(
+                                              width: 200,
+                                              child: Text(
+                                                ministry,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: ministry ==
+                                                        "Please select as many as apply"
+                                                    ? TextStyle(
+                                                        color: AppColors
+                                                            .hintTextColor,
+                                                        fontSize: 14.0,
+                                                        fontFamily: 'Poppins',
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      )
+                                                    : TextStyle(
+                                                        color: AppColors.black,
+                                                        fontSize: 17.0,
+                                                        fontFamily: 'Poppins',
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      ),
+                                              ),
+                                            ),
+                                            Icon(
+                                              Icons.keyboard_arrow_down,
+                                              color: AppColors.colorFromHex(
+                                                  "#C6CDD3"),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              TextFieldTemplate(
-                                hintText: "Ps. Andrews Okyere",
-                                controller: baptizedByController,
-                                obscureText: false,
-                                height: 50,
-                                textInputType: TextInputType.name,
-                                textInputAction: TextInputAction.next,
-                                enabled: true,
-                              )
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Position held",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.0,
-                                    fontFamily: "Poppins",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    if (isMenuOpen) {
-                                      closeMenu();
-                                    } else {
-                                      openPositionHeldMenu(
-                                          setState, keyPositionHeld);
-                                    }
-                                  },
-                                  child: Container(
-                                    key: keyPositionHeld,
-                                    height: 50,
-                                    width: 300,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      color: Colors.white,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "Connect group",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16.0,
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.w400,
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            positionHeld,
-                                            style: positionHeld ==
-                                                    "Please select"
-                                                ? TextStyle(
-                                                    color:
-                                                        AppColors.hintTextColor,
-                                                    fontSize: 14.0,
-                                                    fontFamily: 'Poppins',
-                                                    fontWeight: FontWeight.w500,
-                                                  )
-                                                : TextStyle(
-                                                    color: AppColors.black,
-                                                    fontSize: 17.0,
-                                                    fontFamily: 'Poppins',
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                          ),
-                                          Icon(
-                                            Icons.keyboard_arrow_down,
-                                            color: AppColors.colorFromHex(
-                                                "#C6CDD3"),
-                                          ),
-                                        ],
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      if (isMenuOpen) {
+                                        closeMenu();
+                                      } else {
+                                        openConnectGroupMenu(
+                                            setState, keyConnectGroup);
+                                      }
+                                    },
+                                    child: Container(
+                                      key: keyConnectGroup,
+                                      height: 50,
+                                      width: 300,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        color: Colors.white,
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 10),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              connectGroup,
+                                              style: connectGroup ==
+                                                      "Please select"
+                                                  ? TextStyle(
+                                                      color: AppColors
+                                                          .hintTextColor,
+                                                      fontSize: 14.0,
+                                                      fontFamily: 'Poppins',
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    )
+                                                  : TextStyle(
+                                                      color: AppColors.black,
+                                                      fontSize: 17.0,
+                                                      fontFamily: 'Poppins',
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                            ),
+                                            Icon(
+                                              Icons.keyboard_arrow_down,
+                                              color: AppColors.colorFromHex(
+                                                  "#C6CDD3"),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Baptism received",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.0,
-                                    fontFamily: "Poppins",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    if (isMenuOpen) {
-                                      closeMenu();
-                                    } else {
-                                      openBaptismTypeMenu(
-                                          setState, keyBaptismReceived);
-                                    }
-                                  },
-                                  child: Container(
-                                    key: keyBaptismReceived,
-                                    height: 50,
-                                    width: 300,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      color: Colors.white,
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            baptismType,
-                                            style: baptismType ==
-                                                    "Please select"
-                                                ? TextStyle(
-                                                    color:
-                                                        AppColors.hintTextColor,
-                                                    fontSize: 14.0,
-                                                    fontFamily: 'Poppins',
-                                                    fontWeight: FontWeight.w500,
-                                                  )
-                                                : TextStyle(
-                                                    color: AppColors.black,
-                                                    fontSize: 17.0,
-                                                    fontFamily: 'Poppins',
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                          ),
-                                          Icon(
-                                            Icons.keyboard_arrow_down,
-                                            color: AppColors.colorFromHex(
-                                                "#C6CDD3"),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            width: 300,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Communicant",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.0,
-                                    fontFamily: "Poppins",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        GFRadio(
-                                          type: GFRadioType.custom,
-                                          activeIcon: const Icon(
-                                            Icons.check,
-                                            color: Colors.white,
-                                          ),
-                                          radioColor: Colors.transparent,
-                                          size: GFSize.LARGE,
-                                          activeBgColor: Colors.deepPurple,
-                                          inactiveBorderColor:
-                                              Colors.transparent,
-                                          activeBorderColor: Colors.deepPurple,
-                                          value: 1,
-                                          groupValue: groupValue,
-                                          onChanged: (value) {
-                                            setState(() {
-                                              groupValue = value;
-                                              communicantValue = "Yes";
-                                            });
-                                          },
-                                        ),
-                                        const SizedBox(
-                                          width: 20,
-                                        ),
-                                        const Text(
-                                          "Yes",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16.0,
-                                            fontFamily: "Poppins",
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      width: 100,
-                                    ),
-                                    Row(
-                                      children: [
-                                        GFRadio(
-                                          type: GFRadioType.custom,
-                                          activeIcon: const Icon(
-                                            Icons.check,
-                                            color: Colors.white,
-                                          ),
-                                          radioColor: Colors.transparent,
-                                          size: GFSize.LARGE,
-                                          activeBgColor: Colors.deepPurple,
-                                          inactiveBorderColor:
-                                              Colors.transparent,
-                                          activeBorderColor: Colors.deepPurple,
-                                          value: 2,
-                                          groupValue: groupValue,
-                                          onChanged: (value) {
-                                            setState(() {
-                                              groupValue = value;
-                                              communicantValue = "No";
-                                            });
-                                          },
-                                        ),
-                                        const SizedBox(
-                                          width: 20,
-                                        ),
-                                        const Text(
-                                          "No",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16.0,
-                                            fontFamily: "Poppins",
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(right: 10.0, left: 10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Ministry",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.0,
-                                    fontFamily: "Poppins",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    if (isMenuOpen) {
-                                      closeMenu();
-                                    } else {
-                                      openMinistryMenu(setState, keyMinistry);
-                                    }
-                                  },
-                                  child: Container(
-                                    key: keyMinistry,
-                                    height: 50,
-                                    width: 300,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      color: Colors.white,
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            ministry,
-                                            style: ministry == "Please select"
-                                                ? TextStyle(
-                                                    color:
-                                                        AppColors.hintTextColor,
-                                                    fontSize: 14.0,
-                                                    fontFamily: 'Poppins',
-                                                    fontWeight: FontWeight.w500,
-                                                  )
-                                                : TextStyle(
-                                                    color: AppColors.black,
-                                                    fontSize: 17.0,
-                                                    fontFamily: 'Poppins',
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                          ),
-                                          Icon(
-                                            Icons.keyboard_arrow_down,
-                                            color: AppColors.colorFromHex(
-                                                "#C6CDD3"),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Connect group",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.0,
-                                    fontFamily: "Poppins",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    if (isMenuOpen) {
-                                      closeMenu();
-                                    } else {
-                                      openConnectGroupMenu(
-                                          setState, keyConnectGroup);
-                                    }
-                                  },
-                                  child: Container(
-                                    key: keyConnectGroup,
-                                    height: 50,
-                                    width: 300,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      color: Colors.white,
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            connectGroup,
-                                            style: connectGroup ==
-                                                    "Please select"
-                                                ? TextStyle(
-                                                    color:
-                                                        AppColors.hintTextColor,
-                                                    fontSize: 14.0,
-                                                    fontFamily: 'Poppins',
-                                                    fontWeight: FontWeight.w500,
-                                                  )
-                                                : TextStyle(
-                                                    color: AppColors.black,
-                                                    fontSize: 17.0,
-                                                    fontFamily: 'Poppins',
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                          ),
-                                          Icon(
-                                            Icons.keyboard_arrow_down,
-                                            color: AppColors.colorFromHex(
-                                                "#C6CDD3"),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 60,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ButtonTemplate(
-                    buttonName: "Previous",
-                    buttonColor: const Color.fromARGB(255, 174, 78, 191),
-                    buttonHeight: 60,
-                    buttonAction: () {
-                      setState(() {
-                        Get.find<MyController>().decrement();
-                      });
-                    },
-                    fontColor: Colors.white,
-                    textSize: 15,
-                    buttonBorderRadius: 8,
-                    buttonWidth: 200,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  ButtonTemplate(
-                    buttonName: "Done",
-                    buttonColor: Colors.deepPurple,
-                    buttonHeight: 60,
-                    buttonAction: () {
-                      if (baptizedByController.text == "" ||
-                          positionHeld == "Please select" ||
-                          ministry == "Please select" ||
-                          communicantValue == "") {
-                        Get.snackbar(
-                          "Warrning",
-                          "All fields are required!!",
-                          colorText: Colors.white,
-                          backgroundColor: Colors.red,
-                          borderRadius: 8.0,
-                          margin: const EdgeInsets.only(
-                              top: 60, left: 380, right: 380),
-                          duration: const Duration(seconds: 5),
-                        );
-                      } else {
-                        baptizedBy =
-                            baptizedByController.text.toString().trim();
-                        positionHeld = positionHeld.toString().trim();
-                        communicant = communicantValue.toString();
-
-                        saveDataToLocalStorage(
-                          baptizedBy,
-                          positionHeld,
-                          communicant,
-                          ministry,
-                          baptismType,
-                        );
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 60,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ButtonTemplate(
+                      buttonName: "Previous",
+                      buttonColor: const Color.fromARGB(255, 174, 78, 191),
+                      buttonHeight: 60,
+                      buttonAction: () {
                         setState(() {
-                          Get.find<MyController>().increment();
+                          Get.find<MyController>().decrement();
                         });
-                      }
-                      //Get.find<MyController>().increment();
-                    },
-                    fontColor: Colors.white,
-                    textSize: 15,
-                    buttonBorderRadius: 8,
-                    buttonWidth: 200,
-                  ),
-                ],
-              )
-            ],
+                      },
+                      fontColor: Colors.white,
+                      textSize: 15,
+                      buttonBorderRadius: 8,
+                      buttonWidth: 200,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    ButtonTemplate(
+                      buttonName: "Done",
+                      buttonColor: Colors.deepPurple,
+                      buttonHeight: 60,
+                      buttonAction: () {
+                        if (baptizedByController.text == "" ||
+                            positionHeld == "Please select" ||
+                            ministry == "Please select as many as apply" ||
+                            communicantValue == "") {
+                          Get.snackbar(
+                            "Warrning",
+                            "All fields are required!!",
+                            colorText: Colors.white,
+                            backgroundColor: Colors.red,
+                            borderRadius: 8.0,
+                            margin: const EdgeInsets.only(
+                                top: 60, left: 380, right: 380),
+                            duration: const Duration(seconds: 5),
+                          );
+                        } else {
+                          baptizedBy =
+                              baptizedByController.text.toString().trim();
+                          positionHeld = positionHeld.toString().trim();
+                          communicant = communicantValue.toString();
+
+                          saveDataToLocalStorage(
+                            baptizedBy,
+                            positionHeld,
+                            communicant,
+                            ministry,
+                            baptismType,
+                          );
+                          setState(() {
+                            Get.find<MyController>().increment();
+                          });
+                        }
+                        //Get.find<MyController>().increment();
+                      },
+                      fontColor: Colors.white,
+                      textSize: 15,
+                      buttonBorderRadius: 8,
+                      buttonWidth: 200,
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   saveDataToLocalStorage(
@@ -758,36 +781,91 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
   }
 
   ministryDropdown(StateSetter setState, GlobalKey key) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: ListView.builder(
-        padding: const EdgeInsets.all(10),
-        shrinkWrap: false,
-        itemCount: ministryList.length,
-        itemBuilder: ((context, index) {
-          return GestureDetector(
-            onTap: () {
-              setState(() {
-                ministry = ministryList[index];
-                closeMenu();
-              });
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Text(
-                ministryList[index],
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ),
+    List<bool> _checkedItems =
+        List.generate(ministryList.length, (index) => false);
+    return StatefulBuilder(builder: (context, setState) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 8,
+              child: ListView.builder(
+                padding: const EdgeInsets.all(10),
+                shrinkWrap: false,
+                itemCount: ministryList.length,
+                itemBuilder: ((context, index) {
+                  return CheckboxListTile(
+                    title: Text(
+                      ministryList[index],
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                      ),
+                    ),
+                    autofocus: false,
+                    activeColor: Colors.deepPurple,
+                    checkColor: Colors.white,
+                    selected: _checkedItems[index],
+                    value: _checkedItems[index],
+                    onChanged: (bool? value) {
+                      setState(() {
+                        _checkedItems[index] = value!;
+                        if (selectedMinistryList
+                            .contains(ministryList[index])) {
+                          selectedMinistryList.remove(ministryList[index]);
+                        } else {
+                          selectedMinistryList.add(ministryList[index]);
+                        }
+                        debugPrint(selectedMinistryList.length.toString());
+                      });
+                    },
+                  );
+                }),
               ),
             ),
-          );
-        }),
-      ),
-    );
+            Expanded(
+              flex: 2,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    ministry = selectedMinistryList
+                        .fold(
+                            "",
+                            (previousValue, element) =>
+                                previousValue + "," + " " + element)
+                        .substring(
+                          1,
+                        );
+                    debugPrint(ministry);
+                  });
+                  closeMenu();
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: AppColors.primary,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                    child: Text(
+                      "Done",
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      );
+    });
   }
 
   connectGroupDropdown(StateSetter setState, GlobalKey key) {
