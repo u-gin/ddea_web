@@ -19,6 +19,8 @@ class ReligiousDetailsPage extends StatefulWidget {
 
 class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
   late TextEditingController baptizedByController;
+  List<bool> checkedItems =
+      List.generate(ministryList.length, (index) => false);
 
   late String baptizedBy, communicant;
 
@@ -422,7 +424,6 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                                               width: 200,
                                               child: Text(
                                                 ministry,
-                                                overflow: TextOverflow.ellipsis,
                                                 style: ministry ==
                                                         "Please select as many as apply"
                                                     ? TextStyle(
@@ -658,6 +659,15 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
     );
   }
 
+  /* checkedItems[index] = value!;
+                        if (selectedMinistryList
+                            .contains(ministryList[index])) {
+                          selectedMinistryList.remove(ministryList[index]);
+                        } else {
+                          selectedMinistryList.add(ministryList[index]);
+                        }
+                        debugPrint(selectedMinistryList.length.toString()); */
+
   closeMenu() {
     if (_overlayEntry != null && _overlayEntry!.mounted) {
       _overlayEntry!.remove();
@@ -781,9 +791,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
   }
 
   ministryDropdown(StateSetter setState, GlobalKey key) {
-    List<bool> _checkedItems =
-        List.generate(ministryList.length, (index) => false);
-    return StatefulBuilder(builder: (context, setState) {
+    return StatefulBuilder(builder: (context, setStater) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: Column(
@@ -808,11 +816,11 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                     autofocus: false,
                     activeColor: Colors.deepPurple,
                     checkColor: Colors.white,
-                    selected: _checkedItems[index],
-                    value: _checkedItems[index],
+                    selected: checkedItems[index],
+                    value: checkedItems[index],
                     onChanged: (bool? value) {
-                      setState(() {
-                        _checkedItems[index] = value!;
+                      setStater(() {
+                        checkedItems[index] = value!;
                         if (selectedMinistryList
                             .contains(ministryList[index])) {
                           selectedMinistryList.remove(ministryList[index]);
@@ -831,14 +839,16 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    ministry = selectedMinistryList
-                        .fold(
-                            "",
-                            (previousValue, element) =>
-                                previousValue + "," + " " + element)
-                        .substring(
-                          1,
-                        );
+                    String allMinistries = "";
+                    for (int i = 0; i < selectedMinistryList.length; i++) {
+                      allMinistries += selectedMinistryList[i];
+                      if (i == selectedMinistryList.length - 1) {
+                        break;
+                      } else {
+                        allMinistries = allMinistries + "," + " ";
+                      }
+                    }
+                    ministry = allMinistries;
                     debugPrint(ministry);
                   });
                   closeMenu();
