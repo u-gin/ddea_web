@@ -23,6 +23,9 @@ class _MobileReligiousDetailsPageState
 
   late String baptizedBy, communicant;
 
+  List<bool> checkedItems =
+      List.generate(ministryList.length, (index) => false);
+
   late Offset buttonPosition;
   late Size buttonSize;
   OverlayEntry? _overlayEntry;
@@ -37,11 +40,12 @@ class _MobileReligiousDetailsPageState
 
   String positionHeld = "Please select";
   String shepherd = "Please select";
-  String ministry = "Please select";
+  String ministry = "Please select as many as apply";
   String connectGroup = "Please select";
   String baptismType = "Please select";
 
   String dropdownValue = "Please select";
+  List selectedMinistryList = [];
 
   @override
   void initState() {
@@ -373,7 +377,7 @@ class _MobileReligiousDetailsPageState
                         children: [
                           Text(
                             ministry,
-                            style: ministry == "Please select"
+                            style: ministry == "Please select as many as apply"
                                 ? TextStyle(
                                     color: AppColors.hintTextColor,
                                     fontSize: 14.0,
@@ -558,7 +562,7 @@ class _MobileReligiousDetailsPageState
                     buttonAction: () {
                       if (baptizedByController.text == "" ||
                           positionHeld == "Please select" ||
-                          ministry == "Please select" ||
+                          ministry == "Please select as many as apply" ||
                           communicantValue == "") {
                         Get.snackbar(
                           "Warrning",
@@ -772,36 +776,91 @@ class _MobileReligiousDetailsPageState
   }
 
   ministryDropdown(StateSetter setState, GlobalKey key) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: ListView.builder(
-        padding: const EdgeInsets.all(10),
-        shrinkWrap: false,
-        itemCount: ministryList.length,
-        itemBuilder: ((context, index) {
-          return GestureDetector(
-            onTap: () {
-              setState(() {
-                ministry = ministryList[index];
-                closeMenu();
-              });
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Text(
-                ministryList[index],
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ),
+    return StatefulBuilder(builder: (context, setStater) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 8,
+              child: ListView.builder(
+                padding: const EdgeInsets.all(10),
+                shrinkWrap: false,
+                itemCount: ministryList.length,
+                itemBuilder: ((context, index) {
+                  return CheckboxListTile(
+                    title: Text(
+                      ministryList[index],
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                      ),
+                    ),
+                    autofocus: false,
+                    activeColor: Colors.deepPurple,
+                    checkColor: Colors.white,
+                    selected: checkedItems[index],
+                    value: checkedItems[index],
+                    onChanged: (bool? value) {
+                      setStater(() {
+                        checkedItems[index] = value!;
+                        if (selectedMinistryList
+                            .contains(ministryList[index])) {
+                          selectedMinistryList.remove(ministryList[index]);
+                        } else {
+                          selectedMinistryList.add(ministryList[index]);
+                        }
+                        debugPrint(selectedMinistryList.length.toString());
+                      });
+                    },
+                  );
+                }),
               ),
             ),
-          );
-        }),
-      ),
-    );
+            Expanded(
+              flex: 2,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    String allMinistries = "";
+                    for (int i = 0; i < selectedMinistryList.length; i++) {
+                      allMinistries += selectedMinistryList[i];
+                      if (i == selectedMinistryList.length - 1) {
+                        break;
+                      } else {
+                        allMinistries = allMinistries + "," + " ";
+                      }
+                    }
+                    ministry = allMinistries;
+                    debugPrint(ministry);
+                  });
+                  closeMenu();
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: AppColors.primary,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                    child: Text(
+                      "Done",
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      );
+    });
   }
 
   connectGroupDropdown(StateSetter setState, GlobalKey key) {
