@@ -1,4 +1,7 @@
+import 'dart:js_util';
+
 import 'package:ddea_web/pages/religious/constants.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -18,6 +21,8 @@ class ReligiousDetailsPage extends StatefulWidget {
 }
 
 class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
+  final FirebaseDatabase database = FirebaseDatabase.instance;
+
   late TextEditingController baptizedByController;
   List<bool> checkedItems =
       List.generate(ministryList.length, (index) => false);
@@ -37,11 +42,13 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
   String communicantValue = "";
 
   String positionHeld = "Please select";
-  String shepherd = "Please select";
+  String shepherd = "N/A";
   String ministry = "Please select as many as apply";
   String connectGroup = "Please select";
   String baptismType = "Please select";
   List selectedMinistryList = [];
+
+  bool showShepherd = false;
 
   @override
   void initState() {
@@ -56,6 +63,15 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      connectGroup = connectGroupList[
+          modulo(numberOfEntriesMade!, connectGroupList.length)];
+
+      if (showShepherd) {
+        shepherd =
+            shepherdList[modulo(numberOfEntriesMade!, shepherdList.length)];
+      }
+    });
     return GestureDetector(
         onTap: () => closeMenu(),
         child: SizedBox(
@@ -475,14 +491,14 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                                     ),
                                   ),
                                   GestureDetector(
-                                    onTap: () {
+                                    /* onTap: () {
                                       if (isMenuOpen) {
                                         closeMenu();
                                       } else {
                                         openConnectGroupMenu(
                                             setState, keyConnectGroup);
                                       }
-                                    },
+                                    }, */
                                     child: Container(
                                       key: keyConnectGroup,
                                       height: 50,
@@ -537,6 +553,96 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                         const SizedBox(
                           height: 20,
                         ),
+                        showShepherd
+                            ? Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 10.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          "Shepherd",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16.0,
+                                            fontFamily: "Poppins",
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          /* onTap: () {
+                                      if (isMenuOpen) {
+                                        closeMenu();
+                                      } else {
+                                        openConnectGroupMenu(
+                                            setState, keyConnectGroup);
+                                      }
+                                    }, */
+                                          child: Container(
+                                            key: keyShepherd,
+                                            height: 50,
+                                            width: 300,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                              color: Colors.white,
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 10),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    shepherd,
+                                                    style: shepherd == "N/A"
+                                                        ? TextStyle(
+                                                            color: AppColors
+                                                                .hintTextColor,
+                                                            fontSize: 14.0,
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          )
+                                                        : TextStyle(
+                                                            color:
+                                                                AppColors.black,
+                                                            fontSize: 17.0,
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                  ),
+                                                  Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                    color:
+                                                        AppColors.colorFromHex(
+                                                            "#C6CDD3"),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 300,
+                                  )
+                                ],
+                              )
+                            : const SizedBox()
                       ],
                     ),
                   ],
@@ -571,6 +677,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                       buttonAction: () {
                         if (baptizedByController.text == "" ||
                             positionHeld == "Please select" ||
+                            connectGroup == "Please select" ||
                             ministry == "Please select as many as apply" ||
                             communicantValue == "") {
                           Get.snackbar(
@@ -594,7 +701,9 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                             positionHeld,
                             communicant,
                             ministry,
+                            connectGroup,
                             baptismType,
+                            shepherd,
                           );
                           setState(() {
                             Get.find<MyController>().increment();
@@ -620,14 +729,16 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
     String positionHeld,
     String communicant,
     String ministry,
+    String connectGroup,
     String baptismType,
+    String shepherd,
   ) {
     userDetails["baptizedBy"] = baptizedBy;
     userDetails["positionHeld"] = positionHeld;
     userDetails["communicant"] = communicant;
-    //userDetails["shepherd"] = shepherd;
+    userDetails["shepherd"] = shepherd;
     userDetails["ministry"] = ministry;
-    //userDetails["connectGroup"] = connectGroup;
+    userDetails["connectGroup"] = connectGroup;
     userDetails["baptismType"] = baptismType;
   }
 
@@ -658,15 +769,6 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
       },
     );
   }
-
-  /* checkedItems[index] = value!;
-                        if (selectedMinistryList
-                            .contains(ministryList[index])) {
-                          selectedMinistryList.remove(ministryList[index]);
-                        } else {
-                          selectedMinistryList.add(ministryList[index]);
-                        }
-                        debugPrint(selectedMinistryList.length.toString()); */
 
   closeMenu() {
     if (_overlayEntry != null && _overlayEntry!.mounted) {
@@ -734,6 +836,15 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
             onTap: () {
               setState(() {
                 positionHeld = positionHeldList[index];
+                if (positionHeld == "Member (M)") {
+                  setState(() {
+                    showShepherd = true;
+                  });
+                } else {
+                  setState(() {
+                    showShepherd = false;
+                  });
+                }
                 closeMenu();
               });
             },
