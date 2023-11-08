@@ -1,4 +1,5 @@
 import 'package:ddea_web/widgets/button_template.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,6 +17,7 @@ class MobileProfessionalDetailsPage extends StatefulWidget {
 
 class _MobileProfessionalDetailsPageState
     extends State<MobileProfessionalDetailsPage> {
+  final FirebaseDatabase database = FirebaseDatabase.instance;
   late TextEditingController placeOfResidenceController;
   late TextEditingController residentialAddressController;
   late TextEditingController placeOfWorkController;
@@ -24,6 +26,7 @@ class _MobileProfessionalDetailsPageState
   late String placeOfResidence, residentialAddress, placeOfWork, profession;
 
   int groupValue = 0;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -179,7 +182,11 @@ class _MobileProfessionalDetailsPageState
                   buttonName: "Next",
                   buttonColor: Colors.deepPurple,
                   buttonHeight: 60,
+                  loading: isLoading,
                   buttonAction: () {
+                    setState(() {
+                      isLoading = true;
+                    });
                     if (placeOfResidenceController.text == "" ||
                         residentialAddressController.text == "" ||
                         professionController.text == "" ||
@@ -202,10 +209,24 @@ class _MobileProfessionalDetailsPageState
                       profession = professionController.text.toString().trim();
                       placeOfWork =
                           placeOfWorkController.text.toString().trim();
-                      saveDataToLocalStorage(placeOfResidence,
-                          residentialAddress, profession, placeOfWork);
-                      setState(() {
-                        Get.find<MyController>().increment();
+                      final DatabaseReference entriesRef =
+                          database.ref("ddea/entries");
+                      entriesRef.once().then((value) {
+                        numberOfEntriesMade = value.snapshot.value as int;
+                        if (numberOfEntriesMade != null) {
+                          setState(() {
+                            isLoading = false;
+                          });
+                          saveDataToLocalStorage(placeOfResidence,
+                              residentialAddress, profession, placeOfWork);
+                          setState(() {
+                            Get.find<MyController>().increment();
+                          });
+                        } else {
+                          setState(() {
+                            isLoading = false;
+                          });
+                        }
                       });
                     }
                     //Get.find<MyController>().increment();
