@@ -33,6 +33,8 @@ List<UserModel> justPastor = [];
 List<UserModel> justPresidingElder = [];
 List<String> userImages = [];
 
+int? numberOfEntriesMade;
+
 TextStyle textStyle() {
   return const TextStyle(
     fontSize: 15.0,
