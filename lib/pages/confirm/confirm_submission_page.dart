@@ -85,8 +85,8 @@ class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
                       rowItem("Position held", userDetails["positionHeld"]),
                       rowItem("Communicant", userDetails["communicant"]),
                       rowItem("Ministry", userDetails["ministry"]),
-                      rowItem("Shepherd", shepherdValue),
-                      rowItem("Connect group", connectGroupValue),
+                      rowItem("Shepherd", userDetails["shepherd"]),
+                      rowItem("Connect group", userDetails["connectGroup"]),
                       rowItem("Baptism received", userDetails["baptismType"]),
                       rowItem("Date added", convertDate(DateTime.now())),
                       rowItem("Time added", convertTime(DateTime.now())),
@@ -190,6 +190,7 @@ class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
   sendDataToFirebase(Function(bool success) callback) async {
     final databaseReference =
         database.ref("ddea/members/${userDetails["positionHeld"]}");
+
     final firebaseStorageReference =
         firebaseStorage.ref("ddea/${userDetails["telephone"]}.jpg");
 
@@ -207,9 +208,9 @@ class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
       "Baptized by": userDetails["baptizedBy"],
       "Position held": userDetails["positionHeld"],
       "Communicant": userDetails["communicant"],
-      "Shepherd": shepherdValue,
+      "Shepherd": userDetails["shepherd"],
       "Baptism received": userDetails["baptismType"],
-      "Connect group": connectGroupValue,
+      "Connect group": userDetails["connectGroup"],
       "Ministry": userDetails["ministry"],
       "Date added": convertDate(DateTime.now()),
       "Time added": convertTime(DateTime.now()),

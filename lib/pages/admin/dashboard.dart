@@ -321,7 +321,7 @@ class _DashboardState extends State<Dashboard> {
       isLoading = true;
     });
     final DatabaseReference databaseReference = databaseInstance.ref();
-    databaseReference.child('ddea/$subnodePath').onValue.listen(
+    databaseReference.child('ddea/members/$subnodePath').onValue.listen(
         (DatabaseEvent event) {
       final dynamic dataSnapshot = event.snapshot.value;
       if (dataSnapshot != null && dataSnapshot is Map<dynamic, dynamic>) {

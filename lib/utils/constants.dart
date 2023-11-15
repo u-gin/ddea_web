@@ -34,6 +34,8 @@ List<UserModel> justPresidingElder = [];
 List<String> userImages = [];
 
 int? numberOfEntriesMade;
+int? numberOfMembersEntered;
+bool? isMember;
 
 TextStyle textStyle() {
   return const TextStyle(

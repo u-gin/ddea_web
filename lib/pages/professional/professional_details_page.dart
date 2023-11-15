@@ -251,17 +251,40 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
                           placeOfWorkController.text.toString().trim();
                       final DatabaseReference entriesRef =
                           database.ref("ddea/entries");
+                      final DatabaseReference numberOfMembersRef =
+                          database.ref("ddea/number_of_members");
 
                       entriesRef.once().then((value) {
                         numberOfEntriesMade = value.snapshot.value as int;
                         if (numberOfEntriesMade != null) {
-                          setState(() {
-                            isLoading = false;
-                          });
-                          saveDataToLocalStorage(placeOfResidence,
-                              residentialAddress, profession, placeOfWork);
-                          setState(() {
-                            Get.find<MyController>().increment();
+                          int updatedValue = numberOfEntriesMade! + 1;
+
+                          entriesRef.set(updatedValue).then((value) {
+                            numberOfMembersRef.once().then((value) {
+                              numberOfMembersEntered =
+                                  value.snapshot.value as int;
+                              if (numberOfMembersEntered != null) {
+                                /* int updateNumberOfMembersEntered =
+                                    numberOfMembersEntered! + 1;
+                                numberOfMembersRef
+                                    .set(updateNumberOfMembersEntered)
+                                    .then((value) {
+                                  
+                                }); */
+                                setState(() {
+                                  isLoading = false;
+                                });
+                                saveDataToLocalStorage(
+                                    placeOfResidence,
+                                    residentialAddress,
+                                    profession,
+                                    placeOfWork);
+
+                                setState(() {
+                                  Get.find<MyController>().increment();
+                                });
+                              }
+                            });
                           });
                         } else {
                           setState(() {

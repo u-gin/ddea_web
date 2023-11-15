@@ -69,7 +69,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
 
       if (showShepherd) {
         shepherd =
-            shepherdList[modulo(numberOfEntriesMade!, shepherdList.length)];
+            shepherdList[modulo(numberOfMembersEntered!, shepherdList.length)];
       }
     });
     return GestureDetector(
@@ -705,9 +705,25 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                             baptismType,
                             shepherd,
                           );
-                          setState(() {
-                            Get.find<MyController>().increment();
-                          });
+                          if (showShepherd) {
+                            final DatabaseReference numberOfMembersRef =
+                                database.ref("ddea/number_of_members");
+                            if (numberOfMembersEntered != null) {
+                              int updatedValue = numberOfMembersEntered! + 1;
+                              numberOfMembersRef
+                                  .set(updatedValue)
+                                  .then((value) {
+                                setState(() {
+                                  isMember = true;
+                                  Get.find<MyController>().increment();
+                                });
+                              });
+                            }
+                          } else {
+                            setState(() {
+                              Get.find<MyController>().increment();
+                            });
+                          }
                         }
                         //Get.find<MyController>().increment();
                       },
