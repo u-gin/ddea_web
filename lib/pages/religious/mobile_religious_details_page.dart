@@ -43,7 +43,7 @@ class _MobileReligiousDetailsPageState
   String communicantValue = "";
 
   String positionHeld = "Please select";
-  String shepherd = "Please select";
+  String shepherd = "N/A";
   String ministry = "Please select as many as apply";
   String connectGroup = "Please select";
   String baptismType = "Please select";
@@ -602,10 +602,10 @@ class _MobileReligiousDetailsPageState
                           baptizedBy,
                           positionHeld,
                           communicant,
+                          shepherd,
                           ministry,
                           connectGroup,
                           baptismType,
-                          shepherd,
                         );
                         if (showShepherd) {
                           final DatabaseReference numberOfMembersRef =
