@@ -1,3 +1,6 @@
+import 'dart:js_util';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -19,6 +22,7 @@ class MobileReligiousDetailsPage extends StatefulWidget {
 
 class _MobileReligiousDetailsPageState
     extends State<MobileReligiousDetailsPage> {
+  final FirebaseDatabase database = FirebaseDatabase.instance;
   late TextEditingController baptizedByController;
 
   late String baptizedBy, communicant;
@@ -46,6 +50,7 @@ class _MobileReligiousDetailsPageState
 
   String dropdownValue = "Please select";
   List selectedMinistryList = [];
+  bool showShepherd = false;
 
   @override
   void initState() {
@@ -60,6 +65,15 @@ class _MobileReligiousDetailsPageState
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      connectGroup = connectGroupList[
+          modulo(numberOfEntriesMade!, connectGroupList.length)];
+
+      if (showShepherd) {
+        shepherd =
+            shepherdList[modulo(numberOfMembersEntered!, shepherdList.length)];
+      }
+    });
     return GestureDetector(
       onTap: () => closeMenu(),
       child: Padding(
@@ -178,78 +192,82 @@ class _MobileReligiousDetailsPageState
                 ],
               ),
             ),
-            /* const SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            Padding(
-              padding: const EdgeInsets.only(right: 10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Shepherd",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 13.0,
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
+            showShepherd
+                ? Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Shepherd",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 13.0,
+                            fontFamily: "Poppins",
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        GestureDetector(
+                          /* onTap: () {
                       if (isMenuOpen) {
                         closeMenu();
                       } else {
                         openShepherdMenu(setState, keyShepherd);
                       }
-                    },
-                    child: Container(
-                      key: keyShepherd,
-                      height: 40,
-                      width: 300,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.white,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: 250,
-                              child: Text(
-                                shepherd,
-                                style: shepherd == "Please select"
-                                    ? TextStyle(
-                                        color: AppColors.hintTextColor,
-                                        fontSize: 14.0,
-                                        fontFamily: 'Poppins',
-                                        fontWeight: FontWeight.w500,
-                                      )
-                                    : TextStyle(
-                                        color: AppColors.black,
-                                        fontSize: 17.0,
-                                        fontFamily: 'Poppins',
-                                        fontWeight: FontWeight.w500,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
+                    }, */
+                          child: Container(
+                            key: keyShepherd,
+                            height: 40,
+                            width: 300,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Colors.white,
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    width: 250,
+                                    child: Text(
+                                      shepherd,
+                                      style: shepherd == "Please select"
+                                          ? TextStyle(
+                                              color: AppColors.hintTextColor,
+                                              fontSize: 14.0,
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.w500,
+                                            )
+                                          : TextStyle(
+                                              color: AppColors.black,
+                                              fontSize: 17.0,
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.w500,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.keyboard_arrow_down,
+                                    color: AppColors.colorFromHex("#C6CDD3"),
+                                  ),
+                                ],
                               ),
                             ),
-                            Icon(
-                              Icons.keyboard_arrow_down,
-                              color: AppColors.colorFromHex("#C6CDD3"),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            ), */
-            const SizedBox(
-              height: 15,
+                  )
+                : const SizedBox(),
+            SizedBox(
+              height: showShepherd ? 15 : 0,
             ),
             const Text(
               "Communicant",
@@ -408,7 +426,7 @@ class _MobileReligiousDetailsPageState
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                /* const Text(
+                const Text(
                   "Connect group",
                   style: TextStyle(
                     color: Colors.black,
@@ -419,11 +437,11 @@ class _MobileReligiousDetailsPageState
                 ),
                 GestureDetector(
                   onTap: () {
-                    if (isMenuOpen) {
+                    /* if (isMenuOpen) {
                       closeMenu();
                     } else {
                       openConnectGroupMenu(setState, keyConnectGroup);
-                    }
+                    } */
                   },
                   child: Container(
                     key: keyConnectGroup,
@@ -465,7 +483,7 @@ class _MobileReligiousDetailsPageState
                 ),
                 const SizedBox(
                   height: 15,
-                ), */
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -585,11 +603,27 @@ class _MobileReligiousDetailsPageState
                           positionHeld,
                           communicant,
                           ministry,
+                          connectGroup,
                           baptismType,
+                          shepherd,
                         );
-                        setState(() {
-                          Get.find<MyController>().increment();
-                        });
+                        if (showShepherd) {
+                          final DatabaseReference numberOfMembersRef =
+                              database.ref("ddea/number_of_members");
+                          if (numberOfMembersEntered != null) {
+                            int updatedValue = numberOfMembersEntered! + 1;
+                            numberOfMembersRef.set(updatedValue).then((value) {
+                              setState(() {
+                                isMember = true;
+                                Get.find<MyController>().increment();
+                              });
+                            });
+                          }
+                        } else {
+                          setState(() {
+                            Get.find<MyController>().increment();
+                          });
+                        }
                       }
                       //Get.find<MyController>().increment();
                     },
@@ -610,17 +644,17 @@ class _MobileReligiousDetailsPageState
     String baptizedBy,
     String positionHeld,
     String communicant,
-    //String shepherd,
+    String shepherd,
     String ministry,
-    //String connectGroup,
+    String connectGroup,
     String baptismType,
   ) {
     userDetails["baptizedBy"] = baptizedBy;
     userDetails["positionHeld"] = positionHeld;
     userDetails["communicant"] = communicant;
-    //userDetails["shepherd"] = shepherd;
+    userDetails["shepherd"] = shepherd;
     userDetails["ministry"] = ministry;
-    //userDetails["connectGroup"] = connectGroup;
+    userDetails["connectGroup"] = connectGroup;
     userDetails["baptismType"] = baptismType;
   }
 
@@ -718,6 +752,15 @@ class _MobileReligiousDetailsPageState
             onTap: () {
               setState(() {
                 positionHeld = positionHeldList[index];
+                if (positionHeld == "Member (M)") {
+                  setState(() {
+                    showShepherd = true;
+                  });
+                } else {
+                  setState(() {
+                    showShepherd = false;
+                  });
+                }
                 closeMenu();
               });
             },
