@@ -32,10 +32,10 @@ class MainApp extends StatelessWidget {
         brightness: Brightness.light,
         primaryColor: AppColors.primary,
       ),
-      initialRoute: '/',
+      initialRoute: '',
       //initialRoute: '/dashboard',
       routes: {
-        '/': (context) => const ResponsiveLayout(
+        '': (context) => const ResponsiveLayout(
               desktopLayout: DesktopLandingPage(),
               mobileLayout: MobileLandingPage(),
               tabletLayout: TabletLandingPage(),
