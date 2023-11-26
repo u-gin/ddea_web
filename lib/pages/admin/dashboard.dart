@@ -13,6 +13,7 @@ import '../../utils/colors.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
+  static const String routeName = "dashboard";
 
   @override
   State<Dashboard> createState() => _DashboardState();
@@ -62,7 +63,8 @@ class _DashboardState extends State<Dashboard> {
     } else {
       results = whichList[selectedIndex]
           .where((element) =>
-              element.fullName!.toLowerCase().contains(value.toLowerCase()))
+              element.fullName!.toLowerCase().contains(value.toLowerCase()) ||
+              element.connectGroup!.toLowerCase().contains(value.toLowerCase()))
           .toList();
     }
     setState(() {

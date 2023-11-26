@@ -31,7 +31,7 @@ class MemberDetailsPage extends StatelessWidget {
                         if (snapshot.connectionState == ConnectionState.done) {
                           final Uint8List? url = snapshot.data;
                           if (url != null) {
-                            return ClipOval(
+                            /* return ClipOval(
                               child: Container(
                                 width: 150,
                                 height: 150,
@@ -42,6 +42,16 @@ class MemberDetailsPage extends StatelessWidget {
                                     ),
                                     fit: BoxFit.fill,
                                   ),
+                                ),
+                              ),
+                            ); */
+                            return CircleAvatar(
+                              radius: 150,
+                              backgroundImage: MemoryImage(url),
+                              child: ClipOval(
+                                child: Image.memory(
+                                  url,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             );

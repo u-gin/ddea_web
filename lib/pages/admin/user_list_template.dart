@@ -54,15 +54,13 @@ class UserListTemplate extends StatelessWidget {
                                 url,
                                 fit: BoxFit.fill,
                               ); */
-                            return ClipOval(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: MemoryImage(
-                                      url,
-                                    ),
-                                    fit: BoxFit.fill,
-                                  ),
+                            return CircleAvatar(
+                              radius: 50,
+                              backgroundImage: MemoryImage(url),
+                              child: ClipOval(
+                                child: Image.memory(
+                                  url,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             );
@@ -102,6 +100,7 @@ class UserListTemplate extends StatelessWidget {
                     child: Center(
                       child: Text(
                         fullName,
+                        textAlign: TextAlign.center,
                         style: textStyle(),
                       ),
                     ),

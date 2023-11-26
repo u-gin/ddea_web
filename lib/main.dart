@@ -32,17 +32,16 @@ class MainApp extends StatelessWidget {
         brightness: Brightness.light,
         primaryColor: AppColors.primary,
       ),
-      initialRoute: '',
-      //initialRoute: '/dashboard',
+      initialRoute: '/',
       routes: {
-        '': (context) => const ResponsiveLayout(
+        '/': (context) => const ResponsiveLayout(
               desktopLayout: DesktopLandingPage(),
               mobileLayout: MobileLandingPage(),
               tabletLayout: TabletLandingPage(),
             ),
         '/home': (context) => const DesktopHomePage(),
         '/personalDetailsPage': (context) => const DesktopPersonalDetailsPage(),
-        '/religiousDetail': (context) => const ReligiousDetailsPage(),
+        '/religiousDetails': (context) => const ReligiousDetailsPage(),
         '/dashboard': (context) => const Dashboard(),
       },
     );
