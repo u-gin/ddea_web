@@ -24,13 +24,17 @@ class _DashboardState extends State<Dashboard> {
   final FirebaseDatabase databaseInstance = FirebaseDatabase.instance;
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
 
-  late List<List<UserModel>> whichList = [
+  List<dynamic> whichList = [
     allUsers,
     justMembers,
     justElders,
     justDeaconesses,
     justDeacons,
   ];
+
+  _DashboardState() {
+    initializeFilteredList();
+  }
 
   List filteredList = [];
 
@@ -50,10 +54,13 @@ class _DashboardState extends State<Dashboard> {
   @override
   void initState() {
     searchController = TextEditingController();
-    filteredList = whichList[selectedIndex];
-    getAllUserData();
 
+    //retrieveUserData();
     super.initState();
+  }
+
+  void initializeFilteredList() {
+    filteredList = whichList[selectedIndex];
   }
 
   void runSearch(String value) {
@@ -156,7 +163,7 @@ class _DashboardState extends State<Dashboard> {
                           ),
                         ),
                         SizedBox(
-                          height: 0,
+                          height: 50,
                           child: ListView.builder(
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
@@ -168,11 +175,12 @@ class _DashboardState extends State<Dashboard> {
                                   onTap: () {
                                     setState(() {
                                       selectedIndex = index;
+                                      initializeFilteredList();
                                     });
                                   },
                                   child: Container(
                                     height: 50,
-                                    width: 150,
+                                    width: 100,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
                                         color: selectedIndex == index
@@ -318,44 +326,56 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  void retrieveUserData(String subnodePath, List<UserModel> userList) {
+  /* void retrieveUserData() {
+    List subnodePaths = [
+      "Elder (Eld)",
+      "Deacon (Dcn)",
+      "Deaconess (Dcns)",
+      "Member (M)",
+      "Presiding Elder (PE)",
+      "Pastor (Ps)"
+    ];
+    List<List<UserModel>> userLists = [
+      justElders,
+      justDeacons,
+      justDeaconesses,
+      justMembers,
+      justPresidingElder,
+      justPastor
+    ];
     setState(() {
       isLoading = true;
     });
     final DatabaseReference databaseReference = databaseInstance.ref();
-    databaseReference.child('ddea/members/$subnodePath').onValue.listen(
-        (DatabaseEvent event) {
-      final dynamic dataSnapshot = event.snapshot.value;
-      if (dataSnapshot != null && dataSnapshot is Map<dynamic, dynamic>) {
-        dataSnapshot.forEach((key, user) {
-          userList.add(UserModel.fromSnapshot(event.snapshot.child(key)));
-          allUsers.addAll(userList);
-        });
-        setState(() {
-          isLoading = false;
-        });
-      } else {
-        setState(() {
-          isLoading = false;
-        });
-        debugPrint('No data found for $subnodePath');
-      }
-    }, onError: (error) {
-      setState(() {
-        isLoading = false;
-      });
-      debugPrint('Error fetching data for $subnodePath: $error');
-    });
-  }
 
-  getAllUserData() {
-    retrieveUserData("Elder (Eld)", justElders);
-    retrieveUserData("Deacon (Dcn)", justDeacons);
-    retrieveUserData("Deaconess (Dcns)", justDeaconesses);
-    retrieveUserData("Member (M)", justMembers);
-    retrieveUserData("Presiding Elder (PE)", justPresidingElder);
-    retrieveUserData("Pastor (Ps)", justPastor);
-  }
+    for (int i = 0; i < subnodePaths.length; i++) {
+      String subnode = subnodePaths[i];
+
+      databaseReference.child('ddea/members/$subnode').onValue.listen(
+          (DatabaseEvent event) {
+        final dynamic dataSnapshot = event.snapshot.value;
+        if (dataSnapshot != null && dataSnapshot is Map<dynamic, dynamic>) {
+          dataSnapshot.forEach((key, user) {
+            userLists[i].add(UserModel.fromSnapshot(event.snapshot.child(key)));
+          });
+          allUsers.addAll(userLists[i]);
+          setState(() {
+            isLoading = false;
+          });
+        } else {
+          setState(() {
+            isLoading = false;
+          });
+          debugPrint('No data found for $subnode');
+        }
+      }, onError: (error) {
+        setState(() {
+          isLoading = false;
+        });
+        debugPrint('Error fetching data for $subnode: $error');
+      });
+    }
+  } */
 
   Future<Uint8List?> getUserImageUrl(String userId) async {
     try {
