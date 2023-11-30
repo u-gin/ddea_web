@@ -109,9 +109,12 @@ class _CheckInfoPageState extends State<CheckInfoPage> {
                           GestureDetector(
                             onTap: () {
                               String mobile = mobileController.text.toString();
+
                               setState(() {
-                                registered = allUsers.any(
-                                    (element) => element.telephone == mobile);
+                                registered = allUsers.any((element) =>
+                                    mobile.substring(mobile.length - 9) ==
+                                    element.telephone!.substring(
+                                        element.telephone!.length - 9));
                               });
                             },
                             child: Container(
