@@ -1,3 +1,4 @@
+import 'package:ddea_web/pages/check/mobile_check_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,12 +31,14 @@ class _TabletHomePageState extends State<TabletHomePage> {
         child: GetBuilder<MyController>(
           builder: (controller) {
             return controller.myVariable.value == 1
-                ? const DesktopPersonalDetailsPage()
+                ? const MobileCheckInfoPage()
                 : controller.myVariable.value == 2
-                    ? const ProfessionalDetailsPage()
-                    : controller.myVariable.value == 3
-                        ? const ReligiousDetailsPage()
-                        : const ConfirmSubmissionPage();
+                    ? const DesktopPersonalDetailsPage()
+                    : controller.myVariable.value == 2
+                        ? const ProfessionalDetailsPage()
+                        : controller.myVariable.value == 3
+                            ? const ReligiousDetailsPage()
+                            : const ConfirmSubmissionPage();
           },
         ),
       ),

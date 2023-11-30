@@ -4,6 +4,7 @@ import 'package:ddea_web/pages/professional/mobile_professional_details_page.dar
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../check/mobile_check_info_page.dart';
 import '../religious/mobile_religious_details_page.dart';
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
@@ -33,12 +34,14 @@ class _MobileHomePageState extends State<MobileHomePage> {
               physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics()),
               child: controller.myVariable.value == 1
-                  ? const MobilePersonalDetailsPage()
+                  ? const MobileCheckInfoPage()
                   : controller.myVariable.value == 2
-                      ? const MobileProfessionalDetailsPage()
-                      : controller.myVariable.value == 3
-                          ? const MobileReligiousDetailsPage()
-                          : const MobileConfirmSubmissionPage(),
+                      ? const MobilePersonalDetailsPage()
+                      : controller.myVariable.value == 2
+                          ? const MobileProfessionalDetailsPage()
+                          : controller.myVariable.value == 3
+                              ? const MobileReligiousDetailsPage()
+                              : const MobileConfirmSubmissionPage(),
             );
           },
         ),
