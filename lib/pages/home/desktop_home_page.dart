@@ -1,3 +1,4 @@
+import 'package:ddea_web/pages/check/check_info_page.dart';
 import 'package:ddea_web/pages/confirm/confirm_submission_page.dart';
 import 'package:ddea_web/pages/personal/desktop_personal_details_page.dart';
 import 'package:ddea_web/pages/professional/professional_details_page.dart';
@@ -62,12 +63,14 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
               child: GetBuilder<MyController>(
                 builder: (controller) {
                   return controller.myVariable.value == 1
-                      ? const DesktopPersonalDetailsPage()
+                      ? const CheckInfoPage()
                       : controller.myVariable.value == 2
-                          ? const ProfessionalDetailsPage()
+                          ? const DesktopPersonalDetailsPage()
                           : controller.myVariable.value == 3
-                              ? const ReligiousDetailsPage()
-                              : const ConfirmSubmissionPage();
+                              ? const ProfessionalDetailsPage()
+                              : controller.myVariable.value == 4
+                                  ? const ReligiousDetailsPage()
+                                  : const ConfirmSubmissionPage();
                 },
               ),
             ),
