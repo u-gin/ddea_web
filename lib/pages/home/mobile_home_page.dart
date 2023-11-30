@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../check/mobile_check_info_page.dart';
-import '../check/tablet_check_info_page.dart';
 import '../religious/mobile_religious_details_page.dart';
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
