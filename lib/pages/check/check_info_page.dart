@@ -66,14 +66,17 @@ class _CheckInfoPageState extends State<CheckInfoPage> {
                   ],
                 ),
               ),
-              const Text(
-                "Input your telephone number in the field below to verify if \nyour details are already registered",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16.0,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w500,
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: Text(
+                  "Input your telephone number in the field below to verify if your details are already registered",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.0,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
               const SizedBox(

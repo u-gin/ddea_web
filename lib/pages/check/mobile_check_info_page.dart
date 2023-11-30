@@ -38,12 +38,12 @@ class _MobileCheckInfoPageState extends State<MobileCheckInfoPage> {
         height: Get.height,
         width: Get.width,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 5.0, bottom: 40),
+                padding: const EdgeInsets.only(top: 5.0, bottom: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -67,7 +67,7 @@ class _MobileCheckInfoPageState extends State<MobileCheckInfoPage> {
                 ),
               ),
               const Text(
-                "Input your telephone number in the field below to verify if \nyour details are already registered",
+                "Input your telephone number in the field below to verify if your details are already registered",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,
@@ -77,7 +77,7 @@ class _MobileCheckInfoPageState extends State<MobileCheckInfoPage> {
                 ),
               ),
               const SizedBox(
-                height: 60,
+                height: 30,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -132,7 +132,7 @@ class _MobileCheckInfoPageState extends State<MobileCheckInfoPage> {
                 ],
               ),
               const SizedBox(
-                height: 30,
+                height: 20,
               ),
               Text(
                 registered == null
@@ -149,7 +149,7 @@ class _MobileCheckInfoPageState extends State<MobileCheckInfoPage> {
                 ),
               ),
               const SizedBox(
-                height: 60,
+                height: 30,
               ),
               SizedBox(
                 height: registered == null
