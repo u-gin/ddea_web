@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:ddea_web/pages/admin/member_details_page.dart';
+import 'package:ddea_web/pages/admin/requests_page.dart';
 import 'package:ddea_web/pages/admin/user_list_template.dart';
 import 'package:ddea_web/utils/constants.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -202,6 +203,28 @@ class _DashboardState extends State<Dashboard> {
                                 ),
                               );
                             },
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => const RequestsPage());
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.deepPurpleAccent,
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20.0, vertical: 15),
+                              child: Text(
+                                "View requests",
+                                style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.white,
+                                    fontSize: 14.0),
+                              ),
+                            ),
                           ),
                         )
                       ],
