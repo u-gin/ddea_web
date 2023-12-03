@@ -1,5 +1,6 @@
 import 'package:ddea_web/firebase_options.dart';
 import 'package:ddea_web/pages/admin/dashboard.dart';
+import 'package:ddea_web/pages/admin/requests_page.dart';
 import 'package:ddea_web/pages/home/desktop_home_page.dart';
 import 'package:ddea_web/pages/landing/desktop_landing_page.dart';
 import 'package:ddea_web/pages/landing/mobile_landing_page.dart';
@@ -60,6 +61,7 @@ class _MainAppState extends State<MainApp> {
         '/personalDetailsPage': (context) => const DesktopPersonalDetailsPage(),
         '/religiousDetails': (context) => const ReligiousDetailsPage(),
         '/Dashboard': (context) => const Dashboard(),
+        '/Requests': (context) => const RequestsPage(),
       },
     );
   }
