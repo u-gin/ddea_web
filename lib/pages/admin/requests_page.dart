@@ -11,6 +11,6 @@ class RequestsPage extends StatefulWidget {
 class _RequestsPageState extends State<RequestsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold();
   }
 }
