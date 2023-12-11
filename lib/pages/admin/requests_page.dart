@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:ddea_web/pages/admin/requests_details_page.dart';
 import 'package:ddea_web/pages/admin/user_list_template.dart';
-import 'package:ddea_web/utils/colors.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
