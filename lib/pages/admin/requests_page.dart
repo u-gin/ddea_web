@@ -7,6 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../models/user_model.dart';
 import '../../utils/constants.dart';
 
 class RequestsPage extends StatefulWidget {
@@ -26,7 +27,13 @@ class _RequestsPageState extends State<RequestsPage> {
   String? userImageUrl;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print(allRequests);
     return Scaffold(
       backgroundColor: Colors.grey[10],
       body: isLoading
@@ -115,7 +122,7 @@ class _RequestsPageState extends State<RequestsPage> {
                       height: 20,
                     ),
                     Expanded(
-                      child: allUsers.isEmpty
+                      child: allRequests.isEmpty
                           ? SizedBox(
                               width: canvasWidth,
                               child: Padding(
@@ -128,7 +135,7 @@ class _RequestsPageState extends State<RequestsPage> {
                               ),
                             )
                           : ListView.builder(
-                              itemCount: allUsers.length,
+                              itemCount: allRequests.length,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
                                 return GestureDetector(
@@ -136,21 +143,24 @@ class _RequestsPageState extends State<RequestsPage> {
                                     Get.to(
                                       () => const RequestsDetailsPage(),
                                       arguments: [
-                                        allUsers[index],
+                                        allRequests[index],
                                         getUserImageUrl(
-                                            allUsers[index].telephone!)
+                                          allRequests[index].telephone!,
+                                        )
                                       ],
                                     );
                                   },
                                   child: UserListTemplate(
-                                    key: ValueKey(allUsers[index].fullName!),
+                                    key: ValueKey(allRequests[index].fullName!),
                                     imageUrl: getUserImageUrl(
-                                        allUsers[index].telephone!),
-                                    fullName: allUsers[index].fullName!,
-                                    telephone: allUsers[index].telephone!,
-                                    dateOfBirth: allUsers[index].dateOfBirth!,
-                                    dateJoined: allUsers[index].dateAdded!,
-                                    connectGroup: allUsers[index].connectGroup!,
+                                        allRequests[index].telephone!),
+                                    fullName: allRequests[index].fullName!,
+                                    telephone: allRequests[index].telephone!,
+                                    dateOfBirth:
+                                        allRequests[index].dateOfBirth!,
+                                    dateJoined: allRequests[index].dateAdded!,
+                                    connectGroup:
+                                        allRequests[index].connectGroup!,
                                   ),
                                 );
                               },
