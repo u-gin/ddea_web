@@ -7,7 +7,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../models/user_model.dart';
 import '../../utils/constants.dart';
 
 class RequestsPage extends StatefulWidget {
