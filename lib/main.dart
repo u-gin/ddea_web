@@ -37,6 +37,7 @@ class _MainAppState extends State<MainApp> {
   @override
   void initState() {
     retrieveUserData();
+    retrieveRequests();
     super.initState();
   }
 
@@ -91,7 +92,7 @@ class _MainAppState extends State<MainApp> {
     for (int i = 0; i < subnodePaths.length; i++) {
       String subnode = subnodePaths[i];
 
-      databaseReference.child('ddea/members/$subnode').onValue.listen(
+      databaseReference.child('ddea/approved/members/$subnode').onValue.listen(
           (DatabaseEvent event) {
         final dynamic dataSnapshot = event.snapshot.value;
         if (dataSnapshot != null && dataSnapshot is Map<dynamic, dynamic>) {
@@ -99,19 +100,49 @@ class _MainAppState extends State<MainApp> {
             userLists[i].add(UserModel.fromSnapshot(event.snapshot.child(key)));
           });
           allUsers.addAll(userLists[i]);
-          /* setState(() {
-            isLoading = false;
-          }); */
         } else {
-          /* setState(() {
-            isLoading = false;
-          }); */
           debugPrint('No data found for $subnode');
         }
       }, onError: (error) {
-        /* setState(() {
-          isLoading = false;
-        }); */
+        debugPrint('Error fetching data for $subnode: $error');
+      });
+    }
+  }
+
+  void retrieveRequests() {
+    List subnodePaths = [
+      "Elder (Eld)",
+      "Deacon (Dcn)",
+      "Deaconess (Dcns)",
+      "Member (M)",
+      "Presiding Elder (PE)",
+      "Pastor (Ps)"
+    ];
+    List<List<UserModel>> userLists = [
+      tempElders,
+      tempDeacons,
+      tempDeaconesses,
+      tempMembers,
+      tempPresidingElder,
+      tempPastor
+    ];
+    final DatabaseReference databaseReference = databaseInstance.ref();
+
+    for (int i = 0; i < subnodePaths.length; i++) {
+      String subnode = subnodePaths[i];
+
+      databaseReference.child('ddea/members/$subnode').onValue.listen(
+          (DatabaseEvent event) {
+        final dynamic dataSnapshot = event.snapshot.value;
+        if (dataSnapshot != null && dataSnapshot is Map<dynamic, dynamic>) {
+          dataSnapshot.forEach((key, user) {
+            userLists[i].add(UserModel.fromSnapshot(event.snapshot.child(key)));
+          });
+          allRequests.addAll(userLists[i]);
+        } else {
+          debugPrint('No data found for $subnode');
+        }
+      }, onError: (error) {
         debugPrint('Error fetching data for $subnode: $error');
       });
     }
