@@ -34,9 +34,9 @@ class _TabletHomePageState extends State<TabletHomePage> {
                 ? const TabletCheckInfoPage()
                 : controller.myVariable.value == 2
                     ? const DesktopPersonalDetailsPage()
-                    : controller.myVariable.value == 2
+                    : controller.myVariable.value == 3
                         ? const ProfessionalDetailsPage()
-                        : controller.myVariable.value == 3
+                        : controller.myVariable.value == 4
                             ? const ReligiousDetailsPage()
                             : const ConfirmSubmissionPage();
           },
