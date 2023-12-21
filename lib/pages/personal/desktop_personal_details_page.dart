@@ -22,7 +22,8 @@ class DesktopPersonalDetailsPage extends StatefulWidget {
 class _DesktopPersonalDetailsPageState
     extends State<DesktopPersonalDetailsPage> {
   late TextEditingController nameController;
-  late TextEditingController mobileController;
+  TextEditingController mobileController =
+      TextEditingController(text: userDetails["telephone"]);
   late TextEditingController hometownController;
   late TextEditingController placeOfBirthController;
 
@@ -39,7 +40,6 @@ class _DesktopPersonalDetailsPageState
   @override
   void initState() {
     nameController = TextEditingController();
-    mobileController = TextEditingController();
     hometownController = TextEditingController();
     placeOfBirthController = TextEditingController();
 
@@ -181,13 +181,13 @@ class _DesktopPersonalDetailsPageState
                           style: header16(),
                         ),
                         TextFieldTemplate(
-                          hintText: "+2331234567",
+                          //hintText: "+2331234567",
                           controller: mobileController,
                           obscureText: false,
                           height: 50,
                           textInputType: TextInputType.number,
                           textInputAction: TextInputAction.next,
-                          enabled: true,
+                          enabled: false,
                         )
                       ],
                     )
@@ -395,7 +395,6 @@ class _DesktopPersonalDetailsPageState
               buttonHeight: 60,
               buttonAction: () {
                 if (nameController.text == "" ||
-                    mobileController.text == "" ||
                     placeOfBirthController.text == "" ||
                     hometownController.text == "" ||
                     groupValue == 0 ||
@@ -412,12 +411,11 @@ class _DesktopPersonalDetailsPageState
                   );
                 } else {
                   fullname = nameController.text.toString().trim();
-                  telephone = mobileController.text.toString().trim();
                   placeOfBirth = placeOfBirthController.text.toString().trim();
                   hometown = hometownController.text.toString().trim();
                   gender = selectedGeder.toString();
                   saveDataToLocalStorage(fullname, convertDate(selectedDay),
-                      gender, hometown, placeOfBirth, telephone);
+                      gender, hometown, placeOfBirth);
                   setState(() {
                     Get.find<MyController>().increment();
                   });
@@ -436,13 +434,12 @@ class _DesktopPersonalDetailsPageState
   }
 
   saveDataToLocalStorage(String fullName, String dateOfBirth, String gender,
-      String hometown, String placeOfBirth, String telephone) {
+      String hometown, String placeOfBirth) {
     userDetails["fullName"] = fullName;
     userDetails["dateOfBirth"] = dateOfBirth;
     userDetails["gender"] = gender;
     userDetails["hometown"] = hometown;
     userDetails["placeOfBirth"] = placeOfBirth;
-    userDetails["telephone"] = telephone;
     userDetails["imageBytes"] = imageBytes;
   }
 

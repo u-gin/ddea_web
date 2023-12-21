@@ -20,7 +20,8 @@ class MobilePersonalDetailsPage extends StatefulWidget {
 
 class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
   late TextEditingController nameController;
-  late TextEditingController mobileController;
+  TextEditingController mobileController =
+      TextEditingController(text: userDetails["telephone"]);
   late TextEditingController hometownController;
   late TextEditingController placeOfBirthController;
   late TextEditingController dateOfBirthController;
@@ -36,7 +37,6 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
   @override
   void initState() {
     nameController = TextEditingController();
-    mobileController = TextEditingController();
     hometownController = TextEditingController();
     placeOfBirthController = TextEditingController();
     dateOfBirthController = TextEditingController();
@@ -174,14 +174,13 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
                 style: header13(),
               ),
               TextFieldTemplate(
-                hintText: "+2331234567",
                 controller: mobileController,
                 obscureText: false,
                 height: 40,
                 width: Get.width,
                 textInputType: TextInputType.number,
                 textInputAction: TextInputAction.next,
-                enabled: true,
+                enabled: false,
               ),
               const SizedBox(
                 height: 15,
@@ -356,7 +355,6 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
             buttonHeight: 60,
             buttonAction: () {
               if (nameController.text == "" ||
-                  mobileController.text == "" ||
                   placeOfBirthController.text == "" ||
                   hometownController.text == "" ||
                   groupValue == 0 ||
@@ -372,12 +370,11 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
                 );
               } else {
                 fullname = nameController.text.toString().trim();
-                telephone = mobileController.text.toString().trim();
                 placeOfBirth = placeOfBirthController.text.toString().trim();
                 hometown = hometownController.text.toString().trim();
                 gender = selectedGeder.toString();
                 saveDataToLocalStorage(fullname, convertDate(selectedDay),
-                    gender, hometown, placeOfBirth, telephone);
+                    gender, hometown, placeOfBirth);
                 setState(() {
                   Get.find<MyController>().increment();
                 });
@@ -395,13 +392,12 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
   }
 
   saveDataToLocalStorage(String fullName, String dateOfBirth, String gender,
-      String hometown, String placeOfBirth, String telephone) {
+      String hometown, String placeOfBirth) {
     userDetails["fullName"] = fullName;
     userDetails["dateOfBirth"] = dateOfBirth;
     userDetails["gender"] = gender;
     userDetails["hometown"] = hometown;
     userDetails["placeOfBirth"] = placeOfBirth;
-    userDetails["telephone"] = telephone;
     userDetails["imageBytes"] = imageBytes;
   }
 
