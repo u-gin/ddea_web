@@ -1,12 +1,18 @@
 import 'dart:typed_data';
 
+import 'package:ddea_web/helpers/firebase_provider.dart';
+import 'package:ddea_web/main.dart';
 import 'package:ddea_web/pages/admin/requests_details_page.dart';
 import 'package:ddea_web/pages/admin/user_list_template.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 
+import '../../helpers/firebase_service.dart';
+import '../../models/user_model.dart';
 import '../../utils/constants.dart';
 
 class RequestsPage extends StatefulWidget {
@@ -20,8 +26,8 @@ class RequestsPage extends StatefulWidget {
 class _RequestsPageState extends State<RequestsPage> {
   final FirebaseDatabase databaseInstance = FirebaseDatabase.instance;
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+  FirebaseService get service => GetIt.I<FirebaseService>();
 
-  bool isLoading = false;
   bool isImageLoading = false;
   String? userImageUrl;
 
@@ -32,143 +38,165 @@ class _RequestsPageState extends State<RequestsPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(allRequests);
     return Scaffold(
       backgroundColor: Colors.grey[10],
-      body: isLoading
-          ? const Center(
-              child: SizedBox(
-                height: 25,
-                width: 25,
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.deepPurple,
-                  strokeWidth: 3,
+      body: SizedBox(
+        height: canvasHeight,
+        width: canvasWidth,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 50),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 50, left: 220),
+                child: Text(
+                  "All request",
+                  style: memberDetailsHeaderTextStyle(),
                 ),
               ),
-            )
-          : SizedBox(
-              height: canvasHeight,
-              width: canvasWidth,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 50),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Row(
-                          children: [
-                            const SizedBox(
-                              width: 50,
-                              height: 50,
-                            ),
-                            const SizedBox(
-                              width: 30,
-                            ),
-                            SizedBox(
-                              width: 200,
-                              child: Center(
-                                child: Text(
-                                  "Full name",
-                                  style: headerTextStyle(),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          width: 150,
-                          child: Center(
-                            child: Text(
-                              "Telephone",
-                              style: headerTextStyle(),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 150,
-                          child: Center(
-                            child: Text(
-                              "Date of birth",
-                              style: headerTextStyle(),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 150,
-                          child: Center(
-                            child: Text(
-                              "Date joined",
-                              style: headerTextStyle(),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 150,
-                          child: Center(
-                            child: Text(
-                              "Connect group",
-                              style: headerTextStyle(),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Expanded(
-                      child: allRequests.isEmpty
-                          ? SizedBox(
-                              width: canvasWidth,
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 40.0),
-                                child: Text(
-                                  'No data available for this category',
-                                  textAlign: TextAlign.center,
-                                  style: textStyle(),
-                                ),
-                              ),
-                            )
-                          : ListView.builder(
-                              itemCount: allRequests.length,
-                              shrinkWrap: true,
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    Get.to(
-                                      () => const RequestsDetailsPage(),
-                                      arguments: [
-                                        allRequests[index],
-                                        getUserImageUrl(
-                                          allRequests[index].telephone!,
-                                        )
-                                      ],
-                                    );
-                                  },
-                                  child: UserListTemplate(
-                                    key: ValueKey(allRequests[index].fullName!),
-                                    imageUrl: getUserImageUrl(
-                                        allRequests[index].telephone!),
-                                    fullName: allRequests[index].fullName!,
-                                    telephone: allRequests[index].telephone!,
-                                    dateOfBirth:
-                                        allRequests[index].dateOfBirth!,
-                                    dateJoined: allRequests[index].dateAdded!,
-                                    connectGroup:
-                                        allRequests[index].connectGroup!,
-                                  ),
-                                );
-                              },
-                            ),
-                    ),
-                  ],
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 50, left: 220),
+                child: Text(
+                  "Click on a member to view and verify details",
+                  style: memberDetailsQTextStyle(),
                 ),
               ),
-            ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 50,
+                        height: 50,
+                      ),
+                      const SizedBox(
+                        width: 30,
+                      ),
+                      SizedBox(
+                        width: 200,
+                        child: Center(
+                          child: Text(
+                            "Full name",
+                            style: headerTextStyle(),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    width: 150,
+                    child: Center(
+                      child: Text(
+                        "Telephone",
+                        style: headerTextStyle(),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 150,
+                    child: Center(
+                      child: Text(
+                        "Date of birth",
+                        style: headerTextStyle(),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 150,
+                    child: Center(
+                      child: Text(
+                        "Date joined",
+                        style: headerTextStyle(),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 150,
+                    child: Center(
+                      child: Text(
+                        "Connect group",
+                        style: headerTextStyle(),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                child: Consumer<FirebaseProvider>(
+                  builder: (context, firebase, child) {
+                    if (firebase.allRequests == []) {
+                      return SizedBox(
+                        width: canvasWidth,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 40.0),
+                          child: Text(
+                            'No data available for this category',
+                            textAlign: TextAlign.center,
+                            style: textStyle(),
+                          ),
+                        ),
+                      );
+                    }
+                    if (firebase.isLoading) {
+                      return const Center(
+                        child: SizedBox(
+                          height: 25,
+                          width: 25,
+                          child: CircularProgressIndicator(
+                            backgroundColor: Colors.deepPurple,
+                            strokeWidth: 3,
+                          ),
+                        ),
+                      );
+                    }
+
+                    return ListView.builder(
+                      itemCount: firebase.allRequests.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Get.to(
+                              () => const RequestsDetailsPage(),
+                              arguments: [
+                                firebase.allRequests[index],
+                                getUserImageUrl(
+                                  firebase.allRequests[index].telephone!,
+                                )
+                              ],
+                            );
+                          },
+                          child: UserListTemplate(
+                            key:
+                                ValueKey(firebase.allRequests[index].fullName!),
+                            imageUrl: getUserImageUrl(
+                                firebase.allRequests[index].telephone!),
+                            fullName: firebase.allRequests[index].fullName!,
+                            telephone: firebase.allRequests[index].telephone!,
+                            dateOfBirth:
+                                firebase.allRequests[index].dateOfBirth!,
+                            dateJoined: firebase.allRequests[index].dateAdded!,
+                            connectGroup:
+                                firebase.allRequests[index].connectGroup!,
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
