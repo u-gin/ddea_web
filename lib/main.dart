@@ -1,4 +1,6 @@
 import 'package:ddea_web/firebase_options.dart';
+import 'package:ddea_web/helpers/firebase_provider.dart';
+import 'package:ddea_web/helpers/firebase_service.dart';
 import 'package:ddea_web/pages/admin/dashboard.dart';
 import 'package:ddea_web/pages/admin/requests_page.dart';
 import 'package:ddea_web/pages/home/desktop_home_page.dart';
@@ -14,11 +16,18 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 
 import 'models/user_model.dart';
 
+void setupLocator() {
+  GetIt.I.registerLazySingleton(() => FirebaseService());
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized;
+  setupLocator();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MainApp());
@@ -36,115 +45,40 @@ class _MainAppState extends State<MainApp> {
 
   @override
   void initState() {
-    retrieveUserData();
-    retrieveRequests();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "DDEA",
-      theme: ThemeData(
-        //fontFamily: "HindSiliguri",
-        brightness: Brightness.light,
-        primaryColor: AppColors.primary,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => FirebaseProvider(),
+        ),
+      ],
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "DDEA",
+        theme: ThemeData(
+          //fontFamily: "HindSiliguri",
+          brightness: Brightness.light,
+          primaryColor: AppColors.primary,
+        ),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const ResponsiveLayout(
+                desktopLayout: DesktopLandingPage(),
+                mobileLayout: MobileLandingPage(),
+                tabletLayout: TabletLandingPage(),
+              ),
+          '/home': (context) => const DesktopHomePage(),
+          '/personalDetailsPage': (context) =>
+              const DesktopPersonalDetailsPage(),
+          '/religiousDetails': (context) => const ReligiousDetailsPage(),
+          '/Dashboard': (context) => const Dashboard(),
+          '/Requests': (context) => const RequestsPage(),
+        },
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const ResponsiveLayout(
-              desktopLayout: DesktopLandingPage(),
-              mobileLayout: MobileLandingPage(),
-              tabletLayout: TabletLandingPage(),
-            ),
-        '/home': (context) => const DesktopHomePage(),
-        '/personalDetailsPage': (context) => const DesktopPersonalDetailsPage(),
-        '/religiousDetails': (context) => const ReligiousDetailsPage(),
-        '/Dashboard': (context) => const Dashboard(),
-        '/Requests': (context) => const RequestsPage(),
-      },
     );
-  }
-
-  void retrieveUserData() {
-    List subnodePaths = [
-      "Elder (Eld)",
-      "Deacon (Dcn)",
-      "Deaconess (Dcns)",
-      "Member (M)",
-      "Presiding Elder (PE)",
-      "Pastor (Ps)"
-    ];
-    List<List<UserModel>> userLists = [
-      justElders,
-      justDeacons,
-      justDeaconesses,
-      justMembers,
-      justPresidingElder,
-      justPastor
-    ];
-    /* setState(() {
-      isLoading = true;
-    }); */
-    final DatabaseReference databaseReference = databaseInstance.ref();
-
-    for (int i = 0; i < subnodePaths.length; i++) {
-      String subnode = subnodePaths[i];
-
-      databaseReference.child('ddea/approved/members/$subnode').onValue.listen(
-          (DatabaseEvent event) {
-        final dynamic dataSnapshot = event.snapshot.value;
-        if (dataSnapshot != null && dataSnapshot is Map<dynamic, dynamic>) {
-          dataSnapshot.forEach((key, user) {
-            userLists[i].add(UserModel.fromSnapshot(event.snapshot.child(key)));
-          });
-          allUsers.addAll(userLists[i]);
-        } else {
-          debugPrint('No data found for $subnode');
-        }
-      }, onError: (error) {
-        debugPrint('Error fetching data for $subnode: $error');
-      });
-    }
-  }
-
-  void retrieveRequests() {
-    List subnodePaths = [
-      "Elder (Eld)",
-      "Deacon (Dcn)",
-      "Deaconess (Dcns)",
-      "Member (M)",
-      "Presiding Elder (PE)",
-      "Pastor (Ps)"
-    ];
-    List<List<UserModel>> userLists = [
-      tempElders,
-      tempDeacons,
-      tempDeaconesses,
-      tempMembers,
-      tempPresidingElder,
-      tempPastor
-    ];
-    final DatabaseReference databaseReference = databaseInstance.ref();
-
-    for (int i = 0; i < subnodePaths.length; i++) {
-      String subnode = subnodePaths[i];
-
-      databaseReference.child('ddea/members/$subnode').onValue.listen(
-          (DatabaseEvent event) {
-        final dynamic dataSnapshot = event.snapshot.value;
-        if (dataSnapshot != null && dataSnapshot is Map<dynamic, dynamic>) {
-          dataSnapshot.forEach((key, user) {
-            userLists[i].add(UserModel.fromSnapshot(event.snapshot.child(key)));
-          });
-          allRequests.addAll(userLists[i]);
-        } else {
-          debugPrint('No data found for $subnode');
-        }
-      }, onError: (error) {
-        debugPrint('Error fetching data for $subnode: $error');
-      });
-    }
   }
 }
