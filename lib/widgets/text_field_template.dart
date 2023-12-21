@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class TextFieldTemplate extends StatelessWidget {
-  final String hintText;
+  final String? hintText;
   final TextEditingController controller;
   final bool obscureText;
   final bool? readOnly;
@@ -23,7 +23,7 @@ class TextFieldTemplate extends StatelessWidget {
 
   const TextFieldTemplate({
     Key? key,
-    required this.hintText,
+    this.hintText,
     required this.controller,
     required this.obscureText,
     this.readOnly,
