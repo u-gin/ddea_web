@@ -184,7 +184,6 @@ class _CheckInfoPageState extends State<CheckInfoPage> {
                   buttonHeight: 60,
                   buttonAction: () {
                     userDetails["telephone"] = mobile;
-
                     Get.find<MyController>().increment();
                   },
                   fontColor: Colors.white,
