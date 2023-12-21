@@ -1,5 +1,7 @@
+import 'package:ddea_web/helpers/firebase_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
@@ -17,6 +19,7 @@ class CheckInfoPage extends StatefulWidget {
 class _CheckInfoPageState extends State<CheckInfoPage> {
   late TextEditingController mobileController;
   bool? registered;
+  String mobile = '';
 
   @override
   void initState() {
@@ -85,55 +88,67 @@ class _CheckInfoPageState extends State<CheckInfoPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Telephone",
-                        style: header16(),
-                      ),
-                      Row(
+                  Consumer<FirebaseProvider>(
+                    builder: (context, firebase, child) {
+                      if (firebase.isLoadingAllUsers) {
+                        return const CircularProgressIndicator(
+                          backgroundColor: Colors.deepPurple,
+                          strokeWidth: 2,
+                        );
+                      }
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextFieldTemplate(
-                            hintText: "02431234567",
-                            controller: mobileController,
-                            obscureText: false,
-                            height: 50,
-                            textInputType: TextInputType.phone,
-                            textInputAction: TextInputAction.done,
-                            enabled: true,
+                          Text(
+                            "Telephone",
+                            style: header16(),
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              String mobile = mobileController.text.toString();
+                          Row(
+                            children: [
+                              TextFieldTemplate(
+                                hintText: "02431234567",
+                                controller: mobileController,
+                                obscureText: false,
+                                height: 50,
+                                textInputType: TextInputType.phone,
+                                textInputAction: TextInputAction.done,
+                                enabled: true,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  mobile = mobileController.text.toString();
 
-                              setState(() {
-                                registered = allUsers.any((element) =>
-                                    mobile.substring(mobile.length - 9) ==
-                                    element.telephone!.substring(
-                                        element.telephone!.length - 9));
-                              });
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: Colors.deepPurple,
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.all(10),
-                                child: Icon(
-                                  Icons.search,
-                                  color: Colors.white,
+                                  setState(() {
+                                    registered = firebase.allUsers.any(
+                                        (element) =>
+                                            mobile
+                                                .substring(mobile.length - 9) ==
+                                            element.telephone!.substring(
+                                                element.telephone!.length - 9));
+                                  });
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.deepPurple,
+                                  ),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(10),
+                                    child: Icon(
+                                      Icons.search,
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
+                              )
+                            ],
                           )
                         ],
-                      )
-                    ],
+                      );
+                    },
                   ),
                 ],
               ),
@@ -168,6 +183,8 @@ class _CheckInfoPageState extends State<CheckInfoPage> {
                   buttonColor: Colors.deepPurple,
                   buttonHeight: 60,
                   buttonAction: () {
+                    userDetails["telephone"] = mobile;
+
                     Get.find<MyController>().increment();
                   },
                   fontColor: Colors.white,
