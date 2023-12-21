@@ -18,6 +18,7 @@ class MobileProfessionalDetailsPage extends StatefulWidget {
 class _MobileProfessionalDetailsPageState
     extends State<MobileProfessionalDetailsPage> {
   final FirebaseDatabase database = FirebaseDatabase.instance;
+
   late TextEditingController placeOfResidenceController;
   late TextEditingController residentialAddressController;
   late TextEditingController placeOfWorkController;
@@ -25,7 +26,6 @@ class _MobileProfessionalDetailsPageState
 
   late String placeOfResidence, residentialAddress, placeOfWork, profession;
 
-  int groupValue = 0;
   bool isLoading = false;
 
   @override

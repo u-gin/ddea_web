@@ -24,7 +24,6 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
 
   late String placeOfResidence, residentialAddress, placeOfWork, profession;
 
-  int groupValue = 0;
   bool isLoading = false;
 
   @override
