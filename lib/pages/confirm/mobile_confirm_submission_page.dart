@@ -197,7 +197,12 @@ class _MobileConfirmSubmissionPageState
     final firebaseStorageReference =
         firebaseStorage.ref("ddea/${userDetails["telephone"]}.jpg");
 
-    await databaseReference.push().set({
+    // Create a new reference by calling push()
+    DatabaseReference newReference = databaseReference.push();
+
+    String dataKey = newReference.key!;
+
+    await newReference.set({
       "Fullname": userDetails["fullName"],
       "Mobile number": userDetails["telephone"],
       "Place of birth": userDetails["placeOfBirth"],
@@ -217,6 +222,7 @@ class _MobileConfirmSubmissionPageState
       "Ministry": userDetails["ministry"],
       "Date added": convertDate(DateTime.now()),
       "Time added": convertTime(DateTime.now()),
+      "id": dataKey
     }).then((value) {
       firebaseStorageReference
           .putData(userDetails["imageBytes"],
