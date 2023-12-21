@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import '../../helpers/firebase_provider.dart';
-import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../utils/my_controller.dart';
 import '../../widgets/button_template.dart';

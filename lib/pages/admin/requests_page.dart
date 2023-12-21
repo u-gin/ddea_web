@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 
 import 'package:ddea_web/helpers/firebase_provider.dart';
-import 'package:ddea_web/main.dart';
 import 'package:ddea_web/pages/admin/requests_details_page.dart';
 import 'package:ddea_web/pages/admin/user_list_template.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -12,7 +11,6 @@ import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 import '../../helpers/firebase_service.dart';
-import '../../models/user_model.dart';
 import '../../utils/constants.dart';
 
 class RequestsPage extends StatefulWidget {

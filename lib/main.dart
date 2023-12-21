@@ -11,15 +11,12 @@ import 'package:ddea_web/pages/personal/desktop_personal_details_page.dart';
 import 'package:ddea_web/pages/religious/religious_details_page.dart';
 import 'package:ddea_web/responsive_layout.dart';
 import 'package:ddea_web/utils/colors.dart';
-import 'package:ddea_web/utils/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
-
-import 'models/user_model.dart';
 
 void setupLocator() {
   GetIt.I.registerLazySingleton(() => FirebaseService());

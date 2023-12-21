@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 
 import 'package:ddea_web/helpers/firebase_provider.dart';
-import 'package:ddea_web/models/user_model.dart';
 import 'package:ddea_web/pages/admin/member_details_page.dart';
 import 'package:ddea_web/pages/admin/requests_page.dart';
 import 'package:ddea_web/pages/admin/user_list_template.dart';
@@ -11,8 +10,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-
-import '../../utils/colors.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
