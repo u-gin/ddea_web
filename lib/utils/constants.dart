@@ -24,9 +24,8 @@ String convertTime(DateTime? timeToConvert) {
 }
 
 Map<String, dynamic> userDetails = {};
-List<UserModel> allUsers = [];
-List<UserModel> allRequests = [];
-List<UserModel> justMembers = [];
+
+/* List<UserModel> justMembers = [];
 List<UserModel> justElders = [];
 List<UserModel> justDeacons = [];
 List<UserModel> justDeaconesses = [];
@@ -39,7 +38,7 @@ List<UserModel> tempElders = [];
 List<UserModel> tempDeacons = [];
 List<UserModel> tempDeaconesses = [];
 List<UserModel> tempPastor = [];
-List<UserModel> tempPresidingElder = [];
+List<UserModel> tempPresidingElder = []; */
 
 int? numberOfEntriesMade;
 int? numberOfMembersEntered;
