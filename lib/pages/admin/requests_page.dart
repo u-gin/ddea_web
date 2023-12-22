@@ -130,15 +130,17 @@ class _RequestsPageState extends State<RequestsPage> {
               Expanded(
                 child: Consumer<FirebaseProvider>(
                   builder: (context, firebase, child) {
-                    if (firebase.allRequests == []) {
+                    if (firebase.allRequests.isEmpty) {
                       return SizedBox(
                         width: canvasWidth,
                         child: Padding(
                           padding: const EdgeInsets.only(top: 40.0),
-                          child: Text(
-                            'No data available for this category',
-                            textAlign: TextAlign.center,
-                            style: textStyle(),
+                          child: Center(
+                            child: Text(
+                              'No data available for this category',
+                              textAlign: TextAlign.center,
+                              style: textStyle(),
+                            ),
                           ),
                         ),
                       );
