@@ -19,6 +19,7 @@ class _MobileCheckInfoPageState extends State<MobileCheckInfoPage> {
   late TextEditingController mobileController;
   bool? registered;
   String mobile = '';
+  final _phoneNumberRegex = RegExp(r'^[1-9][0-9]{10,15}$');
 
   @override
   void initState() {
@@ -66,14 +67,33 @@ class _MobileCheckInfoPageState extends State<MobileCheckInfoPage> {
                 ],
               ),
             ),
-            const Text(
-              "Input your telephone number in the field below to verify if your details are already registered",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16.0,
-                fontFamily: "Poppins",
-                fontWeight: FontWeight.w500,
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                "Follow the instructions below to input your telephone number in the field below to verify if your details are already registered",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 13.0,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                "1. Start with country code without the '+'. Eg. 233 for Ghana, 44 for UK. \n2. Remove all leading zero after country code. Eg. 233244123456 not 2330244123456. \n3. No brackets '()' or symbols '+ - .', just numbers. \n4. Leave no spaces between the numbers",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 13.0,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
             const SizedBox(
@@ -114,14 +134,27 @@ class _MobileCheckInfoPageState extends State<MobileCheckInfoPage> {
                             GestureDetector(
                               onTap: () {
                                 mobile = mobileController.text.toString();
-
-                                setState(() {
-                                  registered = firebase.allUsers.any(
-                                      (element) =>
-                                          mobile.substring(mobile.length - 9) ==
-                                          element.telephone!.substring(
-                                              element.telephone!.length - 9));
-                                });
+                                if (_phoneNumberRegex.hasMatch(mobile)) {
+                                  setState(() {
+                                    registered = firebase.allUsers.any(
+                                        (element) =>
+                                            mobile
+                                                .substring(mobile.length - 9) ==
+                                            element.telephone!.substring(
+                                                element.telephone!.length - 9));
+                                  });
+                                } else {
+                                  Get.snackbar(
+                                    "Warrning",
+                                    "Phone number is not valid",
+                                    colorText: Colors.white,
+                                    backgroundColor: Colors.red,
+                                    borderRadius: 8.0,
+                                    margin: const EdgeInsets.only(
+                                        top: 60, left: 380, right: 380),
+                                    duration: const Duration(seconds: 5),
+                                  );
+                                }
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -136,7 +169,7 @@ class _MobileCheckInfoPageState extends State<MobileCheckInfoPage> {
                                   ),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         )
                       ],
