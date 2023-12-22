@@ -35,7 +35,7 @@ class FirebaseProvider extends ChangeNotifier {
   moveRequestsToApproved(
       String node, String key, Function(bool success) callback) {
     service.moveData(node, key, callback);
-    isLoadingDelete = false;
+    isLoadingMove = false;
     notifyListeners();
   }
 
