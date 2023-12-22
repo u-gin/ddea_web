@@ -309,7 +309,7 @@ class _DashboardState extends State<Dashboard> {
                     return Center(
                       child: Text(
                         "No data found in this list",
-                        style: memberDetailsTextStyle(),
+                        style: textStyle(),
                       ),
                     );
                   }
