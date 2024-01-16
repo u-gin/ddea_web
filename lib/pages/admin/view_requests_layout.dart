@@ -13,7 +13,7 @@ class _ViewRequestLayoutState extends State<ViewRequestLayout> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: canvasWidth,
-      child: Column(
+      child: const Column(
         children: [
           Text(''),
         ],
