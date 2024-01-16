@@ -2,7 +2,6 @@ import 'package:ddea_web/pages/success/desktop_success_page.dart';
 import 'package:ddea_web/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../utils/constants.dart';
 import '../../utils/my_controller.dart';
 import '../../widgets/button_template.dart';
@@ -69,6 +68,7 @@ class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
                           ],
                         ),
                       ),
+                      rowItem("ID", generateUniqueId()),
                       rowItem("Fullname", userDetails["fullName"]),
                       rowItem("Mobile number", userDetails["telephone"]),
                       rowItem("Date of birth", userDetails["dateOfBirth"]),
@@ -187,6 +187,15 @@ class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
     );
   }
 
+  String generateUniqueId() {
+    String connectGroup = userDetails["connectGroup"].substring(0, 3);
+    String mobile =
+        userDetails["telephone"].substring(userDetails["telephone"].length - 4);
+
+    String uniqueID = "COPDDEA$connectGroup$mobile".removeAllWhitespace;
+    return uniqueID.toUpperCase();
+  }
+
   sendDataToFirebase(Function(bool success) callback) async {
     final databaseReference =
         database.ref("ddea/members/${userDetails["positionHeld"]}");
@@ -219,7 +228,8 @@ class _ConfirmSubmissionPageState extends State<ConfirmSubmissionPage> {
       "Ministry": userDetails["ministry"],
       "Date added": convertDate(DateTime.now()),
       "Time added": convertTime(DateTime.now()),
-      "id": dataKey
+      "id": dataKey,
+      "copId": generateUniqueId()
     }).then((value) {
       firebaseStorageReference
           .putData(userDetails["imageBytes"],

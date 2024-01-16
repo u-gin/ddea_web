@@ -70,6 +70,7 @@ class _MobileConfirmSubmissionPageState
                         ],
                       ),
                     ),
+                    rowItem("ID", generateUniqueId()),
                     rowItem("Fullname", userDetails["fullName"]),
                     rowItem("Mobile number", userDetails["telephone"]),
                     rowItem("Date of birth", userDetails["dateOfBirth"]),
@@ -188,6 +189,15 @@ class _MobileConfirmSubmissionPageState
         ),
       ],
     );
+  }
+
+  String generateUniqueId() {
+    String connectGroup = userDetails["connectGroup"].substring(0, 3);
+    String mobile =
+        userDetails["telephone"].substring(userDetails["telephone"].length - 4);
+
+    String uniqueID = "COPDDEA$connectGroup$mobile".removeAllWhitespace;
+    return uniqueID.toUpperCase();
   }
 
   sendDataToFirebase(Function(bool success) callback) async {
