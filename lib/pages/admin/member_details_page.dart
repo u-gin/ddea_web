@@ -93,7 +93,14 @@ class MemberDetailsPage extends StatelessWidget {
                     Text(
                       member[0].telephone,
                       style: memberDetailsTextStyle(),
-                    )
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      member[0].copId,
+                      style: memberIDTextStyle(),
+                    ),
                   ],
                 ),
               ),

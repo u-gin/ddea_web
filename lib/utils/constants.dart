@@ -61,10 +61,20 @@ TextStyle memberDetailsHeaderTextStyle() {
 
 TextStyle memberDetailsTextStyle() {
   return const TextStyle(
-      fontSize: 18.0,
-      fontFamily: "Poppins",
-      fontWeight: FontWeight.w500,
-      color: Colors.black);
+    fontSize: 18.0,
+    fontFamily: "Poppins",
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+  );
+}
+
+TextStyle memberIDTextStyle() {
+  return const TextStyle(
+    fontSize: 18.0,
+    fontFamily: "Poppins",
+    fontWeight: FontWeight.w700,
+    color: Color.fromARGB(255, 143, 70, 15),
+  );
 }
 
 TextStyle memberDetailsQTextStyle() {

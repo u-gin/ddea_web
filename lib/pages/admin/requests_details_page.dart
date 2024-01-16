@@ -100,6 +100,13 @@ class _RequestsDetailsPageState extends State<RequestsDetailsPage> {
                             style: memberDetailsTextStyle(),
                           ),
                           const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            member[0].copId,
+                            style: memberIDTextStyle(),
+                          ),
+                          const SizedBox(
                             height: 50,
                           ),
                           Row(
