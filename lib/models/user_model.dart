@@ -24,6 +24,7 @@ class UserModel {
   String? shepherd;
   String? timeAdded;
   String? id;
+  String? copId;
 
   UserModel({
     required this.fullName,
@@ -46,6 +47,7 @@ class UserModel {
     required this.shepherd,
     required this.timeAdded,
     required this.id,
+    required this.copId,
   });
 
   factory UserModel.fromSnapshot(DataSnapshot snapshot) {
@@ -71,6 +73,7 @@ class UserModel {
       shepherd: data?['Shepherd'] as String,
       timeAdded: data?['Time added'] as String,
       id: data?['id'] as String,
+      copId: data?['copId'] as String,
     );
   }
 
@@ -95,6 +98,7 @@ class UserModel {
     String? shepherd,
     String? timeAdded,
     String? id,
+    String? copId,
   }) {
     return UserModel(
       fullName: fullName ?? this.fullName,
@@ -117,6 +121,7 @@ class UserModel {
       shepherd: shepherd ?? this.shepherd,
       timeAdded: timeAdded ?? this.timeAdded,
       id: id ?? this.id,
+      copId: copId ?? this.copId,
     );
   }
 
@@ -142,6 +147,7 @@ class UserModel {
       'shepherd': shepherd,
       'timeAdded': timeAdded,
       'id': id,
+      'copId': copId,
     };
   }
 
@@ -167,6 +173,7 @@ class UserModel {
       shepherd: map['shepherd'] as String,
       timeAdded: map['timeAdded'] as String,
       id: map['id'] as String,
+      copId: map['copId'] as String,
     );
   }
 
@@ -177,7 +184,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(fullName: $fullName, telephone: $telephone, gender: $gender, dateOfBirth: $dateOfBirth, hometown: $hometown, placeOfResidence: $placeOfResidence, residentialAddress: $residentialAddress, placeOfWork: $placeOfWork, occupation: $occupation, baptizedBy: $baptizedBy, communicant: $communicant, positionHeld: $positionHeld, baptismType: $baptismType, connectGroup: $connectGroup, dateAdded: $dateAdded, ministry: $ministry, placeOfBirth: $placeOfBirth, shepherd: $shepherd, timeAdded: $timeAdded, id: $id)';
+    return 'UserModel(fullName: $fullName, telephone: $telephone, gender: $gender, dateOfBirth: $dateOfBirth, hometown: $hometown, placeOfResidence: $placeOfResidence, residentialAddress: $residentialAddress, placeOfWork: $placeOfWork, occupation: $occupation, baptizedBy: $baptizedBy, communicant: $communicant, positionHeld: $positionHeld, baptismType: $baptismType, connectGroup: $connectGroup, dateAdded: $dateAdded, ministry: $ministry, placeOfBirth: $placeOfBirth, shepherd: $shepherd, timeAdded: $timeAdded, id: $id, copId: $copId)';
   }
 
   @override
@@ -203,7 +210,8 @@ class UserModel {
         other.placeOfBirth == placeOfBirth &&
         other.shepherd == shepherd &&
         other.timeAdded == timeAdded &&
-        other.id == id;
+        other.id == id &&
+        other.copId == copId;
   }
 
   @override
@@ -227,6 +235,7 @@ class UserModel {
         placeOfBirth.hashCode ^
         shepherd.hashCode ^
         timeAdded.hashCode ^
-        id.hashCode;
+        id.hashCode ^
+        copId.hashCode;
   }
 }
