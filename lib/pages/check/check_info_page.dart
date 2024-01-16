@@ -70,32 +70,40 @@ class _CheckInfoPageState extends State<CheckInfoPage> {
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 120),
-                child: Text(
-                  "Follow the instructions below to input your telephone number in the field below to verify if your details are already registered",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 16.0,
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.w500,
-                  ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: const Color.fromARGB(255, 208, 208, 208),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 120),
-                child: Text(
-                  "1. Start with country code without the '+'. Eg. 233 for Ghana, 44 for UK. \n2. Remove all leading zero after country code. Eg. 233244123456 not 2330244123456. \n3. No brackets '()' or symbols '+ - .', just numbers. \n4. Leave no spaces between the numbers",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.0,
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.w500,
+                child: const Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 80.0, horizontal: 100),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Follow the instructions below to input your telephone number in the field below to verify if your details are already registered",
+                        //textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.0,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Text(
+                        "1. Start with country code without the '+'. Eg. 233 for Ghana, 44 for UK. \n\n2. Remove all leading zero after country code. Eg. 233244123456 not 2330244123456. \n\n3. No brackets '()' or symbols '+ - .', just numbers. \n\n4. Leave no spaces between the numbers",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.0,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
