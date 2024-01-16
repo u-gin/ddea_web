@@ -37,7 +37,7 @@ List connectGroupList = [
   "Nissi",
   "Shalom",
   "Jireh",
-  "El-Shaddai",
+  "El Shaddai",
   "Shammah",
   "Adonai",
   "Elyon",
