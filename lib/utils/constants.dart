@@ -121,3 +121,33 @@ TextStyle headerTextStyle() {
     color: Colors.deepPurple,
   );
 }
+
+Widget requiredInfoDesktop() {
+  return const Padding(
+    padding: EdgeInsets.only(top: 20, bottom: 40),
+    child: Text(
+      "**ALL FIELDS ARE REQUIRED**",
+      style: TextStyle(
+        fontFamily: "Poppins",
+        fontSize: 15,
+        fontWeight: FontWeight.w400,
+        color: Colors.red,
+      ),
+    ),
+  );
+}
+
+Widget requiredInfoMobile() {
+  return const Padding(
+    padding: EdgeInsets.only(top: 20, bottom: 20),
+    child: Text(
+      "**ALL FIELDS ARE REQUIRED**",
+      style: TextStyle(
+        fontFamily: "Poppins",
+        fontSize: 13,
+        fontWeight: FontWeight.w400,
+        color: Colors.red,
+      ),
+    ),
+  );
+}

@@ -59,7 +59,7 @@ class _DesktopPersonalDetailsPageState
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 5.0, bottom: 60),
+                  padding: const EdgeInsets.only(top: 5.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -82,6 +82,7 @@ class _DesktopPersonalDetailsPageState
                     ],
                   ),
                 ),
+                requiredInfoDesktop(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

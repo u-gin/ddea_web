@@ -88,7 +88,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 5.0, bottom: 60),
+                          padding: const EdgeInsets.only(top: 5.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -111,6 +111,7 @@ class _ReligiousDetailsPageState extends State<ReligiousDetailsPage> {
                             ],
                           ),
                         ),
+                        requiredInfoDesktop(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

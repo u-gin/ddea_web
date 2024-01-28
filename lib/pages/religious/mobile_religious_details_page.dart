@@ -83,7 +83,7 @@ class _MobileReligiousDetailsPageState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 5.0, bottom: 60),
+              padding: const EdgeInsets.only(top: 5.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -106,6 +106,7 @@ class _MobileReligiousDetailsPageState
                 ],
               ),
             ),
+            requiredInfoMobile(),
             const Text(
               "Baptized by",
               style: TextStyle(

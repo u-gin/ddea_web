@@ -46,151 +46,141 @@ class _ProfessionalDetailsPageState extends State<ProfessionalDetailsPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Expanded(
-                  flex: 1,
-                  child: SizedBox(),
-                ),
-                Expanded(
-                  flex: 8,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5.0, bottom: 60),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.info,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.info,
+                            color: Colors.deepPurple,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "Professional Details".toUpperCase(),
+                            style: const TextStyle(
                               color: Colors.deepPurple,
+                              fontSize: 18.0,
+                              fontFamily: "Poppins",
+                              fontWeight: FontWeight.w500,
                             ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "Professional Details".toUpperCase(),
-                              style: const TextStyle(
-                                color: Colors.deepPurple,
-                                fontSize: 18.0,
+                          ),
+                        ],
+                      ),
+                    ),
+                    requiredInfoDesktop(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Place of residence",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
                                 fontFamily: "Poppins",
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w400,
                               ),
                             ),
+                            TextFieldTemplate(
+                              hintText: "Awoshie",
+                              controller: placeOfResidenceController,
+                              obscureText: false,
+                              height: 50,
+                              textInputType: TextInputType.name,
+                              textInputAction: TextInputAction.next,
+                              enabled: true,
+                            )
                           ],
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Place of residence",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.0,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w400,
-                                ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Residential address",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                                fontFamily: "Poppins",
+                                fontWeight: FontWeight.w400,
                               ),
-                              TextFieldTemplate(
-                                hintText: "Awoshie",
-                                controller: placeOfResidenceController,
-                                obscureText: false,
-                                height: 50,
-                                textInputType: TextInputType.name,
-                                textInputAction: TextInputAction.next,
-                                enabled: true,
-                              )
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Residential address",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.0,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w400,
-                                ),
+                            ),
+                            TextFieldTemplate(
+                              hintText: "Hughes Street, Ablekuma",
+                              controller: residentialAddressController,
+                              obscureText: false,
+                              height: 50,
+                              textInputType: TextInputType.text,
+                              textInputAction: TextInputAction.next,
+                              enabled: true,
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Profession",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                                fontFamily: "Poppins",
+                                fontWeight: FontWeight.w400,
                               ),
-                              TextFieldTemplate(
-                                hintText: "Hughes Street, Ablekuma",
-                                controller: residentialAddressController,
-                                obscureText: false,
-                                height: 50,
-                                textInputType: TextInputType.text,
-                                textInputAction: TextInputAction.next,
-                                enabled: true,
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Profession",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.0,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w400,
-                                ),
+                            ),
+                            TextFieldTemplate(
+                              hintText: "Police",
+                              controller: professionController,
+                              obscureText: false,
+                              height: 50,
+                              textInputType: TextInputType.name,
+                              textInputAction: TextInputAction.next,
+                              enabled: true,
+                            )
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Place of work",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                                fontFamily: "Poppins",
+                                fontWeight: FontWeight.w400,
                               ),
-                              TextFieldTemplate(
-                                hintText: "Police",
-                                controller: professionController,
-                                obscureText: false,
-                                height: 50,
-                                textInputType: TextInputType.name,
-                                textInputAction: TextInputAction.next,
-                                enabled: true,
-                              )
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Place of work",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.0,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              TextFieldTemplate(
-                                hintText: "Ghana Revenue Authority",
-                                controller: placeOfWorkController,
-                                obscureText: false,
-                                height: 50,
-                                textInputType: TextInputType.name,
-                                textInputAction: TextInputAction.next,
-                                enabled: true,
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                const Expanded(
-                  flex: 1,
-                  child: SizedBox(),
+                            ),
+                            TextFieldTemplate(
+                              hintText: "Ghana Revenue Authority",
+                              controller: placeOfWorkController,
+                              obscureText: false,
+                              height: 50,
+                              textInputType: TextInputType.name,
+                              textInputAction: TextInputAction.next,
+                              enabled: true,
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),

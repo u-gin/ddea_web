@@ -194,10 +194,10 @@ class _MobileCheckInfoPageState extends State<MobileCheckInfoPage> {
                       : "Details are not registered, click on next to register",
               textAlign: TextAlign.center,
               style: const TextStyle(
-                color: Colors.black,
-                fontSize: 16.0,
+                color: Colors.red,
+                fontSize: 13.0,
                 fontFamily: "Poppins",
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w400,
               ),
             ),
             const SizedBox(

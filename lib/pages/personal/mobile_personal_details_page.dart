@@ -74,9 +74,7 @@ class _MobilePersonalDetailsPageState extends State<MobilePersonalDetailsPage> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              requiredInfoMobile(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
