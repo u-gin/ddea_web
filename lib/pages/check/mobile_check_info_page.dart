@@ -124,6 +124,7 @@ class _MobileCheckInfoPageState extends State<MobileCheckInfoPage> {
                           style: header16(),
                         ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             TextFieldTemplate(
                               hintText: "233243123456",
@@ -133,9 +134,7 @@ class _MobileCheckInfoPageState extends State<MobileCheckInfoPage> {
                               textInputType: TextInputType.phone,
                               textInputAction: TextInputAction.done,
                               enabled: true,
-                            ),
-                            const SizedBox(
-                              width: 10,
+                              width: 260,
                             ),
                             GestureDetector(
                               onTap: () {

@@ -8,7 +8,7 @@ class TextFieldTemplate extends StatelessWidget {
   final TextEditingController controller;
   final bool obscureText;
   final bool? readOnly;
-  final double width;
+  final double? width;
   final double height;
   final TextInputType textInputType;
   final TextInputAction textInputAction;
@@ -27,7 +27,7 @@ class TextFieldTemplate extends StatelessWidget {
     required this.controller,
     required this.obscureText,
     this.readOnly,
-    this.width = 300,
+    this.width,
     required this.height,
     required this.textInputType,
     required this.textInputAction,
@@ -47,7 +47,7 @@ class TextFieldTemplate extends StatelessWidget {
       padding: const EdgeInsets.only(right: 10.0),
       child: Container(
         height: height,
-        width: width,
+        width: width ?? 300,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
           color: Colors.white,
