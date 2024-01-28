@@ -131,7 +131,7 @@ class _CheckInfoPageState extends State<CheckInfoPage> {
                           Row(
                             children: [
                               TextFieldTemplate(
-                                hintText: "02431234567",
+                                hintText: "233243123456",
                                 controller: mobileController,
                                 obscureText: false,
                                 height: 50,
